@@ -273,6 +273,7 @@ DROP TABLE IF EXISTS `jobs`;
 CREATE TABLE `jobs` (
   `id` tinyint(4) NOT NULL AUTO_INCREMENT,
   `name` varchar(10) NOT NULL COMMENT '岗位名',
+  `system` int ,
   `description` varchar(50) DEFAULT NULL COMMENT '岗位描述',
   `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0 可用 1不可用',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -404,6 +405,7 @@ CREATE TABLE `workflow_model` (
   `busy_type_id` tinyint(4) NOT NULL COMMENT '业务类型id',
   `name` varchar(10) NOT NULL COMMENT '审批流节点名称',
   `description` varchar(200) NOT NULL COMMENT '审批流节点描述',
+  `system` int ,
   `model_text` text NOT NULL COMMENT '工作流模板',
   `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0 可用 1不可用',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -411,6 +413,19 @@ CREATE TABLE `workflow_model` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='审批流模板';
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+DROP TABLE IF EXISTS `xf9_system`;
+CREATE TABLE `xf9_system` (
+  `id` tinyint(4) NOT NULL AUTO_INCREMENT,
+  `name` varchar(10) NOT NULL COMMENT '系统名称',
+  	`user_code` varchar(10) not null comment '',
+  	`user_pwd` varchar(32) not null comment '',
+  `description` varchar(200) NOT NULL COMMENT '系统描述',
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0 可用 1不可用',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='系统名称';
 
 --
 -- Dumping data for table `workflow_model`

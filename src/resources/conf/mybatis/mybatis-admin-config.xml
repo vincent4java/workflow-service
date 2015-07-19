@@ -31,6 +31,7 @@
 		<typeAlias type="com.v4java.lal.pojo.WorkFlowModel" alias="workFlowModel" />
 		<typeAlias type="com.v4java.lal.pojo.JobsUser" alias="jobsUser" />
 		<typeAlias type="com.v4java.lal.pojo.ApproveLog" alias="approveLog" />
+		<typeAlias type="com.v4java.lal.pojo.Xf9System" alias="xf9System" />
 		
 		<!-- vo  -->
 		<typeAlias type="com.v4java.lal.view.admin.WorkFlowVO" alias="workFlowVO" />	
