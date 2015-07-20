@@ -24,11 +24,11 @@
 	</bean>   
 	
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.v4java.lal.dao" />
+		<property name="basePackage" value="com.v4java.workflow.dao" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 	
-	<context:component-scan base-package="com.v4java.lal.service.impl" use-default-filters="true">  
+	<context:component-scan base-package="com.v4java.workflow.service.impl" use-default-filters="true">  
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>  
     </context:component-scan>  
     
@@ -53,7 +53,7 @@
     </tx:advice>
     
     <aop:config expose-proxy="true">
-        <aop:pointcut id="services" expression="execution(* com.v4java.lal.service.impl.*.*(..))" />
+        <aop:pointcut id="services" expression="execution(* com.v4java.workflow.service.impl.*.*(..))" />
         <aop:advisor pointcut-ref="services" advice-ref="txAdvice"/>
     </aop:config>
 	
