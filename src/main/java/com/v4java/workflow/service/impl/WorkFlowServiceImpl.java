@@ -13,6 +13,8 @@ import com.v4java.workflow.dao.ApproveLogDao;
 import com.v4java.workflow.dao.FlowNodeDao;
 import com.v4java.workflow.dao.WorkFlowDao;
 import com.v4java.workflow.pojo.ApproveLog;
+import com.v4java.workflow.pojo.Compare;
+import com.v4java.workflow.pojo.CompareArray;
 import com.v4java.workflow.pojo.FlowNode;
 import com.v4java.workflow.pojo.WorkFlow;
 import com.v4java.workflow.service.IWorkFlowService;
@@ -90,11 +92,13 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 
 		}
 		int n=workFlowDao.updateWorkFlow(workFlow);
-		approveLog.setUserCode(userVO.getUserCode());
-		approveLog.setUserName(userVO.getUserName());
-		approveLog.setFlowNode(nowFlowNode.getId());
-		approveLog.setWorkFlowId(workFlowId);
-		approveLogDao.insertApproveLog(approveLog);
+		if (n==1) {
+			approveLog.setUserCode(userVO.getUserCode());
+			approveLog.setUserName(userVO.getUserName());
+			approveLog.setFlowNode(nowFlowNode.getId());
+			approveLog.setWorkFlowId(workFlowId);
+			approveLogDao.insertApproveLog(approveLog);
+		}
 		return n;
 	}
 	
@@ -139,48 +143,92 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 	 * @param flowNodes	所用几点
 	 */
 	private void changeworkFlow(FlowNode nextFlowNode ,WorkFlow workFlow ,List<FlowNode> flowNodes){
-		switch (nextFlowNode.getNodeType()) {
-		case FlowConst.node_type_start:
-			//系统错误
-			break;
-		case FlowConst.NODE_TYPE_TASK:
-			workFlow.setJobsId(nextFlowNode.getJobsId());
-			workFlow.setWorkflowNode(nextFlowNode.getId());
-			workFlow.setStatus(FlowConst.ING);
-			break;
-		case FlowConst.NODE_TYPE_IF:
-			
-			List<TestJson> testJsons = JSON.parseArray(nextFlowNode.getFlowTest(),TestJson.class);
-			BigDecimal money = workFlow.getMoney();
-			int sort = 0;
-			for (TestJson testJson : testJsons) {
-				Double[] test = testJson.getTest();
-				if (test[1]==-1) {
-					if (money.compareTo(new BigDecimal(test[0]))==1) {
-						sort = testJson.getTarget();
-						break;
+		//获得下一个节点类型
+		if(nextFlowNode.getNodeType()!=null){
+			switch (nextFlowNode.getNodeType()) {
+			//开始节点
+			case FlowConst.node_type_start:
+				//系统错误
+				break;
+			//任务节点
+			case FlowConst.NODE_TYPE_TASK:
+				workFlow.setJobsId(nextFlowNode.getJobsId());
+				workFlow.setWorkflowNode(nextFlowNode.getId());
+				workFlow.setStatus(FlowConst.ING);
+				break;
+			//判断节点
+			case FlowConst.NODE_TYPE_IF:
+				//获得该节点的判断方法
+				//下一个节点排序号
+				int sort = 0;
+				//一个判断条件
+				if(sort==0){
+					List<TestJson> testJsons = JSON.parseArray(nextFlowNode.getFlowTest(),TestJson.class);
+					BigDecimal money = workFlow.getMoney();
+					for (TestJson testJson : testJsons) {
+						Double[] test = testJson.getTest();
+						if (test[1]==-1) {
+							if (money.compareTo(new BigDecimal(test[0]))==1) {
+								sort = testJson.getTarget();
+								break;
+							}
+						}else {
+							if (money.compareTo(new BigDecimal(test[0]))==1&&money.compareTo(new BigDecimal(test[1]))==-1) {
+								sort = testJson.getTarget();
+								break;
+							}
+						}
 					}
+				//多个判断条件
 				}else {
-					if (money.compareTo(new BigDecimal(test[0]))==1&&money.compareTo(new BigDecimal(test[1]))==-1) {
-						sort = testJson.getTarget();
-						break;
+					//得到所有判断条件
+					List<Compare> compares = JSON.parseArray(nextFlowNode.getFlowTest(),Compare.class);
+					//sort等于0 说明已找到合适的节点
+					int i = 0;
+					while (sort!=0) {
+						//得到判断条件
+						Compare compare = compares.get(i);
+						boolean flag = true;
+						CompareArray[] compareArrays = compare.getCompareArrays();
+						String name = null;
+						BigDecimal val = null;
+						for (CompareArray compareArray : compareArrays) {
+							//如果name为null 则是第一次，需要赋值 ，
+							//如果和上一个于
+							if (name == null||!name.equals(compareArray.getName())) {
+								name = compareArray.getName();
+								val = getValByname("", name);
+							}
+							int  n = compareArray.getValue().compareTo(val);
+							
+							
+						}
 					}
 				}
+				workFlow.setStatus(FlowConst.ING);
+				nextFlowNode = findWorkFlowBySort(flowNodes, sort);
+				workFlow.setJobsId(nextFlowNode.getJobsId());
+				workFlow.setWorkflowNode(nextFlowNode.getId());
+				workFlow.setStatus(FlowConst.ING);
+				
+				break;
+			//结束节点,哈哈 
+			case FlowConst.NODE_TYPE_END:
+				workFlow.setJobsId(0);
+				workFlow.setWorkflowNode(0);
+				workFlow.setStatus(FlowConst.END);
+				break;		
+			//暂不能为其他节点
+			default:
+				workFlow = null;
+				break;
 			}
-			workFlow.setStatus(FlowConst.ING);
-			nextFlowNode = findWorkFlowBySort(flowNodes, sort);
-			workFlow.setJobsId(nextFlowNode.getJobsId());
-			workFlow.setWorkflowNode(nextFlowNode.getId());
-			workFlow.setStatus(FlowConst.ING);
-			
-			break;		
-		case FlowConst.NODE_TYPE_END:
-			workFlow.setJobsId(0);
-			workFlow.setWorkflowNode(0);
-			workFlow.setStatus(FlowConst.END);
-			break;		
-		default:
-			break;
 		}
+	}
+	
+	private BigDecimal getValByname(String json,String name){
+		BigDecimal bigDecimal = null;
+		return bigDecimal;
+		
 	}
 }
