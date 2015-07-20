@@ -418,8 +418,9 @@ DROP TABLE IF EXISTS `xf9_system`;
 CREATE TABLE `xf9_system` (
   `id` tinyint(4) NOT NULL AUTO_INCREMENT,
   `name` varchar(10) NOT NULL COMMENT '系统名称',
-  	`user_code` varchar(10) not null comment '',
-  	`user_pwd` varchar(32) not null comment '',
+  	`user_code` varchar(10) not null comment '登录用户帐号',
+  	`user_name` varchar(10) not null comment '用户名',
+  	`user_pwd` varchar(32) not null comment '用户密码',
   `description` varchar(200) NOT NULL COMMENT '系统描述',
   `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0 可用 1不可用',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,

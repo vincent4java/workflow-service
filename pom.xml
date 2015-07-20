@@ -24,6 +24,12 @@
 	</properties>
 
 	<dependencies>
+	
+		<dependency>
+			<groupId>com.vincent</groupId>
+			<artifactId>v4java-utils</artifactId>
+		</dependency>
+		
 		<!-- spring核心包 -->
 		<!-- springframe start -->
 		<dependency>

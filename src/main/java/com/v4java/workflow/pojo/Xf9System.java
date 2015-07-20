@@ -17,6 +17,8 @@ public class Xf9System  implements Pojo{
 	
 	private String userCode;
 	
+	private String userPwd;
+	
 	private String description;
 	
 	private Integer status;
@@ -87,6 +89,14 @@ public class Xf9System  implements Pojo{
 
 	public void setUpdateTime(Timestamp updateTime) {
 		this.updateTime = updateTime;
+	}
+
+	public String getUserPwd() {
+		return userPwd;
+	}
+
+	public void setUserPwd(String userPwd) {
+		this.userPwd = userPwd;
 	}
 
 	
