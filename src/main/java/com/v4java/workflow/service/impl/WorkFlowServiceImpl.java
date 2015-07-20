@@ -160,7 +160,7 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 			case FlowConst.NODE_TYPE_IF:
 				//获得该节点的判断方法
 				//下一个节点排序号
-				int sort = 0;
+				int sort = -1;
 				//一个判断条件
 				if(sort==0){
 					List<TestJson> testJsons = JSON.parseArray(nextFlowNode.getFlowTest(),TestJson.class);
@@ -200,9 +200,32 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 								val = getValByname("", name);
 							}
 							int  n = compareArray.getValue().compareTo(val);
-							
-							
+							int type = compareArray.getType();
+							if (type!= n) {
+								switch (type) {
+								case 2:
+									if (!(0<=n&&n<=1)) {
+										flag = false;
+									}
+									break;
+								case -2:
+									if (!(0>=n&&n>=-11)) {
+										flag = false;
+									}
+									break;
+
+								default:
+									break;
+								}
+							}
+							if (flag) {
+								break;
+							}
 						}
+						if (flag) {
+							sort = compare.getSort();
+						}
+	
 					}
 				}
 				workFlow.setStatus(FlowConst.ING);
