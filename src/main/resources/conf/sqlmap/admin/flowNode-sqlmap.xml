@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.v4java.workflow.dao.FlowNodeDao" >
+
+  <resultMap id="flowNode-resultMap" type="flowNode" >
+  
+    <id 	column="id" 				property="id" 			jdbcType="INTEGER" />
+    <result column="jobs_id" 			property="jobsId" 		jdbcType="INTEGER" />
+    <result column="model_id" 			property="modelId" 			jdbcType="INTEGER" />
+    <result column="node_type" 			property="nodeType" 	jdbcType="INTEGER" />
+    <result column="flow_test" 			property="flowTest" 	jdbcType="VARCHAR" />
+	
+	<result column="sort" 				property="sort" 		jdbcType="INTEGER" />
+    <result column="next_sort" 			property="nextSort" 	jdbcType="INTEGER" />
+    <result column="name" 				property="name" 		jdbcType="VARCHAR" />
+    <result column="description" 		property="description" 	jdbcType="VARCHAR" />
+    <result column="create_time" 		property="createTime" 	jdbcType="TIMESTAMP" />
+    
+    <result column="update_time" 		property="updateTime" 	jdbcType="TIMESTAMP" />
+    <!--  -->
+  </resultMap>
+  
+  <select id="findFlowNodeByModelId" parameterType="java.lang.Integer" resultMap="flowNode-resultMap">
+  	select
+  			id,jobs_id,model_id,node_type,flow_test ,
+  			next_sort,sort,name,description
+    from			
+  			flow_node
+  	where
+  			model_id = #{modelId}
+  	order by 
+  			sort ASC
+  </select>
+  
+    <select id="findFirstFlowNodeById" parameterType="java.lang.Integer" resultMap="flowNode-resultMap">
+  	select
+  			id,jobs_id,model_id,node_type,flow_test ,
+  			next_sort,sort,name,description
+    from			
+  			flow_node
+  	where
+  			model_id = #{modelId}
+  	order by 
+  			sort ASC
+  	limit 0 ,1
+  </select>
+  
+   <select id="findFlowNodeById" parameterType="java.lang.Integer" resultMap="flowNode-resultMap">
+  	select
+  			id,jobs_id,model_id,node_type,flow_test
+  			next_sort,sort,name,description
+  	from			
+  			flow_node
+  	where
+  			id = #{id}
+  </select>
+  
+  <insert id="insertFlowNode" parameterType="flowNode">
+  	insert into  flow_node(
+  			jobs_id,model_id,node_type,flow_test,
+  			next_sort,sort,name,description)
+  	values(
+  			#{jobsId},#{modelId},#{nodeType},#{flowTest},
+  			#{nextSort},#{sort},#{name},#{description}
+  			)
+  
+  </insert>
+  
+  
+</mapper>
