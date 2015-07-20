@@ -96,6 +96,12 @@ public class WorkFlow implements Pojo {
 	public void setBusyTypeName(String busyTypeName) {
 		this.busyTypeName = busyTypeName;
 	}
+	public Integer getSystemId() {
+		return systemId;
+	}
+	public void setSystemId(Integer systemId) {
+		this.systemId = systemId;
+	}
 	
 	
 }
