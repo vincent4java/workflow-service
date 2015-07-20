@@ -10,13 +10,51 @@
     <result column="create_time" 	property="createTime" 	jdbcType="TIMESTAMP" />
     <!--  -->
     <result column="update_time" 	property="updateTime" 	jdbcType="TIMESTAMP" />
+    <result column="system_id" 		property="systemId" 	jdbcType="INTEGER" />
+  </resultMap>
+  
+  
+   <resultMap id="jobsVO-resultMap" type="jobsVO" >
+    <id 	column="id" 			property="id" 			jdbcType="INTEGER" />
+    <result column="name" 			property="name" 		jdbcType="VARCHAR" />
+    <result column="description" 	property="description" 	jdbcType="VARCHAR" />
+    <result column="status" 		property="status" 		jdbcType="INTEGER" />
+    <result column="create_time" 	property="createTime" 	jdbcType="TIMESTAMP" />
+    <!--  -->
+    <result column="update_time" 	property="updateTime" 	jdbcType="TIMESTAMP" />
+    <result column="system_id" 		property="systemId" 	jdbcType="INTEGER" />
+    <result column="system_name" 	property="systemName" 	jdbcType="INTEGER" />
   </resultMap>
   
 	<insert id="insertJobs" parameterType="jobs">
 		insert into jobs(
-			name,description,status
+			name,description,status,system_id
 		)	
-		values(#{name},#{description},#{status})
+		values(#{name},#{description},#{status},#{systemId})
 	</insert>	
+	  
+	<select id="selectJobsBySystemId" parameterType="jobs" resultMap="jobsVO-resultMap">
+		select 
+				j.id,j.name,j.description,j.status,j.system_id,
+				j.create_time,j.update_time,xs.name as  system_name 
+				
+		from
+				jobs j
+		left join
+				xf9_system xs on j.system_id = xs.id			
+		where
+				system_id = #{systemId}
+	</select>
+	  
+	<select id="selectJobsCountBySystemId" parameterType="jobs" resultType="int">
+		select 
+				count(id)
+		from
+				jobs j
+		left join
+				xf9_system xs on j.system_id = xs.id	
+		where
+				system_id = #{systemId}
+	</select>	  
 	  
 </mapper>

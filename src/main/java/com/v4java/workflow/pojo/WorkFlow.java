@@ -17,6 +17,7 @@ public class WorkFlow implements Pojo {
 	private BigDecimal money;
 	private String name ;// '审批工作名',
 	private String description ;// '审批工作描述',
+	private Integer systemId;
 	private Integer modelId ;// ,
 	private Integer jobsId;// '待审批岗位id',
 	private Integer workflowNode ;// '审批节点',

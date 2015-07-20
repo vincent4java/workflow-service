@@ -17,6 +17,7 @@ public class WorkFlowModel implements Pojo{
 	private Integer busyTypeId ;//'业务类型id',
 	private String modelText ;//'工作流模板',	
 	private String name;//  '审批流节点名称'
+	private Integer systemId;
 	private String description;// '审批流节点描述'
 	private Integer status; //tinyint not null default 0 comment '0 可用 1不可用',
 	private Timestamp createTime;// 
@@ -69,7 +70,11 @@ public class WorkFlowModel implements Pojo{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-	
+	public Integer getSystemId() {
+		return systemId;
+	}
+	public void setSystemId(Integer systemId) {
+		this.systemId = systemId;
+	}
 	
 }

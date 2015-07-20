@@ -13,12 +13,13 @@
     <result column="status" 			property="status" 		jdbcType="INTEGER" />
     <result column="create_time" 		property="createTime" 	jdbcType="TIMESTAMP" />
     <result column="update_time" 		property="updateTime" 	jdbcType="TIMESTAMP" />
+    <result column="system_id" 			property="systemId" 	jdbcType="INTEGER" />
     <!--  -->
   </resultMap>
   
   <select id="findWorkFlowModelById" parameterType="java.lang.Integer" resultType="workFlowModel">
   	select
-  			id ,busy_type_id ,model_text ,name,description,
+  			id ,busy_type_id ,model_text ,name,description,system_id ,
   			status
   	from 
   			workflow_model
@@ -30,9 +31,9 @@
   
   <insert id="insertWorkFlowModel" parameterType="workFlowModel">
 	insert into workflow_model(
-			busy_type_id ,model_text ,name,description,status)
+			busy_type_id ,model_text ,name,description,status ,system_id)
 			
-			values(#{busyTypeId} ,#{modelText} ,#{name},#{description},#{status})
+			values(#{busyTypeId} ,#{modelText} ,#{name},#{description},#{status},#{systemId})
    </insert>
    
 </mapper>

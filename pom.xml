@@ -7,7 +7,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../lostandlove</relativePath>
 	</parent>
-  <groupId>org.v4java</groupId>
+  <groupId>com.v4java</groupId>
   <artifactId>workflow-service</artifactId>
   <packaging>jar</packaging>
 

@@ -35,6 +35,7 @@
 		
 		<!-- vo  -->
 		<typeAlias type="com.v4java.workflow.view.admin.WorkFlowVO" alias="workFlowVO" />	
+		<typeAlias type="com.v4java.workflow.view.admin.JobsVO" alias="jobsVO" />
 			
 		<!-- query  -->	
 			
