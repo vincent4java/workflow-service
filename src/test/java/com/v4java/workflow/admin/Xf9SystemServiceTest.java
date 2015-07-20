@@ -1,4 +1,4 @@
-package com.v4java.workflow.admin;
+/*package com.v4java.workflow.admin;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -27,7 +27,7 @@ public class Xf9SystemServiceTest extends TestCase{
 	
 	public static Test suite(){
 		TestSuite test = new TestSuite("Xf9SystemServiceTest接口测试");
-		test.addTest(new Xf9SystemServiceTest("doWorkFlow2"));
+		test.addTest(new Xf9SystemServiceTest("insertXf9System"));
 		return test;
 	}
 	
@@ -36,6 +36,7 @@ public class Xf9SystemServiceTest extends TestCase{
 		xf9System.setDescription("系统");
 		xf9System.setId(1);
 		xf9System.setStatus(0);
+		xf9System.setName("系统");
 		xf9System.setUserCode("vz238");
 		xf9System.setUserName("呆呆的呆瓜呆呆");
 		xf9System.setUserPwd(MD5Utils.md5SaltMd5("admin123", xf9System.getUserCode()));
@@ -48,3 +49,4 @@ public class Xf9SystemServiceTest extends TestCase{
 	}
 	
 }
+*/
