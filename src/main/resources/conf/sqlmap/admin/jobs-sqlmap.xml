@@ -41,7 +41,7 @@
 		from
 				jobs j
 		left join
-				xf9_system xs on j.system_id = xs.id			
+				xf9_system xs on j.system_id = xs.id
 		where
 				system_id = #{systemId}
 	</select>
@@ -56,5 +56,25 @@
 		where
 				system_id = #{systemId}
 	</select>	  
+	  
+	 <select id="selectJobs" parameterType="jobsQuery" resultMap="jobsVO-resultMap">
+		select 
+				j.id,j.name,j.description,j.status,j.system_id,
+				j.create_time,j.update_time,xs.name as  system_name 
+				
+		from
+				jobs j
+		left join
+				xf9_system xs on j.system_id = xs.id
+		order by
+				j.system_id ASC ,j.id ASC
+	</select>
+	  
+	<select id="selectJobsCount" parameterType="jobsQuery" resultType="int">
+		select 
+				count(j.id)
+		from
+				jobs j
+	</select> 
 	  
 </mapper>

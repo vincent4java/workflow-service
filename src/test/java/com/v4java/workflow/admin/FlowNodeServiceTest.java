@@ -1,4 +1,4 @@
-package com.v4java.workflow.admin;
+/*package com.v4java.workflow.admin;
 
 
 import java.math.BigDecimal;
@@ -125,3 +125,4 @@ public class FlowNodeServiceTest extends TestCase{
 	public void findFlowNodeByWorkFlowId() throws Exception{
 	}
 }
+*/

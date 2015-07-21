@@ -38,6 +38,7 @@
 		<typeAlias type="com.v4java.workflow.view.admin.JobsVO" alias="jobsVO" />
 			
 		<!-- query  -->	
+		<typeAlias type="com.v4java.workflow.query.admin.JobsQuery" alias="jobsQuery"/>
 			
 	</typeAliases>
 </configuration>

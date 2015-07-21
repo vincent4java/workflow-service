@@ -1,4 +1,4 @@
-package com.v4java.workflow.admin;
+/*package com.v4java.workflow.admin;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -49,3 +49,4 @@ public class Xf9SystemServiceTest extends TestCase{
 	}
 	
 }
+*/
