@@ -23,7 +23,7 @@
     <!--  -->
     <result column="update_time" 	property="updateTime" 	jdbcType="TIMESTAMP" />
     <result column="system_id" 		property="systemId" 	jdbcType="INTEGER" />
-    <result column="system_name" 	property="systemName" 	jdbcType="INTEGER" />
+    <result column="system_name" 	property="systemName" 	jdbcType="VARCHAR" />
   </resultMap>
   
 	<insert id="insertJobs" parameterType="jobs">

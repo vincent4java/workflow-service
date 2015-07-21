@@ -29,7 +29,7 @@ public class JobsVO implements VO{
 	
 	private Integer systemId;
 	
-	private Integer systemName;
+	private String systemName;
 	
 	private Timestamp createTime;
 	
@@ -78,12 +78,13 @@ public class JobsVO implements VO{
 	public void setSystemId(Integer systemId) {
 		this.systemId = systemId;
 	}
-
-	public Integer getSystemName() {
+	
+	
+	public String getSystemName() {
 		return systemName;
 	}
 
-	public void setSystemName(Integer systemName) {
+	public void setSystemName(String systemName) {
 		this.systemName = systemName;
 	}
 
