@@ -63,8 +63,40 @@
   			#{jobsId},#{modelId},#{nodeType},#{flowTest},
   			#{nextSort},#{sort},#{name},#{description}
   			)
-  
   </insert>
   
+  <update id="updateFlowNode" parameterType="flowNode">
+  	update 
+  			flow_node
+  	<set>
+  		<if test="jobsId != null">
+			jobs_id	= #{jobsId}  ,				
+  		</if>
+  		<if test="modelId != null">
+  			model_id = #{modelId},
+  		</if>
+  		<if test="nodeType != null">
+  			node_type = #{nodeType},
+  		</if>
+  		<if test="flowTest != null">
+  			flow_test = #{flowTest},
+  		</if>
+  		<if test="sort != null">
+  			sort = #{sort},
+  		</if>
+		<if test="nextSort != null">
+  			next_sort = #{nextSort},
+  		</if>  	
+ 		<if test="name != null">
+  			name = #{name},
+  		</if> 
+ 		<if test="description != null">
+  			description = #{description} ,
+  		</if>  	 		 	
+  			update_time = now()
+  	</set>	
+  	where
+  			id = #{id}
+  </update>
   
 </mapper>

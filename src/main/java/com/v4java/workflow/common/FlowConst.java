@@ -26,5 +26,16 @@ public class FlowConst {
 	public static final int NODE_TYPE_END = 3;
 	
 	public static final Double NODE_FLOW_IF_VALUE_MAX = -1.0;
+	
+	public static final int COMPARE_GT = 1;
+	
+	public static final int COMPARE_GTE = 2;	
+
+	public static final int COMPARE_LT = -1;
+	
+	public static final int COMPARE_LTE = -2;
+	
+	public static final int COMPARE_EQ = 0;
 }
+
 

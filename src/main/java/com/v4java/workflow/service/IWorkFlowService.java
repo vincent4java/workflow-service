@@ -39,4 +39,6 @@ public interface IWorkFlowService {
 	 * @throws Exception
 	 */
 	int doWorkFlow(Integer workFlowId, UserVO userVO,ApproveLog approveLog)throws Exception;
+	
+	int updateWorkFlow(WorkFlow workFlow) throws Exception;
 }

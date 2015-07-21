@@ -25,8 +25,14 @@ public class FlowNodeServiceImpl implements IFlowNodeService{
 	}
 
 	@Override
-	public void insertFlowNode(FlowNode flowNode) throws Exception {
-		flowNodeDao.insertFlowNode(flowNode);
+	public int insertFlowNode(FlowNode flowNode) throws Exception {
+		return flowNodeDao.insertFlowNode(flowNode);
 	}
 
+	@Override
+	public int updateFlowNode(FlowNode flowNode) throws Exception {
+		return flowNodeDao.updateFlowNode(flowNode);
+	}
+
+	
 }

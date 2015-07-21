@@ -17,6 +17,8 @@
     
     <result column="busy_type_name" property="busyTypeName" jdbcType="VARCHAR" />
     <result column="money" 			property="money" 		jdbcType="DECIMAL" />
+    <result column="json" 			property="json" 		jdbcType="VARCHAR" />
+    
   </resultMap>
   
   
@@ -34,12 +36,13 @@
     <result column="busy_type_name" 		property="busyTypeName"	 	jdbcType="VARCHAR" />
     
     <result column="money" 					property="money" 			jdbcType="DECIMAL" />
+    <result column="json" 					property="json" 		jdbcType="VARCHAR" />
   </resultMap>
   
   	<select id="findUserWorkFlowVOByUserCode" parameterType="string" resultMap="workFlowVO-resultMap">
   		select 
   				wf.id,wf.busy_type_id,wf.name,wf.model_id,wf.description ,
-  				wf.create_time ,wf.update_time,wf.money,wf.busy_type_name
+  				wf.create_time ,wf.update_time,wf.money,wf.busy_type_name,json
   		from 
   				workflow  wf 
   		left join 
@@ -69,7 +72,7 @@
 	<insert id="insertWorkFlow" parameterType="workFlow">
 		insert into workflow(
 				busy_type_id ,model_id ,name ,description ,jobs_id
-				,workflow_node ,status,money,busy_type_name
+				,workflow_node ,status,money,busy_type_name,json
 			)
 		values(
 			#{busyTypeId},#{modelId},#{name},#{description},#{jobsId},
@@ -96,6 +99,9 @@
  			<if test="status != null">
        			 status = #{status,jdbcType=INTEGER},
       		</if> 
+			<if test="json != null">
+       			 json = #{json,jdbcType=VARCHAR},
+      		</if> 
       			update_time  = now()		    		
       </set>			
 		where id = #{id}	
@@ -105,7 +111,7 @@
 	<select id="findWorkFlowById" parameterType="java.lang.Integer" resultMap="workFlow-resultMap">
 		select 
 				id ,busy_type_id ,model_id ,name ,description ,
-				jobs_id ,workflow_node ,status,money,busy_type_name
+				jobs_id ,workflow_node ,status,money,busy_type_name,json
 		from 
 				workflow 
 		where

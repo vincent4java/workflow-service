@@ -1,5 +1,9 @@
-/*package com.v4java.workflow.admin;
+package com.v4java.workflow.admin;
 
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -10,6 +14,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.alibaba.fastjson.JSONArray;
 import com.v4java.workflow.common.FlowConst;
+import com.v4java.workflow.pojo.Compare;
+import com.v4java.workflow.pojo.CompareArray;
 import com.v4java.workflow.pojo.FlowNode;
 import com.v4java.workflow.service.IFlowNodeService;
 import com.v4java.workflow.tools.TestJson;
@@ -27,8 +33,40 @@ public class FlowNodeServiceTest extends TestCase{
 	
 	public static Test suite(){
 		TestSuite test = new TestSuite("FlowNodeService接口测试");
-		test.addTest(new FlowNodeServiceTest("insertFlowzhuguan"));
+		test.addTest(new FlowNodeServiceTest("updageFlowNode"));
 		return test;
+	}
+
+	public void updageFlowNode() throws Exception{
+		FlowNode flowNode = new FlowNode();
+		
+		///sort == 4
+		Compare c1 = new Compare();
+		c1.setSort(4);
+		CompareArray array1 = new  CompareArray();
+		array1.setName("money");
+		array1.setType(FlowConst.COMPARE_LT);
+		array1.setValue(new BigDecimal(200000));
+		CompareArray[] arrays1 = {array1};
+		c1.setCompareArrays(arrays1);
+		
+		///sort == 4
+		Compare c2 = new Compare();
+		c2.setSort(5);
+		CompareArray array2 = new  CompareArray();
+		array2.setName("money");
+		array2.setType(FlowConst.COMPARE_GTE);
+		array2.setValue(new BigDecimal(200000));
+		CompareArray[] arrays2 = {array2};
+		c2.setCompareArrays(arrays2);
+	
+		List<Compare> compares = new ArrayList<Compare>();
+		compares.add(c1);
+		compares.add(c2);
+		String test = JSONArray.toJSONString(compares);
+		flowNode.setFlowTest(test);
+		flowNode.setId(15);
+		flowNodeService.updateFlowNode(flowNode);
 	}
 	
 	public void insertFlowNodeif() throws Exception{
@@ -87,4 +125,3 @@ public class FlowNodeServiceTest extends TestCase{
 	public void findFlowNodeByWorkFlowId() throws Exception{
 	}
 }
-*/

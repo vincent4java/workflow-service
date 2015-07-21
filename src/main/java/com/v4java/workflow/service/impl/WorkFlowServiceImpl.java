@@ -2,6 +2,7 @@ package com.v4java.workflow.service.impl;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -183,9 +184,10 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 				}else {
 					//得到所有判断条件
 					List<Compare> compares = JSON.parseArray(nextFlowNode.getFlowTest(),Compare.class);
-					//sort等于0 说明已找到合适的节点
+					//sort不等于-1说明已找到合适的节点sort
 					int i = 0;
-					while (sort!=0) {
+					Map<String, String> j = json2Map(workFlow.getJson());
+					while (sort==-1) {
 						//得到判断条件
 						Compare compare = compares.get(i);
 						boolean flag = true;
@@ -197,24 +199,25 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 							//如果和上一个于
 							if (name == null||!name.equals(compareArray.getName())) {
 								name = compareArray.getName();
-								val = getValByname("", name);
+								val = getValByname(j, name);
 							}
-							int  n = compareArray.getValue().compareTo(val);
+							int  n = val.compareTo(compareArray.getValue());
 							int type = compareArray.getType();
 							if (type!= n) {
 								switch (type) {
 								case 2:
-									if (!(0<=n&&n<=1)) {
+									if (n==-1) {
 										flag = false;
 									}
 									break;
 								case -2:
-									if (!(0>=n&&n>=-11)) {
+									if (n==1) {
 										flag = false;
 									}
 									break;
 
 								default:
+									flag = false;
 									break;
 								}
 							}
@@ -225,15 +228,16 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 						if (flag) {
 							sort = compare.getSort();
 						}
-	
+						i ++;	
 					}
 				}
-				workFlow.setStatus(FlowConst.ING);
 				nextFlowNode = findWorkFlowBySort(flowNodes, sort);
 				workFlow.setJobsId(nextFlowNode.getJobsId());
 				workFlow.setWorkflowNode(nextFlowNode.getId());
 				workFlow.setStatus(FlowConst.ING);
-				
+				if (nextFlowNode.getNodeType()==FlowConst.NODE_TYPE_END) {
+					workFlow.setStatus(FlowConst.END);
+				}
 				break;
 			//结束节点,哈哈 
 			case FlowConst.NODE_TYPE_END:
@@ -249,9 +253,21 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 		}
 	}
 	
-	private BigDecimal getValByname(String json,String name){
-		BigDecimal bigDecimal = null;
-		return bigDecimal;
+	public Map<String, String> json2Map(String json){
+		@SuppressWarnings("unchecked")
+		Map<String, String> map = (Map<String, String>) JSON.parse(json);
+		return map;
+	}
+	private BigDecimal getValByname(Map<String, String> map,String name){
+		String o = map.get(name);
+		BigDecimal b = new BigDecimal(o);
+		return b;
 		
+	}
+
+	
+	@Override
+	public int updateWorkFlow(WorkFlow workFlow) throws Exception {
+		return workFlowDao.updateWorkFlow(workFlow);
 	}
 }

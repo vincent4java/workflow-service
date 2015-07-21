@@ -11,8 +11,10 @@ public interface FlowNodeDao {
 	
 	FlowNode findFlowNodeById(Integer Id) throws Exception;
 	
-	void insertFlowNode(FlowNode flowNode) throws Exception;
+	int insertFlowNode(FlowNode flowNode) throws Exception;
 	
 	FlowNode findFirstFlowNodeById(Integer modelId) throws Exception;
+	
+	int updateFlowNode(FlowNode flowNode) throws Exception;
 	
 }
