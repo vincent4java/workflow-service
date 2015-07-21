@@ -19,7 +19,6 @@ import com.v4java.workflow.pojo.CompareArray;
 import com.v4java.workflow.pojo.FlowNode;
 import com.v4java.workflow.pojo.WorkFlow;
 import com.v4java.workflow.service.IWorkFlowService;
-import com.v4java.workflow.tools.TestJson;
 import com.v4java.workflow.view.admin.UserVO;
 import com.v4java.workflow.view.admin.WorkFlowVO;
 
@@ -163,7 +162,7 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 				//下一个节点排序号
 				int sort = -1;
 				//一个判断条件
-				if(sort==0){
+/*				if(sort==0){
 					List<TestJson> testJsons = JSON.parseArray(nextFlowNode.getFlowTest(),TestJson.class);
 					BigDecimal money = workFlow.getMoney();
 					for (TestJson testJson : testJsons) {
@@ -181,56 +180,56 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 						}
 					}
 				//多个判断条件
-				}else {
-					//得到所有判断条件
-					List<Compare> compares = JSON.parseArray(nextFlowNode.getFlowTest(),Compare.class);
-					//sort不等于-1说明已找到合适的节点sort
-					int i = 0;
-					Map<String, String> j = json2Map(workFlow.getJson());
-					while (sort==-1) {
-						//得到判断条件
-						Compare compare = compares.get(i);
-						boolean flag = true;
-						CompareArray[] compareArrays = compare.getCompareArrays();
-						String name = null;
-						BigDecimal val = null;
-						for (CompareArray compareArray : compareArrays) {
-							//如果name为null 则是第一次，需要赋值 ，
-							//如果和上一个于
-							if (name == null||!name.equals(compareArray.getName())) {
-								name = compareArray.getName();
-								val = getValByname(j, name);
-							}
-							int  n = val.compareTo(compareArray.getValue());
-							int type = compareArray.getType();
-							if (type!= n) {
-								switch (type) {
-								case 2:
-									if (n==-1) {
-										flag = false;
-									}
-									break;
-								case -2:
-									if (n==1) {
-										flag = false;
-									}
-									break;
-
-								default:
+				}else {*/
+				//得到所有判断条件
+				List<Compare> compares = JSON.parseArray(nextFlowNode.getFlowTest(),Compare.class);
+				//sort不等于-1说明已找到合适的节点sort
+				int i = 0;
+				Map<String, String> j = json2Map(workFlow.getJson());
+				String name = null;
+				BigDecimal val = null;
+				while (sort==-1) {
+					//得到判断条件
+					Compare compare = compares.get(i);
+					boolean flag = true;
+					CompareArray[] compareArrays = compare.getCompareArrays();
+					for (CompareArray compareArray : compareArrays) {
+						//如果name为null 则是第一次，需要赋值 ，
+						//如果和上一个于
+						if (name == null||!name.equals(compareArray.getName())) {
+							name = compareArray.getName();
+							val = getValByname(j, name);
+						}
+						int  n = val.compareTo(compareArray.getValue());
+						int type = compareArray.getType();
+						if (type!= n) {
+							switch (type) {
+							case 2:
+								if (n==-1) {
 									flag = false;
-									break;
 								}
-							}
-							if (flag) {
+								break;
+							case -2:
+								if (n==1) {
+									flag = false;
+								}
+								break;
+
+							default:
+								flag = false;
 								break;
 							}
 						}
 						if (flag) {
-							sort = compare.getSort();
+							break;
 						}
-						i ++;	
 					}
+					if (flag) {
+						sort = compare.getSort();
+					}
+					i ++;	
 				}
+				/*}*/
 				nextFlowNode = findWorkFlowBySort(flowNodes, sort);
 				workFlow.setJobsId(nextFlowNode.getJobsId());
 				workFlow.setWorkflowNode(nextFlowNode.getId());
@@ -258,6 +257,7 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 		Map<String, String> map = (Map<String, String>) JSON.parse(json);
 		return map;
 	}
+	
 	private BigDecimal getValByname(Map<String, String> map,String name){
 		String o = map.get(name);
 		BigDecimal b = new BigDecimal(o);
