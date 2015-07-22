@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.v4java.workflow.dao.FlowNodeDao" >
+<mapper namespace="com.v4java.workflow.dao.admin.FlowNodeDao" >
 
   <resultMap id="flowNode-resultMap" type="flowNode" >
   
@@ -32,7 +32,7 @@
   			sort ASC
   </select>
   
-    <select id="findFirstFlowNodeById" parameterType="java.lang.Integer" resultMap="flowNode-resultMap">
+   <select id="findFirstFlowNodeById" parameterType="java.lang.Integer" resultMap="flowNode-resultMap">
   	select
   			id,jobs_id,model_id,node_type,flow_test ,
   			next_sort,sort,name,description

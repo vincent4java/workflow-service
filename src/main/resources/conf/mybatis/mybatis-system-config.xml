@@ -34,13 +34,14 @@
 		<typeAlias type="com.v4java.workflow.pojo.Xf9System" alias="xf9System" />
 		
 		<!-- vo  -->
-		<typeAlias type="com.v4java.workflow.vo.admin.WorkFlowVO" alias="workFlowVO" />	
-		<typeAlias type="com.v4java.workflow.vo.admin.JobsVO" alias="jobsVO" />
-		<typeAlias type="com.v4java.workflow.vo.admin.WorkFlowModelVO" alias="workFlowModelVO" />
+		<typeAlias type="com.v4java.workflow.vo.system.WorkFlowVO" alias="workFlowVO" />	
+		<typeAlias type="com.v4java.workflow.vo.system.JobsVO" alias="jobsVO" />
+		<typeAlias type="com.v4java.workflow.vo.system.WorkFlowModelVO" alias="workFlowModelVO" />
 			
 		<!-- query  -->	
-		<typeAlias type="com.v4java.workflow.query.admin.JobsQuery" alias="jobsQuery"/>
-		<typeAlias type="com.v4java.workflow.query.admin.WorkFlowModelQuery" alias="workFlowModelQuery"/>
+		<typeAlias type="com.v4java.workflow.query.system.JobsQuery" alias="jobsQuery"/>
+		<typeAlias type="com.v4java.workflow.query.system.WorkFlowModelQuery" alias="workFlowModelQuery"/>
 			
 	</typeAliases>
+	
 </configuration>

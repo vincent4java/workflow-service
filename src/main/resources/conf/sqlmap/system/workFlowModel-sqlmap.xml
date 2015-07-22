@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.v4java.workflow.dao.admin.WorkFlowModelDao" >
+<mapper namespace="com.v4java.workflow.dao.system.WorkFlowModelDao" >
 
   <resultMap id="workFlowModel-resultMap" type="workFlowModel" >
 	<!--  -->
@@ -92,8 +92,10 @@
   			xf9_system  xf  on xf.id = wm.system_id
   	where  
   			system_id = #{systemId}
-  	limit 
-  			#{limit} ,#{offset}		
+  	<if test="limit !=null and offset != null">
+	  	limit 
+	  			#{limit} ,#{offset}		
+  	</if>		
   </select>
   
     <!--查找系统为 systemId所有模板 -->
@@ -107,19 +109,5 @@
   	where  
   			system_id = #{systemId}
   </select>
-  
-  <!--查找系统为 systemId且类型为busyTypeId的模板 -->
-   <select id="findWorkFlowModelSystemIdAndType" parameterType="workFlowModelQuery" resultType="workFlowModel">
-  	select
-  			id ,busy_type_id ,model_text ,name,description,system_id ,
-  			status
-  	from 
-  			workflow_model
-  	where  
-  			system_id = #{systemId} 
-  		and
-  			busy_type_id = #{busyTypeId}		
-  </select>
-  
    
 </mapper>

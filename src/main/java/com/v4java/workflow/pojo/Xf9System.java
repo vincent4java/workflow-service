@@ -99,5 +99,14 @@ public class Xf9System  implements Pojo{
 		this.userPwd = userPwd;
 	}
 
+	@Override
+	public String toString() {
+		return "Xf9System [id=" + id + ", name=" + name + ", userName="
+				+ userName + ", userCode=" + userCode + ", userPwd=" + userPwd
+				+ ", description=" + description + ", status=" + status
+				+ ", createTime=" + createTime + ", updateTime=" + updateTime
+				+ "]";
+	}
+
 	
 }

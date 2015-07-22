@@ -1,4 +1,4 @@
-/*package com.v4java.workflow.admin;
+/*package com.v4java.workflow.system;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -7,7 +7,6 @@ import junit.framework.TestSuite;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.v4java.enumerate.MD5Utils;
 import com.v4java.workflow.pojo.Xf9System;
 import com.v4java.workflow.service.IXf9SystemService;
 
@@ -27,25 +26,14 @@ public class Xf9SystemServiceTest extends TestCase{
 	
 	public static Test suite(){
 		TestSuite test = new TestSuite("Xf9SystemServiceTest接口测试");
-		test.addTest(new Xf9SystemServiceTest("insertXf9System"));
+		test.addTest(new Xf9SystemServiceTest("selectXf9SystemByUserCode"));
 		return test;
 	}
 	
-	public void insertXf9System(){
-		Xf9System xf9System = new Xf9System();
-		xf9System.setDescription("财务系统");
-		xf9System.setId(1);
-		xf9System.setStatus(0);
-		xf9System.setName("财务系统");
-		xf9System.setUserCode("vz236");
-		xf9System.setUserName("杨书华");
-		xf9System.setUserPwd(MD5Utils.md5SaltMd5("admin123", xf9System.getUserCode()));
-		try {
-			xf9SystemService.insertXf9System(xf9System);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	
+	public void selectXf9SystemByUserCode() throws Exception{
+		Xf9System system = xf9SystemService.selectXf9SystemByUserCode("vz238");
+		System.out.println(system.toString());
 	}
 	
 }
