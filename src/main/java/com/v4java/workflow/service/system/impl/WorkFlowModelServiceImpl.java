@@ -42,9 +42,5 @@ public class WorkFlowModelServiceImpl implements IWorkFlowModelService{
 		return workFlowModelDao.findWorkFlowModelCountBySystemId(workFlowModelQuery);
 	}
 
-	@Override
-	public WorkFlowModel findWorkFlowModelSystemIdAndType(WorkFlowModelQuery workFlowModelQuery) throws Exception {
-		return workFlowModelDao.findWorkFlowModelSystemIdAndType(workFlowModelQuery);
-	}
 
 }

@@ -1,4 +1,4 @@
-/*package com.v4java.workflow.system;
+package com.v4java.workflow.system;
 
 import java.util.List;
 
@@ -21,14 +21,14 @@ public class WorkFlowModelServiceTest extends TestCase{
 	
 	public WorkFlowModelServiceTest(String name) {
 		super(name);
-		context = new ClassPathXmlApplicationContext(workflow-service-system.xml");
+		context = new ClassPathXmlApplicationContext("workflow-service-system.xml");
 		workFlowModelService =(IWorkFlowModelService) context.getBean("workFlowModelService");
 	}
 
 	
 	public static Test suite(){
 		TestSuite test = new TestSuite("WorkFlowModelService接口测试");
-		test.addTest(new WorkFlowModelServiceTest("findWorkFlowModelBySystemId"));
+		test.addTest(new WorkFlowModelServiceTest("findWorkFlowModelSystemIdAndType"));
 		return test;
 	}
 	
@@ -42,5 +42,5 @@ public class WorkFlowModelServiceTest extends TestCase{
 	}
 
 	
+	
 }
-*/

@@ -76,5 +76,13 @@ public class WorkFlowModel implements Pojo{
 	public void setSystemId(Integer systemId) {
 		this.systemId = systemId;
 	}
+	@Override
+	public String toString() {
+		return "WorkFlowModel [id=" + id + ", busyTypeId=" + busyTypeId
+				+ ", modelText=" + modelText + ", name=" + name + ", systemId="
+				+ systemId + ", description=" + description + ", status="
+				+ status + ", createTime=" + createTime + ", updateTime="
+				+ updateTime + "]";
+	}
 	
 }
