@@ -55,10 +55,6 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 	}
 
 
-	@Override
-	public int findUserWorkFlowVOCountByUserCode(String userCode)throws Exception {
-		return workFlowDao.findUserWorkFlowVOCountByUserCode(userCode);
-	}
 
 	@Override
 	@Transactional

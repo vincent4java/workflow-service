@@ -14,15 +14,6 @@ public interface IWorkFlowService {
 	
 	void insertWorkFlow(WorkFlow workFlow,UserVO userVO) throws Exception;
 
-
-	/**
-	 * 查找用户代办审批 count
-	 * @param userCode
-	 * @return
-	 * @throws Exception
-	 */
-	int findUserWorkFlowVOCountByUserCode(String userCode) throws Exception;
-	
 	/**
 	 * 进行工作流审批
 	 * @param workFlowId 待审批工作id

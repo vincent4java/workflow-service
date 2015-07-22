@@ -18,65 +18,21 @@
     <result column="busy_type_name" property="busyTypeName" jdbcType="VARCHAR" />
     <result column="money" 			property="money" 		jdbcType="DECIMAL" />
     <result column="json" 			property="json" 		jdbcType="VARCHAR" />
-    
+    <result column="user_name" 		property="userName" 	jdbcType="VARCHAR" />
+  	<result column="user_code" 		property="userCode" 	jdbcType="VARCHAR" />
   </resultMap>
   
-  
-   <resultMap type="workFlowVO" id="workFlowVO-resultMap">
-  	<id 	column="id" 					property="id" 				jdbcType="INTEGER" />
-    <result column="busy_type_id" 			property="busyTypeId" 		jdbcType="INTEGER" />
-    <result column="model_id" 				property="modelId" 			jdbcType="INTEGER" />
-    <result column="name" 					property="name" 			jdbcType="VARCHAR" />
-    <result column="description" 			property="description" 		jdbcType="VARCHAR" />
-    	
-    <result column="create_time" 			property="createTime" 		jdbcType="TIMESTAMP" />
-    <result column="update_time" 			property="updateTime" 		jdbcType="TIMESTAMP" />
-    <result column="jobs_name" 				property="jobsName" 		jdbcType="VARCHAR" />
-    <result column="jobs_description" 		property="jobsDescription" 	jdbcType="VARCHAR" />
-    <result column="busy_type_name" 		property="busyTypeName"	 	jdbcType="VARCHAR" />
-    
-    <result column="money" 					property="money" 			jdbcType="DECIMAL" />
-    <result column="json" 					property="json" 		jdbcType="VARCHAR" />
-  </resultMap>
-  
-  	<select id="findUserWorkFlowVOByUserCode" parameterType="string" resultMap="workFlowVO-resultMap">
-  		select 
-  				wf.id,wf.busy_type_id,wf.name,wf.model_id,wf.description ,
-  				wf.create_time ,wf.update_time,wf.money,wf.busy_type_name,json
-  		from 
-  				workflow  wf 
-  		left join 
-  				 jobs_user ju  on wf.jobs_id = ju.jobs_id
-  		left join 
-  				jobs j on j.id = ju.jobs_id
-  				
-  		where 
-  				ju.user_code = #{userCode}	
-  	</select>
-  	
-  	<select id="findUserWorkFlowVOCountByUserCode" parameterType="string" resultType="int">
-  		select 
-  				count(j.id)
-  		from 
-  				workflow  wf 
-  		left join 
-  				 jobs_user ju  on wf.jobs_id = ju.jobs_id
-  		left join 
-  				jobs j on j.id = ju.jobs_id
-  				
-  		where 
-  				ju.user_code = #{userCode}	
-  	</select>
-  	
   	
 	<insert id="insertWorkFlow" parameterType="workFlow">
 		insert into workflow(
 				busy_type_id ,model_id ,name ,description ,jobs_id
-				,workflow_node ,status,money,busy_type_name,json
+				,workflow_node ,status,money,busy_type_name,json,
+				user_name,user_code
 			)
 		values(
 			#{busyTypeId},#{modelId},#{name},#{description},#{jobsId},
-			#{workflowNode},#{status},#{money},#{busyTypeName}
+			#{workflowNode},#{status},#{money},#{busyTypeName},
+			#{userName},#{userCode} 
 			)
 	
 	</insert>
