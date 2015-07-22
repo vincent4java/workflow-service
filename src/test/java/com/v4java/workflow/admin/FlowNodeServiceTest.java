@@ -27,7 +27,7 @@ public class FlowNodeServiceTest extends TestCase{
 	
 	public FlowNodeServiceTest(String name) {
 		super(name);
-		context = new ClassPathXmlApplicationContext("admin-service-applicationContext.xml");
+		context = new ClassPathXmlApplicationContext("workflow-service-admin.xml");
 		flowNodeService =(IFlowNodeService) context.getBean("flowNodeService");
 	}
 	

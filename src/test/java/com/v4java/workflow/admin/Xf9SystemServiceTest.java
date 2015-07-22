@@ -20,7 +20,7 @@ public class Xf9SystemServiceTest extends TestCase{
 	
 	public Xf9SystemServiceTest(String name) {
 		super(name);
-		context = new ClassPathXmlApplicationContext("admin-service-applicationContext.xml");
+		context = new ClassPathXmlApplicationContext("workflow-service-admin.xml");
 		xf9SystemService =(IXf9SystemService) context.getBean("xf9SystemService");
 	}
 	

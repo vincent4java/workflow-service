@@ -18,7 +18,7 @@ public class WorkFlowModelServiceTest extends TestCase{
 	
 	public WorkFlowModelServiceTest(String name) {
 		super(name);
-		context = new ClassPathXmlApplicationContext("admin-service-applicationContext.xml");
+		context = new ClassPathXmlApplicationContext("workflow-service-admin.xml");
 		workFlowModelService =(IWorkFlowModelService) context.getBean("workFlowModelService");
 	}
 

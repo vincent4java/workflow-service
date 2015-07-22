@@ -18,7 +18,7 @@ public class JobsServiceTest extends TestCase{
 
 	public JobsServiceTest(String name) {
 		super(name);
-		context = new ClassPathXmlApplicationContext("admin-service-applicationContext.xml");
+		context = new ClassPathXmlApplicationContext("workflow-service-admin.xml");
 		jobsService =(IJobsService) context.getBean("jobsService");
 	}
 	
