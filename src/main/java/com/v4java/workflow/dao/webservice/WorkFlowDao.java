@@ -1,9 +1,6 @@
 package com.v4java.workflow.dao.webservice;
 
-import java.util.List;
-
 import com.v4java.workflow.pojo.WorkFlow;
-import com.v4java.workflow.vo.admin.WorkFlowVO;
 
 public interface WorkFlowDao {
 

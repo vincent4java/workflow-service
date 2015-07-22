@@ -44,9 +44,16 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 			workFlow.setWorkflowNode(firstNode.getId());
 			workFlow.setStatus(0);
 		}else {
-			List<FlowNode> flowNodes = flowNodeDao.findFlowNodeByModelId(workFlow.getModelId()); 
+			int sort = 0;
+			List<FlowNode> flowNodes = flowNodeDao.findFlowNodeByModelId(workFlow.getModelId());
+			for (int i = flowNodes.size()-1; i >=0; i--) {
+				if (userVO.getJobsIds().contains(i)){
+					sort = i;
+					break;
+				}
+			}
 			//得到当前节点
-			FlowNode nowFlowNode = findWorkFlowById(flowNodes, workFlow.getWorkflowNode());
+			FlowNode nowFlowNode = findWorkFlowById(flowNodes, sort);
 			FlowNode nextFlowNode = findWorkFlowBySort(flowNodes, nowFlowNode.getNextSort());
 			changeworkFlow(nextFlowNode, workFlow, flowNodes);
 			
