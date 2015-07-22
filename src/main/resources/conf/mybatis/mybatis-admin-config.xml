@@ -36,9 +36,11 @@
 		<!-- vo  -->
 		<typeAlias type="com.v4java.workflow.view.admin.WorkFlowVO" alias="workFlowVO" />	
 		<typeAlias type="com.v4java.workflow.view.admin.JobsVO" alias="jobsVO" />
+		<typeAlias type="com.v4java.workflow.view.admin.WorkFlowModelVO" alias="workFlowModelVO" />
 			
 		<!-- query  -->	
 		<typeAlias type="com.v4java.workflow.query.admin.JobsQuery" alias="jobsQuery"/>
+		<typeAlias type="com.v4java.workflow.query.admin.WorkFlowModelQuery" alias="workFlowModelQuery"/>
 			
 	</typeAliases>
 </configuration>

@@ -17,17 +17,22 @@
     <!--  -->
   </resultMap>
   
-  <select id="findWorkFlowModelById" parameterType="java.lang.Integer" resultType="workFlowModel">
-  	select
-  			id ,busy_type_id ,model_text ,name,description,system_id ,
-  			status
-  	from 
-  			workflow_model
-  	where  
-  			id = #{id}
-  </select>
-	
-
+   <resultMap id="workFlowModelVO-resultMap" type="workFlowModelVO" >
+	<!--  -->
+    <id 	column="id" 				property="id" 			jdbcType="INTEGER" />
+    <result column="busy_type_id" 		property="busyTypeId" 	jdbcType="INTEGER" />
+    <result column="model_text" 		property="modelText" 	jdbcType="VARCHAR" />
+    <result column="name" 				property="name" 		jdbcType="VARCHAR" />
+    <result column="description" 		property="description" 	jdbcType="VARCHAR" />
+    
+    <result column="status" 			property="status" 		jdbcType="INTEGER" />
+    <result column="create_time" 		property="createTime" 	jdbcType="TIMESTAMP" />
+    <result column="update_time" 		property="updateTime" 	jdbcType="TIMESTAMP" />
+    <result column="system_id" 			property="systemId" 	jdbcType="INTEGER" />
+    <result column="system_name" 		property="systemName" 	jdbcType="INTEGER" />
+    <!--  -->
+  </resultMap>
+  
   
   <insert id="insertWorkFlowModel" parameterType="workFlowModel">
 	insert into workflow_model(
@@ -35,5 +40,86 @@
 			
 			values(#{busyTypeId} ,#{modelText} ,#{name},#{description},#{status},#{systemId})
    </insert>
+   
+   <update id="updateWorkFlowModel" parameterType="workFlowModel">
+   		update 
+   				workflow_model
+   		<set>
+			<if test="busyTypeId != null ">
+				busy_type_id  = #{busyTypeId},
+			</if>
+			<if test="modelText != null ">
+				model_text = #{modelText},
+			</if>   	
+			<if test="name != null ">
+				name = #{name},
+			</if>   	
+			<if test="description != null ">
+				description = #{description},
+			</if>   	   		
+			<if test="status != null ">
+				status = #{status},
+			</if> 
+			update_time = now()     		
+   		</set>
+   		where 
+   				id = #{id}
+   </update>
+   
+   
+  <select id="findWorkFlowModelById" parameterType="java.lang.Integer" resultType="workFlowModel">
+  	select
+  			id ,busy_type_id ,model_text ,name,description,system_id ,
+  			status
+  	from 
+  			workflow_model wm
+  	left join
+  			xf9_system  xf  on xf.id = wm.system_id
+  							
+  	where  
+  			id = #{id}
+  </select>
+  
+
+  <!--查找系统为 systemId所有模板 -->
+  <select id="findWorkFlowModelBySystemId" parameterType="workFlowModelQuery" resultMap="workFlowModelVO-resultMap">
+  	select
+  			wm.id ,wm.busy_type_id ,wm.model_text ,wm.name,wm.description,wm.system_id ,
+  			wm.status,xf.name as system_name ,wm.create_time ,wm.update_time
+  	from 
+  			workflow_model wm
+  	left join
+  			xf9_system  xf  on xf.id = wm.system_id
+  	where  
+  			system_id = #{systemId}
+  	limit 
+  			#{limit} ,#{offset}		
+  </select>
+  
+    <!--查找系统为 systemId所有模板 -->
+  <select id="findWorkFlowModelCountBySystemId" parameterType="workFlowModelQuery" resultMap="workFlowModelVO-resultMap">
+  	select
+  			count(*)
+  	from 
+  			workflow_model wm
+  	left join
+  			xf9_system  xf  on xf.id = wm.system_id
+  	where  
+  			system_id = #{systemId}
+  </select>
+  
+  <!--查找系统为 systemId且类型为busyTypeId的模板 -->
+   <select id="findWorkFlowModelSystemIdAndType" parameterType="workFlowModelQuery" resultType="workFlowModel">
+  	select
+  			id ,busy_type_id ,model_text ,name,description,system_id ,
+  			status
+  	from 
+  			workflow_model
+  	where  
+  			system_id = #{systemId} 
+  		and
+  			busy_type_id = #{busyTypeId}		
+  </select>
+  
    
 </mapper>
