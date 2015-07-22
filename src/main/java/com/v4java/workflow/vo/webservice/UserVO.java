@@ -1,4 +1,4 @@
-package com.v4java.workflow.vo.admin;
+package com.v4java.workflow.vo.webservice;
 
 import java.util.List;
 
@@ -6,10 +6,11 @@ import com.v4java.workflow.vo.VO;
 
 public class UserVO implements VO{
 
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 3834667209208341612L;
+	private static final long serialVersionUID = -8126804076229297861L;
 
 	private String userCode;
 	

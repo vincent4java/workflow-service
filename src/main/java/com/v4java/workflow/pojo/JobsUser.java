@@ -21,6 +21,8 @@ public class JobsUser implements Pojo {
 	
 	private Integer status;
 	
+	private Integer systemId;
+	
 	private Timestamp createTime;
 	private Timestamp updateTime;
 	public Integer getId() {
@@ -65,7 +67,19 @@ public class JobsUser implements Pojo {
 	public void setUpdateTime(Timestamp updateTime) {
 		this.updateTime = updateTime;
 	}
-	
-	
+	public Integer getSystemId() {
+		return systemId;
+	}
+	public void setSystemId(Integer systemId) {
+		this.systemId = systemId;
+	}
+	@Override
+	public String toString() {
+		return "JobsUser [id=" + id + ", jobsId=" + jobsId + ", userCode="
+				+ userCode + ", userName=" + userName + ", status=" + status
+				+ ", systemId=" + systemId + ", createTime=" + createTime
+				+ ", updateTime=" + updateTime + "]";
+	}
+
 	
 }

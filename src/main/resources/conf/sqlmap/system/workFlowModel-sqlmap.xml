@@ -67,7 +67,7 @@
    </update>
    
    
-  <select id="findWorkFlowModelById" parameterType="java.lang.Integer" resultType="workFlowModel">
+  <select id="findWorkFlowModelById" parameterType="java.lang.Integer" resultMap="workFlowModel-resultMap">
   	select
   			id ,busy_type_id ,model_text ,name,description,system_id ,
   			status

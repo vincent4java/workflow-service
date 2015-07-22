@@ -6,7 +6,7 @@
   
     <id 	column="id" 				property="id" 			jdbcType="INTEGER" />
     <result column="jobs_id" 			property="jobsId" 		jdbcType="INTEGER" />
-    <result column="model_id" 			property="modelId" 			jdbcType="INTEGER" />
+    <result column="model_id" 			property="modelId" 		jdbcType="INTEGER" />
     <result column="node_type" 			property="nodeType" 	jdbcType="INTEGER" />
     <result column="flow_test" 			property="flowTest" 	jdbcType="VARCHAR" />
 	
@@ -17,12 +17,13 @@
     <result column="create_time" 		property="createTime" 	jdbcType="TIMESTAMP" />
     
     <result column="update_time" 		property="updateTime" 	jdbcType="TIMESTAMP" />
+    <result column="status" 			property="status" 		jdbcType="INTEGER" />
     <!--  -->
   </resultMap>
   
   <select id="findFlowNodeByModelId" parameterType="java.lang.Integer" resultMap="flowNode-resultMap">
   	select
-  			id,jobs_id,model_id,node_type,flow_test ,
+  			id,jobs_id,model_id,node_type,flow_test ,status
   			next_sort,sort,name,description
     from			
   			flow_node
@@ -35,7 +36,7 @@
    <select id="findFirstFlowNodeById" parameterType="java.lang.Integer" resultMap="flowNode-resultMap">
   	select
   			id,jobs_id,model_id,node_type,flow_test ,
-  			next_sort,sort,name,description
+  			next_sort,sort,name,description,status
     from			
   			flow_node
   	where
@@ -48,7 +49,7 @@
    <select id="findFlowNodeById" parameterType="java.lang.Integer" resultMap="flowNode-resultMap">
   	select
   			id,jobs_id,model_id,node_type,flow_test
-  			next_sort,sort,name,description
+  			next_sort,sort,name,description,status
   	from			
   			flow_node
   	where
@@ -58,10 +59,10 @@
   <insert id="insertFlowNode" parameterType="flowNode">
   	insert into  flow_node(
   			jobs_id,model_id,node_type,flow_test,
-  			next_sort,sort,name,description)
+  			next_sort,sort,name,description,status)
   	values(
   			#{jobsId},#{modelId},#{nodeType},#{flowTest},
-  			#{nextSort},#{sort},#{name},#{description}
+  			#{nextSort},#{sort},#{name},#{description}.#{status}
   			)
   </insert>
   
@@ -92,6 +93,9 @@
   		</if> 
  		<if test="description != null">
   			description = #{description} ,
+  		</if>  	 		
+   		<if test="status != null">
+  			status = #{status} ,
   		</if>  	 		 	
   			update_time = now()
   	</set>	

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.v4java.workflow.dao.admin.JobsUserDao" >
+<mapper namespace="com.v4java.workflow.dao.webservice.JobsUserDao" >
 
   <resultMap id="jobsUser-resultMap" type="jobsUser" >
 
@@ -12,19 +12,18 @@
     
     <result column="create_time" 	property="createTime" 	jdbcType="TIMESTAMP" />
     <result column="update_time" 	property="updateTime" 	jdbcType="TIMESTAMP" />
-    <result column="system_id" 		property="systemId" 	jdbcType="INTEGER" />
-    
-
+	<result column="system_id" 		property="systemId" 	jdbcType="INTEGER" />
+	
   </resultMap>
   
-  	<insert id="batchInsertJobsUser" parameterType="list">
-  		insert into jobs_user(
-  				jobs_id,user_code,user_name,status ,system_id)
-  		  values 
-	    <foreach collection ="list" item ="item" index ="index" separator =","> 
-	       	(#{item.jobsId}, #{item.userCode} ,#{item.userName},0,#{systemId}) 
-	    </foreach>
-    
-  	</insert>
-  
+	<select id="selectjobsUserByUserCodeAndSystemId" resultMap="jobsUser-resultMap" parameterType="jobsUserQuery">
+		select 
+				id , jobs_id ,user_name,user_code ,status,system_id
+		from 
+				jobs_user
+		where
+				user_code = #{userCode}	
+		and
+				system_id  = #{systemId}		
+	</select>  
 </mapper>

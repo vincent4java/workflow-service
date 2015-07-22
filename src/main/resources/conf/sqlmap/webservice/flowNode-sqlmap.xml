@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.v4java.workflow.dao.webservice.FlowNodeDao" >
+
+  <resultMap id="flowNode-resultMap" type="flowNode" >
+  
+    <id 	column="id" 				property="id" 			jdbcType="INTEGER" />
+    <result column="jobs_id" 			property="jobsId" 		jdbcType="INTEGER" />
+    <result column="model_id" 			property="modelId" 			jdbcType="INTEGER" />
+    <result column="node_type" 			property="nodeType" 	jdbcType="INTEGER" />
+    <result column="flow_test" 			property="flowTest" 	jdbcType="VARCHAR" />
+	
+	<result column="sort" 				property="sort" 		jdbcType="INTEGER" />
+    <result column="next_sort" 			property="nextSort" 	jdbcType="INTEGER" />
+    <result column="name" 				property="name" 		jdbcType="VARCHAR" />
+    <result column="description" 		property="description" 	jdbcType="VARCHAR" />
+    <result column="create_time" 		property="createTime" 	jdbcType="TIMESTAMP" />
+    
+    <result column="update_time" 		property="updateTime" 	jdbcType="TIMESTAMP" />
+    <result column="status" 			property="status" 		jdbcType="INTEGER" />
+    
+    <!--  -->
+  </resultMap>
+  
+  
+   <select id="findFlowNodeById" parameterType="java.lang.Integer" resultMap="flowNode-resultMap">
+  	select
+  			id,jobs_id,model_id,node_type,flow_test
+  			next_sort,sort,name,description,status
+  	from			
+  			flow_node
+  	where
+  			id = #{id}
+  </select>
+  
+  
+     <select id="findFirstFlowNodeById" parameterType="java.lang.Integer" resultMap="flowNode-resultMap">
+  	select
+  			id,jobs_id,model_id,node_type,flow_test ,
+  			next_sort,sort,name,description,status
+    from			
+  			flow_node
+  	where
+  			model_id = #{modelId}
+  	and
+  			status = 0		
+  	order by 
+  			sort ASC
+  	limit 0 ,1
+  </select>
+  
+</mapper>

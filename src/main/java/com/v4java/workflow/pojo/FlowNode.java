@@ -16,6 +16,7 @@ public class FlowNode implements Pojo{
 	private Integer sort ;// '下一个节点'
 	private Integer nextSort ;// '下一个节点'
 	private String name;//  '审批流节点名称'
+	private Integer status;
 	private String description;// '审批流节点描述'
 	private Timestamp createTime ;//
 	private Timestamp updateTime ;//
@@ -85,4 +86,21 @@ public class FlowNode implements Pojo{
 	public void setNextSort(Integer nextSort) {
 		this.nextSort = nextSort;
 	}
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+	@Override
+	public String toString() {
+		return "FlowNode [id=" + id + ", jobsId=" + jobsId + ", modelId="
+				+ modelId + ", nodeType=" + nodeType + ", flowTest=" + flowTest
+				+ ", sort=" + sort + ", nextSort=" + nextSort + ", name="
+				+ name + ", status=" + status + ", description=" + description
+				+ ", createTime=" + createTime + ", updateTime=" + updateTime
+				+ "]";
+	}
+	
+	
 }
