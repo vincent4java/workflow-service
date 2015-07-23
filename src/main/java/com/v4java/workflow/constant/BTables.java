@@ -1,4 +1,4 @@
-package com.v4java.workflow.wfconst;
+package com.v4java.workflow.constant;
 
 import java.io.Serializable;
 import java.util.List;

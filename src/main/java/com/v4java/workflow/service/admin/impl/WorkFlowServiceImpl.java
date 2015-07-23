@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.fastjson.JSON;
+import com.v4java.workflow.constant.FlowConst;
 import com.v4java.workflow.dao.admin.ApproveLogDao;
 import com.v4java.workflow.dao.admin.FlowNodeDao;
 import com.v4java.workflow.dao.admin.WorkFlowDao;
@@ -20,7 +21,6 @@ import com.v4java.workflow.pojo.WorkFlow;
 import com.v4java.workflow.service.admin.IWorkFlowService;
 import com.v4java.workflow.vo.admin.UserVO;
 import com.v4java.workflow.vo.admin.WorkFlowVO;
-import com.v4java.workflow.wfconst.FlowConst;
 
 @Service("workFlowService")
 public class WorkFlowServiceImpl implements IWorkFlowService{
