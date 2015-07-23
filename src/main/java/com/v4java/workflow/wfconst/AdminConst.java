@@ -1,4 +1,4 @@
-package com.v4java.workflow.common;
+package com.v4java.workflow.wfconst;
 
 public class AdminConst {
 
