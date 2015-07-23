@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
+import org.aspectj.weaver.World;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,11 +14,14 @@ import com.v4java.workflow.common.FlowConst;
 import com.v4java.workflow.dao.webservice.ApproveLogDao;
 import com.v4java.workflow.dao.webservice.FlowNodeDao;
 import com.v4java.workflow.dao.webservice.WorkFlowDao;
+import com.v4java.workflow.dao.webservice.WorkFlowModelDao;
 import com.v4java.workflow.pojo.ApproveLog;
 import com.v4java.workflow.pojo.Compare;
 import com.v4java.workflow.pojo.CompareArray;
 import com.v4java.workflow.pojo.FlowNode;
 import com.v4java.workflow.pojo.WorkFlow;
+import com.v4java.workflow.pojo.WorkFlowModel;
+import com.v4java.workflow.query.webservice.WorkFlowModelQuery;
 import com.v4java.workflow.service.webservice.IWorkFlowService;
 import com.v4java.workflow.vo.webservice.UserVO;
 
@@ -30,6 +34,8 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 	private WorkFlowDao workFlowDao;
 	@Autowired
 	private FlowNodeDao  flowNodeDao;
+	@Autowired
+	private WorkFlowModelDao workFlowModelDao ;
 	
 	@Override
 	public WorkFlow findWorkFlowById(Integer id) throws Exception {
@@ -38,22 +44,25 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 
 	@Override
 	public void insertWorkFlow(WorkFlow workFlow,UserVO userVO) throws Exception {
-		if (userVO.getJobsIds()==null) {
-			FlowNode firstNode = flowNodeDao.findFirstFlowNodeById(workFlow.getModelId());
+		WorkFlowModelQuery workFlowModelQuery = new WorkFlowModelQuery();
+		workFlowModelQuery.setBusyTypeId(workFlow.getBusyTypeId());
+		workFlowModelQuery.setSystemId(userVO.getSystemId());
+		WorkFlowModel workFlowModel = workFlowModelDao.findWorkFlowModelSystemIdAndType(workFlowModelQuery);
+		if (userVO.getJobsIds()==null||userVO.getJobsIds().size()<=0) {
+			FlowNode firstNode = flowNodeDao.findFirstFlowNodeById(workFlowModel.getId());
 			workFlow.setJobsId(firstNode.getJobsId());
 			workFlow.setWorkflowNode(firstNode.getId());
 			workFlow.setStatus(0);
 		}else {
-			int sort = 0;
-			List<FlowNode> flowNodes = flowNodeDao.findFlowNodeByModelId(workFlow.getModelId());
+			List<FlowNode> flowNodes = flowNodeDao.findFlowNodeByModelId(workFlowModel.getId());
+			FlowNode nowFlowNode = null;
 			for (int i = flowNodes.size()-1; i >=0; i--) {
-				if (userVO.getJobsIds().contains(i)){
-					sort = i;
+				if (i!=0&&userVO.getJobsIds().contains(flowNodes.get(i).getJobsId())){
+					nowFlowNode = flowNodes.get(i);
 					break;
 				}
 			}
 			//得到当前节点
-			FlowNode nowFlowNode = findWorkFlowById(flowNodes, sort);
 			FlowNode nextFlowNode = findWorkFlowBySort(flowNodes, nowFlowNode.getNextSort());
 			changeworkFlow(nextFlowNode, workFlow, flowNodes);
 			

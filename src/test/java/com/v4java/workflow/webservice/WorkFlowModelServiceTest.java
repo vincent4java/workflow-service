@@ -1,4 +1,4 @@
-package com.v4java.workflow.webservice;
+/*package com.v4java.workflow.webservice;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -38,3 +38,4 @@ public class WorkFlowModelServiceTest extends TestCase{
 		System.out.println(workFlowModel.toString());
 	}
 }
+*/

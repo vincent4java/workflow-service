@@ -31,7 +31,7 @@
 			)
 		values(
 			#{busyTypeId},#{modelId},#{name},#{description},#{jobsId},
-			#{workflowNode},#{status},#{money},#{busyTypeName},
+			#{workflowNode},#{status},#{money},#{busyTypeName},#{json},
 			#{userName},#{userCode} 
 			)
 	
