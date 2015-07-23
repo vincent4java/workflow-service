@@ -107,6 +107,7 @@
 			<artifactId>aspectjweaver</artifactId>
 		</dependency>
 	</dependencies>
+	
 	<build>
 		<finalName>workflow-service</finalName>
 		<plugins>
