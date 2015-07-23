@@ -40,7 +40,18 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 	public WorkFlow findWorkFlowById(Integer id) throws Exception {
 		return workFlowDao.findWorkFlowById(id);
 	}
-
+	
+	/**
+	 * 新增一个审批流，会根据user的岗位进行判断
+	 * 一个用户在一个系统中可以有多个岗位
+	 * 1.当一个用户具有岗位
+	 * 	 a.该用户只有一个岗位
+	 * 		系统会认为该节点已通过审核，进行下一个节点
+	 * 	 b.该用户具有多个岗位
+	 * 		系统会按照审批模板 取得该用户最高审批权限，进行a操作
+	 * 2.该用户没有岗位
+	 * 		最初节点
+	 */
 	@Override
 	public void insertWorkFlow(WorkFlow workFlow,UserVO userVO) throws Exception {
 		WorkFlowModelQuery workFlowModelQuery = new WorkFlowModelQuery();
@@ -65,7 +76,7 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 			}
 			//得到当前节点
 			FlowNode nextFlowNode = findWorkFlowBySort(flowNodes, nowFlowNode.getNextSort());
-			changeWorkFlow(nextFlowNode, workFlow, flowNodes);
+			checkNextFlowNode(nextFlowNode, workFlow, flowNodes);
 			
 		}
 		workFlow.setWorkflowNode(userVO.getSystemId());
@@ -93,7 +104,7 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 		}else if (approveLog.getStatus() == FlowConst.AGREE_TRUE) {
 			//寻找下一个节点
 			FlowNode nextFlowNode = findWorkFlowBySort(flowNodes, nowFlowNode.getNextSort());
-			changeWorkFlow(nextFlowNode, workFlow, flowNodes);
+			checkNextFlowNode(nextFlowNode, workFlow, flowNodes);
 
 		}
 		int n=workFlowDao.updateWorkFlow(workFlow);
@@ -180,7 +191,7 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 	 * @param workFlow	正在审批的流程
 	 * @param flowNodes	所用几点
 	 */
-	private void changeWorkFlow(FlowNode nextFlowNode ,WorkFlow workFlow ,List<FlowNode> flowNodes){
+	private void checkNextFlowNode(FlowNode nextFlowNode ,WorkFlow workFlow ,List<FlowNode> flowNodes){
 		if (nextFlowNode==null||nextFlowNode.getStatus()==FlowConst.FALSE) {
 			setFirstWorkFlow(workFlow, flowNodes);
 			 return;
@@ -252,13 +263,7 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 					i ++;	
 				}
 				nextFlowNode = findWorkFlowBySort(flowNodes, sort);
-				changeWorkFlow(nextFlowNode, workFlow, flowNodes);
-/*				workFlow.setJobsId(nextFlowNode.getJobsId());
-				workFlow.setWorkflowNode(nextFlowNode.getId());
-				workFlow.setStatus(FlowConst.ING);
-				if (nextFlowNode.getNodeType()==FlowConst.NODE_TYPE_END) {
-					workFlow.setStatus(FlowConst.END);
-				}*/
+				checkNextFlowNode(nextFlowNode, workFlow, flowNodes);
 				break;
 			//结束节点,哈哈 
 			case FlowConst.NODE_TYPE_END:
