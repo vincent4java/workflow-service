@@ -25,6 +25,7 @@ public class WorkFlow implements Pojo {
 	private String json;
 	private Timestamp createTime ;//
 	private Timestamp updateTime ;//
+	private String workFlowCode ;//
 	private String userCode;//发起人code
 	private String userName;//发起人name
 	public Integer getId() {
@@ -123,6 +124,11 @@ public class WorkFlow implements Pojo {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	
+	public String getWorkFlowCode() {
+		return workFlowCode;
+	}
+	public void setWorkFlowCode(String workFlowCode) {
+		this.workFlowCode = workFlowCode;
+	}
 	
 }

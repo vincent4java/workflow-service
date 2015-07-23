@@ -55,7 +55,7 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 	 * 		最初节点
 	 */
 	@Override
-	public void insertWorkFlow(WorkFlow workFlow,UserVO userVO) throws Exception {
+	public int insertWorkFlow(WorkFlow workFlow,UserVO userVO) throws Exception {
 		WorkFlowModelQuery workFlowModelQuery = new WorkFlowModelQuery();
 		workFlowModelQuery.setBusyTypeId(workFlow.getBusyTypeId());
 		workFlowModelQuery.setSystemId(userVO.getSystemId());
@@ -71,7 +71,7 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 			List<FlowNode> flowNodes = flowNodeDao.findFlowNodeByModelId(workFlowModel.getId());
 			FlowNode nowFlowNode = null;
 			for (int i = flowNodes.size()-1; i >=0; i--) {
-				if (i!=0&&userVO.getJobsIds().contains(flowNodes.get(i).getJobsId())){
+				if (userVO.getJobsIds().contains(flowNodes.get(i).getJobsId())){
 					nowFlowNode = flowNodes.get(i);
 					break;
 				}
@@ -81,8 +81,14 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 			checkNextFlowNode(nextFlowNode, workFlow, flowNodes);
 			
 		}
-		workFlow.setWorkflowNode(userVO.getSystemId());
-		workFlowDao.insertWorkFlow(workFlow);
+		if (workFlow.getName()==null) {
+			workFlow.setName(workFlowModel.getName());
+		}
+		workFlow.setSystemId(userVO.getSystemId());
+		workFlow.setModelId(workFlowModel.getId());
+		workFlow.setBusyTypeId(workFlowModel.getBusyTypeId());
+		workFlow.setBusyTypeName(workFlowModel.getName());
+		return workFlowDao.insertWorkFlow(workFlow);
 	}
 
 
@@ -193,7 +199,7 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 	 * @param workFlow	正在审批的流程
 	 * @param flowNodes	所用几点
 	 */
-	private void checkNextFlowNode(FlowNode nextFlowNode ,WorkFlow workFlow ,List<FlowNode> flowNodes){
+	private void checkNextFlowNode(FlowNode nextFlowNode ,WorkFlow workFlow ,List<FlowNode> flowNodes) throws Exception{
 		if (nextFlowNode==null||nextFlowNode.getStatus()==FlowConst.FALSE) {
 			setFirstWorkFlow(workFlow, flowNodes);
 			 return;
@@ -233,6 +239,9 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 						//如果和上一个于
 						if (name == null||!name.equals(compareArray.getName())) {
 							name = compareArray.getName();
+							if (flag) {
+								
+							}
 							val = getValByname(j, name);
 						}
 						int  n = val.compareTo(compareArray.getValue());

@@ -16,7 +16,7 @@ public interface IWorkFlowService {
 	
 	WorkFlow findWorkFlowById(Integer id) throws Exception;
 	
-	void insertWorkFlow(WorkFlow workFlow,UserVO userVO) throws Exception;
+	int insertWorkFlow(WorkFlow workFlow,UserVO userVO) throws Exception;
 
 	/**
 	 * 进行工作流审批
