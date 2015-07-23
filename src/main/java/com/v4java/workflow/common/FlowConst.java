@@ -36,6 +36,11 @@ public class FlowConst {
 	public static final int COMPARE_LTE = -2;
 	
 	public static final int COMPARE_EQ = 0;
+	
+	//同意
+	public static final int TRUE = 0;
+	//拒绝
+	public static final int FALSE = 1;
 }
 
 

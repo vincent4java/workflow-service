@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
-import org.aspectj.weaver.World;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,7 +51,8 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 			FlowNode firstNode = flowNodeDao.findFirstFlowNodeById(workFlowModel.getId());
 			workFlow.setJobsId(firstNode.getJobsId());
 			workFlow.setWorkflowNode(firstNode.getId());
-			workFlow.setStatus(0);
+			workFlow.setStatus(FlowConst.START);
+			
 		}else {
 			List<FlowNode> flowNodes = flowNodeDao.findFlowNodeByModelId(workFlowModel.getId());
 			FlowNode nowFlowNode = null;
@@ -64,7 +64,7 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 			}
 			//得到当前节点
 			FlowNode nextFlowNode = findWorkFlowBySort(flowNodes, nowFlowNode.getNextSort());
-			changeworkFlow(nextFlowNode, workFlow, flowNodes);
+			changeWorkFlow(nextFlowNode, workFlow, flowNodes);
 			
 		}
 		workFlowDao.insertWorkFlow(workFlow);
@@ -87,15 +87,16 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 		//拒绝
 		if (approveLog.getStatus() == FlowConst.AGREE_FALSE) {
 			//标记工作流为开始状态
-			FlowNode firstFlowNode = flowNodes.get(FlowConst.node_type_start);
+			setFirstWorkFlow(workFlow, flowNodes);
+/*			FlowNode firstFlowNode = findFirstWorkFlowBySort(flowNodes);
 			workFlow.setJobsId(firstFlowNode.getJobsId());
 			workFlow.setStatus(FlowConst.START);
 			workFlow.setWorkflowNode(firstFlowNode.getId());
-			
+*/			
 		}else if (approveLog.getStatus() == FlowConst.AGREE_TRUE) {
 			//寻找下一个节点
 			FlowNode nextFlowNode = findWorkFlowBySort(flowNodes, nowFlowNode.getNextSort());
-			changeworkFlow(nextFlowNode, workFlow, flowNodes);
+			changeWorkFlow(nextFlowNode, workFlow, flowNodes);
 
 		}
 		int n=workFlowDao.updateWorkFlow(workFlow);
@@ -135,7 +136,7 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 	 */
 	private FlowNode findWorkFlowBySort(List<FlowNode> flowNodes,int sort){
 		for (FlowNode flowNode : flowNodes) {
-			if (flowNode.getSort()==sort) {
+			if (flowNode.getSort()==sort&&flowNode.getStatus()==FlowConst.TRUE) {
 				return flowNode;
 			}
 		}
@@ -144,12 +145,49 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 	}
 	
 	/**
+	 * 
+	 * @param flowNodes 从传入的模板所用工作流节点
+	 * @param sort		某个节点标记
+	 * @return
+	 */
+	private FlowNode findFirstWorkFlowBySort(List<FlowNode> flowNodes){
+		for (FlowNode flowNode : flowNodes) {
+			if (flowNode.getStatus()==FlowConst.TRUE) {
+				return flowNode;
+			}
+		}
+		return null;
+		
+	}
+	
+	/**
+	 * 设置该审批业务为第一个节点
+	 * 没有则赋workFlow为null
+	 * @param workFlow
+	 * @param flowNodes
+	 */
+	private void setFirstWorkFlow(WorkFlow workFlow,List<FlowNode> flowNodes){
+		FlowNode first =  findFirstWorkFlowBySort(flowNodes);
+		if (first == null) {
+			workFlow = null;
+		}else {
+			workFlow.setJobsId(first.getJobsId());
+			workFlow.setWorkflowNode(first.getId());
+			//此时可以更改
+			workFlow.setStatus(FlowConst.START);
+		}		
+	}
+	/**
 	 * 改变正在审批流程的状态
 	 * @param nextFlowNode 下一个节点
 	 * @param workFlow	正在审批的流程
 	 * @param flowNodes	所用几点
 	 */
-	private void changeworkFlow(FlowNode nextFlowNode ,WorkFlow workFlow ,List<FlowNode> flowNodes){
+	private void changeWorkFlow(FlowNode nextFlowNode ,WorkFlow workFlow ,List<FlowNode> flowNodes){
+		if (nextFlowNode==null||nextFlowNode.getStatus()==FlowConst.FALSE) {
+			setFirstWorkFlow(workFlow, flowNodes);
+			 return;
+		}
 		//获得下一个节点类型
 		if(nextFlowNode.getNodeType()!=null){
 			switch (nextFlowNode.getNodeType()) {
@@ -168,26 +206,6 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 				//获得该节点的判断方法
 				//下一个节点排序号
 				int sort = -1;
-				//一个判断条件
-/*				if(sort==0){
-					List<TestJson> testJsons = JSON.parseArray(nextFlowNode.getFlowTest(),TestJson.class);
-					BigDecimal money = workFlow.getMoney();
-					for (TestJson testJson : testJsons) {
-						Double[] test = testJson.getTest();
-						if (test[1]==-1) {
-							if (money.compareTo(new BigDecimal(test[0]))==1) {
-								sort = testJson.getTarget();
-								break;
-							}
-						}else {
-							if (money.compareTo(new BigDecimal(test[0]))==1&&money.compareTo(new BigDecimal(test[1]))==-1) {
-								sort = testJson.getTarget();
-								break;
-							}
-						}
-					}
-				//多个判断条件
-				}else {*/
 				//得到所有判断条件
 				List<Compare> compares = JSON.parseArray(nextFlowNode.getFlowTest(),Compare.class);
 				//sort不等于-1说明已找到合适的节点sort
@@ -236,14 +254,14 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 					}
 					i ++;	
 				}
-				/*}*/
 				nextFlowNode = findWorkFlowBySort(flowNodes, sort);
-				workFlow.setJobsId(nextFlowNode.getJobsId());
+				changeWorkFlow(nextFlowNode, workFlow, flowNodes);
+/*				workFlow.setJobsId(nextFlowNode.getJobsId());
 				workFlow.setWorkflowNode(nextFlowNode.getId());
 				workFlow.setStatus(FlowConst.ING);
 				if (nextFlowNode.getNodeType()==FlowConst.NODE_TYPE_END) {
 					workFlow.setStatus(FlowConst.END);
-				}
+				}*/
 				break;
 			//结束节点,哈哈 
 			case FlowConst.NODE_TYPE_END:
@@ -258,6 +276,7 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 			}
 		}
 	}
+	
 	
 	public Map<String, String> json2Map(String json){
 		@SuppressWarnings("unchecked")
