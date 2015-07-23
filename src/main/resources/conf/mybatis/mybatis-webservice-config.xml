@@ -39,6 +39,8 @@
 		<typeAlias type="com.v4java.workflow.query.webservice.WorkFlowModelQuery" alias="workFlowModelQuery"/>
 		<typeAlias type="com.v4java.workflow.query.webservice.JobsUserQuery" 	  alias="jobsUserQuery"/>	
 		<typeAlias type="com.v4java.workflow.query.webservice.WorkFlowQuery" 	  alias="workFlowQuery"/>	
+		<!--  -->
+		<typeAlias type="com.v4java.workflow.param.webservice.WorkFlowParam" 	  alias="workFlowParam"/>
 		
 	</typeAliases>
 </configuration>

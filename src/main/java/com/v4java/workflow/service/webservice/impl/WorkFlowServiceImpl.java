@@ -14,6 +14,7 @@ import com.v4java.workflow.dao.webservice.ApproveLogDao;
 import com.v4java.workflow.dao.webservice.FlowNodeDao;
 import com.v4java.workflow.dao.webservice.WorkFlowDao;
 import com.v4java.workflow.dao.webservice.WorkFlowModelDao;
+import com.v4java.workflow.param.webservice.WorkFlowParam;
 import com.v4java.workflow.pojo.ApproveLog;
 import com.v4java.workflow.pojo.Compare;
 import com.v4java.workflow.pojo.CompareArray;
@@ -94,10 +95,15 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 
 
 	@Override
-	@Transactional
+	@Transactional	
 	public int doWorkFlow(Integer workFlowId, UserVO userVO,ApproveLog approveLog) throws Exception {
 		WorkFlow workFlow = workFlowDao.findWorkFlowById(workFlowId);
 		List<FlowNode> flowNodes = flowNodeDao.findFlowNodeByModelId(workFlow.getModelId()); 
+		WorkFlowParam flowParam = new WorkFlowParam();
+		//原来的状态
+		flowParam.setOldJobsId(workFlow.getJobsId());
+		flowParam.setOldStatus(workFlow.getStatus());
+		flowParam.setOldWorkflowNode(workFlow.getWorkflowNode());
 		//得到当前节点
 		FlowNode nowFlowNode = findWorkFlowById(flowNodes, workFlow.getWorkflowNode());
 		//判断有无权限
@@ -115,7 +121,13 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 			checkNextFlowNode(nextFlowNode, workFlow, flowNodes);
 
 		}
-		int n=workFlowDao.updateWorkFlow(workFlow);
+
+		//现在的状态
+		flowParam.setNowJobsId(workFlow.getJobsId());
+		flowParam.setNowStatus(workFlow.getStatus());
+		flowParam.setNowWorkflowNode(workFlow.getWorkflowNode());
+		flowParam.setId(workFlow.getId());
+		int n=workFlowDao.updateWorkFlowStatusUseWorkFlowParam(flowParam);
 		if (n==1) {
 			approveLog.setUserCode(userVO.getUserCode());
 			approveLog.setUserName(userVO.getUserName());

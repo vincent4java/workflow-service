@@ -1,4 +1,4 @@
-/*package com.v4java.workflow.webservice;
+package com.v4java.workflow.webservice;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,7 +31,7 @@ public class WorkFlowServiceTest  extends TestCase{
 	
 	public static Test suite(){
 		TestSuite test = new TestSuite("WorkFlowServiceTest接口测试");
-		test.addTest(new WorkFlowServiceTest("insertWorkFlow"));
+		test.addTest(new WorkFlowServiceTest("doWorkFlow2"));
 		return test;
 	}
 
@@ -54,7 +54,7 @@ public class WorkFlowServiceTest  extends TestCase{
 		userVO.setJobsIds(jobsIds);
 		userVO.setUserCode("vz110");
 		userVO.setUserName("陈海龙");
-		ApproveLog approveLog = new ApproveLog();
+		ApproveLog approveLog = new ApproveLog()	;
 		approveLog.setStatus(0);
 		workFlowService.doWorkFlow(6, userVO, approveLog);
 	}
@@ -81,7 +81,7 @@ public class WorkFlowServiceTest  extends TestCase{
 		userVO.setUserName("12345");
 		ApproveLog approveLog = new ApproveLog();
 		approveLog.setStatus(0);
-		workFlowService.doWorkFlow(6, userVO, approveLog);
+		workFlowService.doWorkFlow(15, userVO, approveLog);
 	}
 	
 	public void insertWorkFlow() throws Exception{
@@ -106,4 +106,3 @@ public class WorkFlowServiceTest  extends TestCase{
 	}
 	
 }
-*/

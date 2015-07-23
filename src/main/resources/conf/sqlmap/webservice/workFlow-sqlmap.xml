@@ -94,6 +94,24 @@
 		where id = #{id}	
 	</update>
 	
+	<update id="updateWorkFlowStatusUseWorkFlowParam" parameterType="workFlowParam" >
+		update 
+				workflow	 
+		set
+       			 jobs_id = #{nowJobsId,jdbcType=INTEGER},
+       			 workflow_node = #{nowWorkflowNode,jdbcType=INTEGER},
+       			 status = #{nowStatus,jdbcType=INTEGER},
+      			update_time  = now()		    		
+		where 
+			id = #{id}
+		and 
+			status = #{oldStatus}
+		and 
+			workflow_node = #{oldWorkflowNode}
+		and 
+			jobs_id = #{oldJobsId}				
+	</update>
+	
 	
 	<select id="findWorkFlowById" parameterType="java.lang.Integer" resultMap="workFlow-resultMap">
 		select 
