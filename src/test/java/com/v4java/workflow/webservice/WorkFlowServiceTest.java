@@ -1,6 +1,5 @@
-package com.v4java.workflow.webservice;
+/*package com.v4java.workflow.webservice;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -107,3 +106,4 @@ public class WorkFlowServiceTest  extends TestCase{
 	}
 	
 }
+*/
