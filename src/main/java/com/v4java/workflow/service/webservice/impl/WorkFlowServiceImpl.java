@@ -52,6 +52,7 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 			workFlow.setJobsId(firstNode.getJobsId());
 			workFlow.setWorkflowNode(firstNode.getId());
 			workFlow.setStatus(FlowConst.START);
+			workFlow.setSystemId(userVO.getSystemId());
 			
 		}else {
 			List<FlowNode> flowNodes = flowNodeDao.findFlowNodeByModelId(workFlowModel.getId());
@@ -67,6 +68,7 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 			changeWorkFlow(nextFlowNode, workFlow, flowNodes);
 			
 		}
+		workFlow.setWorkflowNode(userVO.getSystemId());
 		workFlowDao.insertWorkFlow(workFlow);
 	}
 
@@ -87,12 +89,7 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 		//拒绝
 		if (approveLog.getStatus() == FlowConst.AGREE_FALSE) {
 			//标记工作流为开始状态
-			setFirstWorkFlow(workFlow, flowNodes);
-/*			FlowNode firstFlowNode = findFirstWorkFlowBySort(flowNodes);
-			workFlow.setJobsId(firstFlowNode.getJobsId());
-			workFlow.setStatus(FlowConst.START);
-			workFlow.setWorkflowNode(firstFlowNode.getId());
-*/			
+			setFirstWorkFlow(workFlow, flowNodes);		
 		}else if (approveLog.getStatus() == FlowConst.AGREE_TRUE) {
 			//寻找下一个节点
 			FlowNode nextFlowNode = findWorkFlowBySort(flowNodes, nowFlowNode.getNextSort());

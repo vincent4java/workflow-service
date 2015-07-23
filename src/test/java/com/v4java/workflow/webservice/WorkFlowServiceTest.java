@@ -100,7 +100,7 @@ public class WorkFlowServiceTest  extends TestCase{
 		jobsIds.add(2);
 		userVO.setUserCode("vz110");
 		Map<String, String> m = new HashMap<String, String>();
-		m.put("money", "999912150.1");
+		m.put("money", "150.1");
 		flow.setJson(JSON.toJSONString(m));
 		userVO.setUserName("财务经理");
 		workFlowService.insertWorkFlow(flow,userVO);
