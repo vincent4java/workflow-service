@@ -1,6 +1,5 @@
 package com.v4java.workflow.query.webservice;
 
-import java.sql.Timestamp;
 
 /*
  */
