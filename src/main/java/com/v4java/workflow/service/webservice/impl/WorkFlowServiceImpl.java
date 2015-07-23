@@ -239,9 +239,6 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 						//如果和上一个于
 						if (name == null||!name.equals(compareArray.getName())) {
 							name = compareArray.getName();
-							if (flag) {
-								
-							}
 							val = getValByname(j, name);
 						}
 						int  n = val.compareTo(compareArray.getValue());
