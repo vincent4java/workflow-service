@@ -15,7 +15,144 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+--
+-- Table structure for table `admin_privilege`
+--
 
+DROP TABLE IF EXISTS `admin_privilege`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `admin_privilege` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(12) NOT NULL DEFAULT '' COMMENT '权限名称',
+  `parent_id` int(11) NOT NULL DEFAULT '0' COMMENT '父权限',
+  `url` varchar(64) NOT NULL DEFAULT '' COMMENT '权限地址',
+  `is_show` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否显示',
+  `is_delete` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否删除',
+  `code` varchar(32) NOT NULL COMMENT '操作编码',
+  `sort` tinyint(4) NOT NULL COMMENT '排序',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COMMENT='权限表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `admin_privilege`
+--
+
+LOCK TABLES `admin_privilege` WRITE;
+/*!40000 ALTER TABLE `admin_privilege` DISABLE KEYS */;
+INSERT INTO `admin_privilege` VALUES (1,'首页',0,'index.do',1,0,'',0,'2015-05-29 08:48:25','2015-05-29 08:48:25'),(2,'系统设置',0,'javascript:;',1,0,'',1,'2015-05-29 08:48:25','2015-05-29 08:48:25'),(3,'用户管理',2,'/adminUser/findAdminUser.do',0,0,'',0,'2015-07-13 02:00:50','2015-05-29 08:48:25'),(4,'新增',3,'/adminUser/insertAdminUser.do',0,0,'insert',0,'2015-07-13 02:00:50','2015-05-29 08:48:25'),(5,'编辑',3,'/adminUser/findAdminUserById.do',0,0,'update',1,'2015-07-13 02:00:50','2015-05-29 08:48:25'),(6,'更新',3,'/adminUser/updateAdminUser.do',0,0,'',2,'2015-07-13 02:00:50','2015-05-29 08:48:25'),(7,'删除',3,'/adminUser/deleteAdminUser.do',0,0,'delete',3,'2015-07-13 02:00:50','2015-05-29 08:48:26'),(8,'角色配置',3,'/adminUser/findAdminUserRole.do',0,0,'role_config',4,'2015-07-13 02:00:50','2015-05-29 08:48:26'),(9,'更新角色配置',3,'/adminUser/updateAdminUserRole.do',0,0,'',5,'2015-07-13 02:00:50','2015-05-29 08:48:26'),(10,'角色管理',2,'/adminRole/findAdminRole.do',0,0,'',1,'2015-07-13 02:00:50','2015-05-29 08:48:26'),(11,'新增',10,'/adminRole/insertAdminRole.do',0,0,'insert',0,'2015-07-13 02:00:50','2015-05-29 08:48:26'),(12,'删除',10,'/adminRole/deleteAdminRole.do',0,0,'delete',1,'2015-07-13 02:00:50','2015-05-29 08:48:26'),(13,'更新',10,'/adminRole/updateAdminRole.do',0,0,'update',2,'2015-07-13 02:00:50','2015-05-29 08:48:26'),(14,'批量更新',10,'/adminRole/batchUpdateAdminRole.do',0,0,'batch_update',3,'2015-07-13 02:00:50','2015-05-29 08:48:26'),(15,'查看权限配置',10,'/adminRole/findAdminRolePrivilege.do',0,0,'privilege_config',4,'2015-07-13 02:00:50','2015-05-29 08:48:26'),(16,'权限配置',10,'/adminRole/updateAdminRolePrivilege.do',0,0,'',5,'2015-07-13 02:00:50','2015-05-29 08:48:26'),(17,'权限管理',2,'/adminPrivilege/findAdminPrivilege.do',0,0,'',2,'2015-07-13 02:00:50','2015-05-29 08:48:26'),(18,'新增',17,'/adminPrivilege/insertAdminPrivilege.do',0,0,'insert',0,'2015-07-13 02:00:50','2015-05-29 08:48:26'),(19,'删除',17,'/adminPrivilege/deleteAdminPrivilege.do',0,0,'delete',1,'2015-07-13 02:00:50','2015-05-29 08:48:27'),(20,'更新',17,'/adminPrivilege/updateAdminPrivilege.do',0,0,'update',2,'2015-07-13 02:00:50','2015-05-29 08:48:27'),(21,'批量更新',17,'/adminPrivilege/batchUpdateAdminPrivilege.do',0,0,'batch_update',3,'2015-07-13 02:00:50','2015-05-29 08:48:27'),(22,'工作流管理',0,'javascript:;',0,0,'',0,'2015-07-13 02:14:20','0000-00-00 00:00:00'),(23,'岗位管理',22,'/adminJob/findAdminJob,do',0,0,'',0,'2015-07-13 02:18:10','0000-00-00 00:00:00'),(24,'审批模板',22,'/adminWorkflow/findAdminWorkFlow,do',0,0,'',1,'2015-07-13 02:19:22','0000-00-00 00:00:00'),(25,'任务',0,'javascript:;',0,0,'',0,'2015-07-17 06:54:28','0000-00-00 00:00:00'),(26,'代办任务',25,'/workFlow/findWorkFlow.do',0,0,'',0,'2015-07-17 06:54:03','0000-00-00 00:00:00');
+/*!40000 ALTER TABLE `admin_privilege` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `admin_role`
+--
+
+DROP TABLE IF EXISTS `admin_role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `admin_role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(12) NOT NULL DEFAULT '' COMMENT '角色名称',
+  `is_admin` tinyint(4) NOT NULL DEFAULT '0' COMMENT '内置管理员',
+  `is_delete` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否删除',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='角色表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `admin_role`
+--
+
+LOCK TABLES `admin_role` WRITE;
+/*!40000 ALTER TABLE `admin_role` DISABLE KEYS */;
+INSERT INTO `admin_role` VALUES (1,'超级管理员',0,0,'2015-05-29 08:48:27','2015-05-29 08:48:27');
+/*!40000 ALTER TABLE `admin_role` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `admin_role_privilege`
+--
+
+DROP TABLE IF EXISTS `admin_role_privilege`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `admin_role_privilege` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `admin_role_id` int(11) NOT NULL COMMENT '角色ID',
+  `admin_privilege_id` int(11) NOT NULL COMMENT '权限ID',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COMMENT='系统角色权限关联';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `admin_role_privilege`
+--
+
+LOCK TABLES `admin_role_privilege` WRITE;
+/*!40000 ALTER TABLE `admin_role_privilege` DISABLE KEYS */;
+INSERT INTO `admin_role_privilege` VALUES (1,1,1),(2,1,2),(3,1,3),(4,1,4),(5,1,5),(6,1,6),(7,1,7),(8,1,8),(9,1,9),(10,1,10),(11,1,11),(12,1,12),(13,1,13),(14,1,14),(15,1,15),(16,1,16),(17,1,17),(18,1,18),(19,1,19),(20,1,20),(21,1,21),(22,1,22),(23,1,23),(24,1,24),(25,1,25),(26,1,26);
+/*!40000 ALTER TABLE `admin_role_privilege` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `admin_user`
+--
+
+DROP TABLE IF EXISTS `admin_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `admin_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `admin_role_id` int(11) NOT NULL COMMENT '用户角色id',
+  `account` varchar(32) NOT NULL COMMENT '账户',
+  `password` char(32) NOT NULL COMMENT '密码',
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否删除',
+  `is_delete` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否删除',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='管理员表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `admin_user`
+--
+
+LOCK TABLES `admin_user` WRITE;
+/*!40000 ALTER TABLE `admin_user` DISABLE KEYS */;
+INSERT INTO `admin_user` VALUES (1,1,'admin','admin123',1,1,'2015-07-17 06:18:04','2015-07-17 06:18:04'),(2,0,'aaa','dadafafa',0,1,'2015-07-17 06:18:21','2015-07-17 06:18:21'),(3,0,'aaa','dadafafa',1,1,'2015-07-17 06:18:21','2015-07-17 06:18:21'),(4,0,'aaa','dadafafa',1,1,'2015-07-17 06:18:19','2015-07-17 06:18:19'),(5,0,'aaa','dadafafa',1,1,'2015-07-17 06:18:22','2015-07-17 06:18:22'),(6,0,'aaa','dadafafa',1,1,'2015-07-17 06:18:23','2015-07-17 06:18:23'),(7,0,'aaa','dadafafa',0,1,'2015-07-17 06:28:37','2015-07-17 06:28:37'),(8,0,'aaa','dadafafa',0,1,'2015-07-17 06:28:38','2015-07-17 06:28:38'),(9,0,'aaa','dadafafa',1,0,'2015-07-17 06:12:01','0000-00-00 00:00:00'),(10,0,'aaa','dadafafa',1,0,'2015-07-17 06:12:02','0000-00-00 00:00:00'),(11,0,'aaa','dadafafa',0,1,'2015-07-17 06:28:34','2015-07-17 06:28:34'),(12,0,'aaa','dadafafa',1,1,'2015-07-17 06:28:34','2015-07-17 06:28:34'),(13,0,'aaa','dadafafa',0,0,'2015-07-02 10:08:15','0000-00-00 00:00:00'),(14,0,'aaa','dadafafa',1,0,'2015-07-17 06:28:32','2015-07-17 06:28:32'),(15,0,'aaa','dadafafa',0,0,'2015-07-02 10:08:16','0000-00-00 00:00:00'),(16,0,'aaa','dadafafa',1,1,'2015-07-17 06:28:32','2015-07-17 06:28:32'),(17,0,'aaa','dadafafa',1,0,'2015-07-17 06:28:29','2015-07-17 06:28:29'),(18,0,'aaa','dadafafa',1,0,'2015-07-17 06:43:56','2015-07-17 06:43:56'),(19,0,'aaa','dadafafa',0,0,'2015-07-02 10:08:18','0000-00-00 00:00:00');
+/*!40000 ALTER TABLE `admin_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `admin_user_role`
+--
+
+DROP TABLE IF EXISTS `admin_user_role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `admin_user_role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `admin_user_id` int(11) NOT NULL COMMENT '角色ID',
+  `admin_role_id` int(11) NOT NULL COMMENT '用户ID',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='系统用户角色关联';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `admin_user_role`
+--
+
+LOCK TABLES `admin_user_role` WRITE;
+/*!40000 ALTER TABLE `admin_user_role` DISABLE KEYS */;
+/*!40000 ALTER TABLE `admin_user_role` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `approve_log`
@@ -136,7 +273,6 @@ DROP TABLE IF EXISTS `jobs`;
 CREATE TABLE `jobs` (
   `id` tinyint(4) NOT NULL AUTO_INCREMENT,
   `name` varchar(10) NOT NULL COMMENT '岗位名',
-  `system_id` tinyint COMMENT '系统id' ,
   `description` varchar(50) DEFAULT NULL COMMENT '岗位描述',
   `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0 可用 1不可用',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -151,7 +287,7 @@ CREATE TABLE `jobs` (
 
 LOCK TABLES `jobs` WRITE;
 /*!40000 ALTER TABLE `jobs` DISABLE KEYS */;
-INSERT INTO `jobs`(id,name,description,status,create_time,update_time)  VALUES (1,'财务组长','财务组长，一级',0,'2015-07-14 05:42:50','0000-00-00 00:00:00'),(2,'财务经理','财务经理，二级',0,'2015-07-14 05:44:02','0000-00-00 00:00:00'),(3,'财务主管','财务主管，三级',0,'2015-07-14 05:48:17','0000-00-00 00:00:00'),(4,'CFO','首席财务官，最高级',0,'2015-07-14 05:49:33','0000-00-00 00:00:00'),(5,'审批1','审批1',0,'2015-07-14 05:51:37','0000-00-00 00:00:00'),(6,'审批2','审批2',0,'2015-07-14 05:51:42','0000-00-00 00:00:00'),(7,'总裁','总裁',0,'2015-07-15 02:49:55','0000-00-00 00:00:00');
+INSERT INTO `jobs` VALUES (1,'财务组长','财务组长，一级',0,'2015-07-14 05:42:50','0000-00-00 00:00:00'),(2,'财务经理','财务经理，二级',0,'2015-07-14 05:44:02','0000-00-00 00:00:00'),(3,'财务主管','财务主管，三级',0,'2015-07-14 05:48:17','0000-00-00 00:00:00'),(4,'CFO','首席财务官，最高级',0,'2015-07-14 05:49:33','0000-00-00 00:00:00'),(5,'审批1','审批1',0,'2015-07-14 05:51:37','0000-00-00 00:00:00'),(6,'审批2','审批2',0,'2015-07-14 05:51:42','0000-00-00 00:00:00'),(7,'总裁','总裁',0,'2015-07-15 02:49:55','0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `jobs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -184,6 +320,37 @@ INSERT INTO `jobs_user` VALUES (8,1,'vz110','陈海龙',0,'2015-07-14 06:33:15',
 /*!40000 ALTER TABLE `jobs_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user` (
+  `pk_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(30) DEFAULT NULL COMMENT '用户名',
+  `user_code` varchar(50) DEFAULT NULL COMMENT '用户编码(登录号)',
+  `password` varchar(50) DEFAULT NULL COMMENT '密码',
+  `role_flag` int(11) DEFAULT NULL,
+  `delflag` int(11) DEFAULT NULL,
+  `create_time` date DEFAULT NULL,
+  `create_man` varchar(50) DEFAULT NULL,
+  `join_mbu_id` int(11) DEFAULT NULL COMMENT '联营商ID',
+  `updtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updman` varchar(50) DEFAULT NULL,
+  `otherA` varchar(50) DEFAULT NULL COMMENT '手机号',
+  `otherB` varchar(50) DEFAULT NULL COMMENT '邮箱',
+  `otherC` varchar(50) DEFAULT NULL COMMENT '备注',
+  `otherD` varchar(50) DEFAULT NULL COMMENT '预留字段4',
+  PRIMARY KEY (`pk_id`),
+  KEY `index2` (`join_mbu_id`,`delflag`,`role_flag`)
+) ENGINE=InnoDB AUTO_INCREMENT=11849 DEFAULT CHARSET=utf8 COMMENT='用户表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
@@ -203,7 +370,6 @@ CREATE TABLE `workflow` (
   `busy_type_id` tinyint(4) NOT NULL COMMENT '业务类型id',
   `busy_type_name` varchar(12) DEFAULT NULL COMMENT '业务类型',
   `name` varchar(10) NOT NULL COMMENT '审批工作名',
-  `system_id` tinyint COMMENT '系统id' ,
   `model_id` tinyint(4) NOT NULL,
   `money` decimal(12,2) DEFAULT NULL COMMENT '申请金额',
   `description` varchar(50) DEFAULT NULL COMMENT '审批工作描述',
@@ -222,7 +388,7 @@ CREATE TABLE `workflow` (
 
 LOCK TABLES `workflow` WRITE;
 /*!40000 ALTER TABLE `workflow` DISABLE KEYS */;
-INSERT INTO `workflow`(id,busy_type_id,busy_type_name,name,model_id,money,description,jobs_id,workflow_node,status,create_time,update_time) VALUES (5,0,'借款申请','借款申请',5,200011.00,'借款申请',0,0,2,'2015-07-16 02:59:31','2015-07-16 02:59:31'),(6,1,'提现申请','提现申请',6,999999999.11,'提现申请',1,13,0,'2015-07-16 07:10:16','2015-07-16 07:10:16');
+INSERT INTO `workflow` VALUES (5,0,'借款申请','借款申请',5,200011.00,'借款申请',0,0,2,'2015-07-16 02:59:31','2015-07-16 02:59:31'),(6,1,'提现申请','提现申请',6,999999999.11,'提现申请',1,13,0,'2015-07-16 07:10:16','2015-07-16 07:10:16');
 /*!40000 ALTER TABLE `workflow` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -238,7 +404,6 @@ CREATE TABLE `workflow_model` (
   `busy_type_id` tinyint(4) NOT NULL COMMENT '业务类型id',
   `name` varchar(10) NOT NULL COMMENT '审批流节点名称',
   `description` varchar(200) NOT NULL COMMENT '审批流节点描述',
-  `system_id` tinyint COMMENT '系统id' ,
   `model_text` text NOT NULL COMMENT '工作流模板',
   `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0 可用 1不可用',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -247,27 +412,13 @@ CREATE TABLE `workflow_model` (
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='审批流模板';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
-DROP TABLE IF EXISTS `xf9_system`;
-CREATE TABLE `xf9_system` (
-  `id` tinyint(4) NOT NULL AUTO_INCREMENT,
-  `name` varchar(10) NOT NULL COMMENT '系统名称',
-  	`user_code` varchar(10) not null comment '登录用户帐号',
-  	`user_name` varchar(10) not null comment '用户名',
-  	`user_pwd` varchar(32) not null comment '用户密码',
-  `description` varchar(200) NOT NULL COMMENT '系统描述',
-  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0 可用 1不可用',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='系统名称';
-
 --
 -- Dumping data for table `workflow_model`
 --
 
 LOCK TABLES `workflow_model` WRITE;
 /*!40000 ALTER TABLE `workflow_model` DISABLE KEYS */;
-INSERT INTO `workflow_model`(id,busy_type_id,name,description,model_text,status,create_time,update_time) VALUES (5,0,'借款审批','借款审批','',0,'2015-07-14 07:49:17','0000-00-00 00:00:00'),(6,2,'提现审批','提现审批','',0,'2015-07-16 03:48:20','0000-00-00 00:00:00');
+INSERT INTO `workflow_model` VALUES (5,0,'借款审批','借款审批','',0,'2015-07-14 07:49:17','0000-00-00 00:00:00'),(6,2,'提现审批','提现审批','',0,'2015-07-16 03:48:20','0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `workflow_model` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -281,3 +432,255 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2015-07-17 18:14:37
+-- MySQL dump 10.15  Distrib 10.0.19-MariaDB, for Linux (x86_64)
+--
+-- Host: 127.0.0.1    Database: workflow
+-- ------------------------------------------------------
+-- Server version	10.0.19-MariaDB-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `approve_log`
+--
+
+DROP TABLE IF EXISTS `approve_log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `approve_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `workflow_id` int(11) NOT NULL,
+  `status` tinyint(4) NOT NULL,
+  `description` varchar(100) DEFAULT NULL COMMENT '拒绝理由',
+  `user_code` varchar(20) NOT NULL,
+  `user_name` varchar(20) NOT NULL,
+  `flow_node` int(11) NOT NULL,
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='审批日志';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `approve_log`
+--
+
+LOCK TABLES `approve_log` WRITE;
+/*!40000 ALTER TABLE `approve_log` DISABLE KEYS */;
+INSERT INTO `approve_log` VALUES (1,5,0,NULL,'vz110','陈海龙',5,'2015-07-16 02:53:16'),(2,5,0,NULL,'12345','12345',6,'2015-07-16 02:55:07'),(3,5,0,NULL,'v9','37740048@qq.com',7,'2015-07-16 02:56:16'),(4,5,0,NULL,'vz236','CFO',10,'2015-07-16 02:56:43'),(5,5,0,NULL,'vz110','陈海龙',11,'2015-07-16 02:59:31'),(6,6,0,NULL,'vz110','陈海龙',13,'2015-07-16 06:44:57'),(7,6,0,NULL,'12345','12345',14,'2015-07-16 07:02:58'),(8,6,1,NULL,'37740048@qq.com','37740048@qq.com',18,'2015-07-16 07:10:16'),(9,6,0,NULL,'vz110','陈海龙',13,'2015-07-21 02:55:13'),(10,6,0,NULL,'12345','12345',14,'2015-07-21 03:48:41'),(11,6,0,NULL,'12345','12345',14,'2015-07-21 05:59:23'),(12,6,0,NULL,'v9','37740048@qq.com',18,'2015-07-21 06:02:40'),(13,15,0,NULL,'12345','12345',14,'2015-07-23 09:41:36');
+/*!40000 ALTER TABLE `approve_log` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `flow_node`
+--
+
+DROP TABLE IF EXISTS `flow_node`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `flow_node` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `jobs_id` int(11) NOT NULL COMMENT '岗位id',
+  `model_id` int(11) NOT NULL,
+  `node_type` tinyint(4) NOT NULL DEFAULT '1' COMMENT '节点类型类型 0开始节点 1.任务节点 2.判断节点 3.结束 ',
+  `flow_test` varchar(256) DEFAULT NULL,
+  `next_sort` int(11) NOT NULL COMMENT '下一个节点排序',
+  `sort` int(11) NOT NULL COMMENT '节点排序',
+  `name` varchar(10) NOT NULL COMMENT '审批流节点名称',
+  `description` varchar(200) NOT NULL COMMENT '审批流节点描述',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `status` tinyint(4) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT='审批流节点';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `flow_node`
+--
+
+LOCK TABLES `flow_node` WRITE;
+/*!40000 ALTER TABLE `flow_node` DISABLE KEYS */;
+INSERT INTO `flow_node` VALUES (5,1,5,1,NULL,2,1,'财务组长','财务组长','2015-07-15 02:45:41','0000-00-00 00:00:00',0),(6,2,5,1,NULL,3,2,'财务经理审批','财务经理审批','2015-07-15 02:46:27','0000-00-00 00:00:00',0),(7,3,5,1,NULL,4,3,'财务主管审批','财务主管审批','2015-07-15 02:47:06','0000-00-00 00:00:00',0),(10,4,5,1,NULL,5,4,'CFO审批','CFO审批','2015-07-15 02:48:56','0000-00-00 00:00:00',0),(11,7,5,1,NULL,6,5,'总裁审批','总裁审批','2015-07-15 02:53:05','0000-00-00 00:00:00',0),(12,0,5,3,NULL,0,6,'借款审批结束','借款审批结束','2015-07-15 02:52:53','0000-00-00 00:00:00',0),(13,1,6,1,NULL,2,1,'财务组长','财务组长','2015-07-16 04:00:59','0000-00-00 00:00:00',0),(14,2,6,1,NULL,3,2,'财务经理','财务经理','2015-07-16 05:32:48','0000-00-00 00:00:00',0),(15,0,6,2,'[{\"compareArrays\":[{\"name\":\"money\",\"type\":-1,\"value\":200000}],\"sort\":4},{\"compareArrays\":[{\"name\":\"money\",\"type\":2,\"value\":200000}],\"sort\":5}]',0,3,'判断','大于200000需要财务主管审批','2015-07-21 09:25:18','2015-07-21 09:25:18',0),(16,0,6,3,NULL,0,4,'结束','','2015-07-16 06:27:45','0000-00-00 00:00:00',0),(18,3,6,1,NULL,4,5,'财务主管审批','财务主管，三级','2015-07-16 06:32:58','0000-00-00 00:00:00',0);
+/*!40000 ALTER TABLE `flow_node` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `jobs`
+--
+
+DROP TABLE IF EXISTS `jobs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `jobs` (
+  `id` tinyint(4) NOT NULL AUTO_INCREMENT,
+  `name` varchar(10) NOT NULL COMMENT '岗位名',
+  `system_id` tinyint(4) DEFAULT NULL COMMENT '系统id',
+  `description` varchar(50) DEFAULT NULL COMMENT '岗位描述',
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0 可用 1不可用',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='岗位';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `jobs`
+--
+
+LOCK TABLES `jobs` WRITE;
+/*!40000 ALTER TABLE `jobs` DISABLE KEYS */;
+INSERT INTO `jobs` VALUES (1,'财务组长',7,'财务组长，一级',0,'2015-07-21 09:46:19','0000-00-00 00:00:00'),(2,'财务经理',7,'财务经理，二级',0,'2015-07-21 09:46:19','0000-00-00 00:00:00'),(3,'财务主管',7,'财务主管，三级',0,'2015-07-21 09:46:19','0000-00-00 00:00:00'),(4,'CFO',7,'首席财务官，最高级',0,'2015-07-21 09:46:19','0000-00-00 00:00:00'),(5,'审批1',7,'审批1',0,'2015-07-21 09:46:19','0000-00-00 00:00:00'),(6,'审批2',7,'审批2',0,'2015-07-21 09:46:19','0000-00-00 00:00:00'),(7,'总裁',7,'总裁',0,'2015-07-21 09:46:19','0000-00-00 00:00:00');
+/*!40000 ALTER TABLE `jobs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `jobs_user`
+--
+
+DROP TABLE IF EXISTS `jobs_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `jobs_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `jobs_id` int(11) NOT NULL COMMENT '岗位id',
+  `user_code` char(8) NOT NULL COMMENT '用户id',
+  `user_name` varchar(20) NOT NULL COMMENT '用户名',
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0 可用 1不可用',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `system_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='岗位关联';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `jobs_user`
+--
+
+LOCK TABLES `jobs_user` WRITE;
+/*!40000 ALTER TABLE `jobs_user` DISABLE KEYS */;
+INSERT INTO `jobs_user` VALUES (8,1,'vz110','陈海龙',0,'2015-07-22 08:36:34','0000-00-00 00:00:00',7),(9,1,'vzxt9999','系统',0,'2015-07-22 08:36:34','0000-00-00 00:00:00',7),(10,5,'vzxt9999','系统',0,'2015-07-22 08:36:34','0000-00-00 00:00:00',7),(11,6,'vzxt9999','系统',0,'2015-07-22 08:36:34','0000-00-00 00:00:00',7),(12,4,'vz236','杨书华',0,'2015-07-22 08:36:34','0000-00-00 00:00:00',7),(13,3,'v9','37740048@qq.com',0,'2015-07-22 08:36:34','0000-00-00 00:00:00',7),(14,2,'12345','12345',0,'2015-07-22 08:36:34','0000-00-00 00:00:00',7),(15,7,'vz110','陈海龙',0,'2015-07-22 08:36:34','0000-00-00 00:00:00',7);
+/*!40000 ALTER TABLE `jobs_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `workflow`
+--
+
+DROP TABLE IF EXISTS `workflow`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `workflow` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `busy_type_id` tinyint(4) NOT NULL COMMENT '业务类型id',
+  `busy_type_name` varchar(12) DEFAULT NULL COMMENT '业务类型',
+  `name` varchar(10) NOT NULL COMMENT '审批工作名',
+  `system_id` tinyint(4) DEFAULT NULL COMMENT '系统id',
+  `model_id` tinyint(4) NOT NULL,
+  `money` decimal(12,2) DEFAULT NULL COMMENT '申请金额',
+  `description` varchar(50) DEFAULT NULL COMMENT '审批工作描述',
+  `jobs_id` int(11) NOT NULL COMMENT '待审批岗位id',
+  `workflow_node` int(11) NOT NULL COMMENT '下一个审批节点',
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0 未开始审批，可以编辑更改 1 正在审批，不可以编辑更改 2 审批结束，不可以编辑更改',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `json` varchar(200) DEFAULT NULL,
+  `userCode` varchar(12) DEFAULT NULL,
+  `user_code` varchar(20) DEFAULT NULL,
+  `user_name` varchar(20) DEFAULT NULL,
+  `work_flow_code` varchar(32) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='审批流';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `workflow`
+--
+
+LOCK TABLES `workflow` WRITE;
+/*!40000 ALTER TABLE `workflow` DISABLE KEYS */;
+INSERT INTO `workflow` VALUES (5,0,'借款申请','借款申请',7,5,200011.00,'借款申请',0,0,2,'2015-07-23 06:46:57','2015-07-15 18:59:31',NULL,NULL,NULL,NULL,''),(6,1,'提现申请','提现申请',7,6,999999999.11,'提现申请',0,0,2,'2015-07-23 06:46:57','2015-07-21 06:02:37','{\"money\":\"200001.00\"}',NULL,NULL,NULL,''),(7,2,'测试提现申请','提现申请',7,6,NULL,'提现申请测试阿拉啦啦啦',1,13,0,'2015-07-23 06:46:57','0000-00-00 00:00:00','{\"money\":\"999912150.1\"}',NULL,NULL,NULL,''),(8,2,'测试提现申请','提现申请',7,6,NULL,'提现申请测试阿拉啦啦啦',0,0,2,'2015-07-23 06:46:57','0000-00-00 00:00:00','{\"money\":\"150.1\"}',NULL,NULL,NULL,''),(9,2,'提现审批','提现审批',7,6,NULL,NULL,2,14,1,'2015-07-23 08:29:31','0000-00-00 00:00:00',NULL,NULL,NULL,NULL,'a0044444312'),(10,2,'提现审批','提现审批',7,6,NULL,NULL,2,14,1,'2015-07-23 08:30:40','0000-00-00 00:00:00',NULL,NULL,NULL,NULL,'a00444443'),(11,2,'提现审批','提现审批',7,6,NULL,NULL,0,0,2,'2015-07-23 08:43:03','0000-00-00 00:00:00','{\"money\":\"123\"}',NULL,NULL,NULL,'b00444443'),(12,2,'提现审批','提现审批',7,6,NULL,NULL,0,0,2,'2015-07-23 09:17:27','0000-00-00 00:00:00','{\"money\":\"123\"}',NULL,NULL,NULL,'b004144443'),(13,2,'提现审批','提现审批',7,6,NULL,NULL,2,14,1,'2015-07-23 09:21:59','0000-00-00 00:00:00','{\"money\":\"123\"}',NULL,NULL,NULL,'b004144443'),(14,2,'提现审批','提现审批',7,6,NULL,NULL,0,0,2,'2015-07-23 09:22:15','0000-00-00 00:00:00','{\"money\":\"123\"}',NULL,NULL,NULL,'b004144443'),(15,2,'提现审批','提现审批',7,6,NULL,NULL,0,0,2,'2015-07-23 09:41:14','2015-07-23 09:41:14','{\"money\":\"123\"}',NULL,NULL,NULL,'b104144443');
+/*!40000 ALTER TABLE `workflow` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `workflow_model`
+--
+
+DROP TABLE IF EXISTS `workflow_model`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `workflow_model` (
+  `id` tinyint(4) NOT NULL AUTO_INCREMENT,
+  `busy_type_id` tinyint(4) NOT NULL COMMENT '业务类型id',
+  `name` varchar(10) NOT NULL COMMENT '审批流节点名称',
+  `description` varchar(200) NOT NULL COMMENT '审批流节点描述',
+  `system_id` tinyint(4) DEFAULT NULL COMMENT '系统id',
+  `model_text` text NOT NULL COMMENT '工作流模板',
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0 可用 1不可用',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='审批流模板';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `workflow_model`
+--
+
+LOCK TABLES `workflow_model` WRITE;
+/*!40000 ALTER TABLE `workflow_model` DISABLE KEYS */;
+INSERT INTO `workflow_model` VALUES (5,0,'借款审批','借款审批',7,'',0,'2015-07-22 01:42:05','0000-00-00 00:00:00'),(6,2,'提现审批','提现审批',7,'',0,'2015-07-22 01:42:05','0000-00-00 00:00:00');
+/*!40000 ALTER TABLE `workflow_model` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `xf9_system`
+--
+
+DROP TABLE IF EXISTS `xf9_system`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `xf9_system` (
+  `id` tinyint(4) NOT NULL AUTO_INCREMENT,
+  `name` varchar(10) NOT NULL COMMENT '系统名称',
+  `user_code` varchar(10) NOT NULL COMMENT '登录用户帐号',
+  `user_name` varchar(10) NOT NULL COMMENT '用户名',
+  `user_pwd` varchar(32) NOT NULL COMMENT '用户密码',
+  `description` varchar(200) NOT NULL COMMENT '系统描述',
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0 可用 1不可用',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='系统名称';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `xf9_system`
+--
+
+LOCK TABLES `xf9_system` WRITE;
+/*!40000 ALTER TABLE `xf9_system` DISABLE KEYS */;
+INSERT INTO `xf9_system` VALUES (6,'系统','vz238','槑槑的呆瓜','32f5d5d135fde0c690083cc9ebd272b8','系统管理员',0,'2015-07-21 07:16:31','0000-00-00 00:00:00'),(7,'财务系统','vz236','杨书华','342e4297359f2dd89a0f0481dd1f4b0b','财务系统',0,'2015-07-21 09:44:31','0000-00-00 00:00:00');
+/*!40000 ALTER TABLE `xf9_system` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2015-07-23 17:45:32
