@@ -21,8 +21,10 @@ import com.v4java.workflow.pojo.FlowNode;
 import com.v4java.workflow.pojo.WorkFlow;
 import com.v4java.workflow.pojo.WorkFlowModel;
 import com.v4java.workflow.query.webservice.WorkFlowModelQuery;
+import com.v4java.workflow.query.webservice.WorkFlowQuery;
 import com.v4java.workflow.service.webservice.IWorkFlowService;
 import com.v4java.workflow.vo.webservice.UserVO;
+import com.v4java.workflow.vo.webservice.WorkFlowVO;
 
 @Service("workFlowService")
 public class WorkFlowServiceImpl implements IWorkFlowService{
@@ -297,5 +299,14 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 	@Override
 	public int updateWorkFlow(WorkFlow workFlow) throws Exception {
 		return workFlowDao.updateWorkFlow(workFlow);
+	}
+
+	@Override
+	public List<WorkFlowVO> findUserWorkFlowVOByUserCodeAndSystemId(WorkFlowQuery workFlowQueryd) throws Exception {
+		return workFlowDao.findUserWorkFlowVOByUserCodeAndSystemId(workFlowQueryd);
+	}
+	@Override
+	public int findUserWorkFlowVOCountByUserCodeAndSystemId(WorkFlowQuery workFlowQuery) throws Exception {
+		return workFlowDao.findUserWorkFlowVOCountByUserCodeAndSystemId(workFlowQuery);
 	}
 }

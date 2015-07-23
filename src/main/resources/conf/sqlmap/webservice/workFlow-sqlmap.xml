@@ -20,6 +20,34 @@
     <result column="json" 			property="json" 		jdbcType="VARCHAR" />
     <result column="user_name" 		property="userName" 	jdbcType="VARCHAR" />
   	<result column="user_code" 		property="userCode" 	jdbcType="VARCHAR" />
+  	
+  	<result column="system_id"      property="systemId"    	javaType="INTEGER"/>
+  </resultMap>
+  
+  
+    <resultMap type="workFlowVO" id="workFlowVO-resultMap">
+  	<id 	column="id" 					property="id" 				jdbcType="INTEGER" />
+    <result column="busy_type_id" 			property="busyTypeId" 		jdbcType="INTEGER" />
+    <result column="model_id" 				property="modelId" 			jdbcType="INTEGER" />
+    <result column="name" 					property="name" 			jdbcType="VARCHAR" />
+    <result column="description" 			property="description" 		jdbcType="VARCHAR" />
+    	
+    <result column="create_time" 			property="createTime" 		jdbcType="TIMESTAMP" />
+    <result column="update_time" 			property="updateTime" 		jdbcType="TIMESTAMP" />
+    <result column="jobs_name" 				property="jobsName" 		jdbcType="VARCHAR" />
+    <result column="jobs_description" 		property="jobsDescription" 	jdbcType="VARCHAR" />
+    <result column="busy_type_name" 		property="busyTypeName"	 	jdbcType="VARCHAR" />
+    
+    <result column="money" 					property="money" 			jdbcType="DECIMAL" />
+    <result column="json" 					property="json" 			jdbcType="VARCHAR" />
+    <result column="user_name" 				property="userName" 		jdbcType="VARCHAR" />
+  	<result column="user_code" 				property="userCode" 		jdbcType="VARCHAR" />
+  	<result column="system_id"      		property="systemId"    		javaType="INTEGER"/>
+  	
+  	<result column="workflow_node" 			property="workflowNode" 	jdbcType="INTEGER" />
+  	<result column="node_description" 		property="nodeDescription" 	jdbcType="VARCHAR" />
+  	<result column="node_name" 				property="nodeName" 		jdbcType="VARCHAR" />
+  	
   </resultMap>
   
   	
@@ -27,19 +55,19 @@
 		insert into workflow(
 				busy_type_id ,model_id ,name ,description ,jobs_id
 				,workflow_node ,status,money,busy_type_name,json,
-				user_name,user_code
+				user_name,user_code,system_id
 			)
 		values(
 			#{busyTypeId},#{modelId},#{name},#{description},#{jobsId},
 			#{workflowNode},#{status},#{money},#{busyTypeName},#{json},
-			#{userName},#{userCode} 
+			#{userName},#{userCode},#{systemId}
 			)
 	
 	</insert>
 	
 	<update id="updateWorkFlow" parameterType="workFlow" >
 		update workflow	 
-		<set>
+		<set> 
 			<if test="name != null">
        			 name = #{name,jdbcType=VARCHAR},
       		</if>
@@ -74,5 +102,43 @@
 				id = #{id}
 	</select>
   
+    	<select id="findUserWorkFlowVOByUserCodeAndSystemId" parameterType="workFlowQuery" resultMap="workFlowVO-resultMap">
+  		select 
+  				wf.id,wf.busy_type_id,wf.name,wf.model_id,wf.description ,
+  				wf.create_time ,wf.update_time,wf.busy_type_name,wf.json ,wf.system_id,
+  				wf.workflow_node ,fn.name as node_name ,fn.description as node_description
+  		from 
+  				workflow  wf 
+  		left join 
+  				 jobs_user ju  on wf.jobs_id = ju.jobs_id
+  		left join 
+  				jobs j on j.id = ju.jobs_id
+  		left join
+  				flow_node fn on fn.id = wf.workflow_node		
+  		where 
+  				ju.user_code = #{userCode}
+  		and
+  				wf.system_id = #{systemId}
+  		<if test="limit != null and offset != null">
+  				limit #{limit},#{offset}
+  		</if>					
+  	</select>
+  	
+  	<select id="findUserWorkFlowVOCountByUserCodeAndSystemId" parameterType="workFlowQuery" resultType="int">
+  		select 
+  				count(j.id)
+  		from 
+  				workflow  wf 
+  		left join 
+  				 jobs_user ju  on wf.jobs_id = ju.jobs_id
+  		left join 
+  				jobs j on j.id = ju.jobs_id
+  		where 
+  				ju.user_code = #{userCode}
+  		and
+  				wf.system_id = #{systemId}	
+  					
+  	</select>
+  	
   
 </mapper>

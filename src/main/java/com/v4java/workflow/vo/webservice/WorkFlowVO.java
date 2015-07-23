@@ -1,6 +1,5 @@
 package com.v4java.workflow.vo.webservice;
 
-import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 import com.v4java.workflow.vo.VO;
@@ -10,17 +9,26 @@ public class WorkFlowVO implements VO{
 	 * 
 	 */
 	private static final long serialVersionUID = -2949264855421392596L;
+	
 	private Integer id;
 	private Integer busyTypeId;
 	private String name;
 	private Integer modelId;
+	private Integer systemId;
+	
 	private String description;
 	private Timestamp createTime;
 	private Timestamp updateTime;
 	private String jobsName;
 	private String jobsDescription;
+	
 	private String busyTypeName ;// '业务类型',
-	private BigDecimal money;
+	private String json;
+	private String nodeName;
+	private String nodeDescription;
+	private Integer workflowNode;
+	
+	
 	public Integer getId() {
 		return id;
 	}
@@ -81,20 +89,35 @@ public class WorkFlowVO implements VO{
 	public void setBusyTypeName(String busyTypeName) {
 		this.busyTypeName = busyTypeName;
 	}
-	public BigDecimal getMoney() {
-		return money;
+	public Integer getSystemId() {
+		return systemId;
 	}
-	public void setMoney(BigDecimal money) {
-		this.money = money;
+	public void setSystemId(Integer systemId) {
+		this.systemId = systemId;
 	}
-	@Override
-	public String toString() {
-		return "WorkFlowVO [id=" + id + ", busyTypeId=" + busyTypeId
-				+ ", name=" + name + ", modelId=" + modelId + ", description="
-				+ description + ", createTime=" + createTime + ", updateTime="
-				+ updateTime + ", jobsName=" + jobsName + ", jobsDescription="
-				+ jobsDescription + ", busyTypeName=" + busyTypeName
-				+ ", money=" + money + "]";
+	public String getJson() {
+		return json;
+	}
+	public void setJson(String json) {
+		this.json = json;
+	}
+	public String getNodeName() {
+		return nodeName;
+	}
+	public void setNodeName(String nodeName) {
+		this.nodeName = nodeName;
+	}
+	public String getNodeDescription() {
+		return nodeDescription;
+	}
+	public void setNodeDescription(String nodeDescription) {
+		this.nodeDescription = nodeDescription;
+	}
+	public Integer getWorkflowNode() {
+		return workflowNode;
+	}
+	public void setWorkflowNode(Integer workflowNode) {
+		this.workflowNode = workflowNode;
 	}
 	
 	
