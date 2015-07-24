@@ -102,7 +102,7 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 		if (workFlow==null) {
 			return WorkFlowErrorConst.NO_WORK_FLOW;
 		}
-		if (workFlow.getStatus()==FlowConst.NODE_TYPE_END) {
+		if (workFlow.getStatus()==FlowConst.END) {
 			return WorkFlowErrorConst.WORK_FLOW_END;
 		}
 		List<FlowNode> flowNodes = flowNodeDao.findFlowNodeByModelId(workFlow.getModelId()); 
@@ -303,7 +303,7 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 			//结束节点,哈哈 
 			case FlowConst.NODE_TYPE_END:
 				workFlow.setJobsId(0);
-				workFlow.setWorkflowNode(0);
+				workFlow.setWorkflowNode(nextFlowNode.getId());
 				workFlow.setStatus(FlowConst.END);
 				break;		
 			//暂不能为其他节点
