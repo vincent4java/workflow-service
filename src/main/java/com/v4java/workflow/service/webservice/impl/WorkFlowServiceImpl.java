@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.fastjson.JSON;
 import com.v4java.workflow.constant.FlowConst;
+import com.v4java.workflow.constant.WorkFlowErrorConst;
 import com.v4java.workflow.dao.webservice.ApproveLogDao;
 import com.v4java.workflow.dao.webservice.FlowNodeDao;
 import com.v4java.workflow.dao.webservice.WorkFlowDao;
@@ -96,8 +97,14 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 
 	@Override
 	@Transactional	
-	public int doWorkFlow(Integer workFlowId, UserVO userVO,ApproveLog approveLog) throws Exception {
+	public int doWorkFlow(Integer workFlowId, UserVO userVO,int agree) throws Exception {
 		WorkFlow workFlow = workFlowDao.findWorkFlowById(workFlowId);
+		if (workFlow==null) {
+			return WorkFlowErrorConst.NO_WORK_FLOW;
+		}
+		if (workFlow.getStatus()==FlowConst.NODE_TYPE_END) {
+			return WorkFlowErrorConst.WORK_FLOW_END;
+		}
 		List<FlowNode> flowNodes = flowNodeDao.findFlowNodeByModelId(workFlow.getModelId()); 
 		WorkFlowParam flowParam = new WorkFlowParam();
 		//原来的状态
@@ -106,16 +113,22 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 		flowParam.setOldWorkflowNode(workFlow.getWorkflowNode());
 		//得到当前节点
 		FlowNode nowFlowNode = findWorkFlowById(flowNodes, workFlow.getWorkflowNode());
+		if (nowFlowNode==null) {
+			return WorkFlowErrorConst.NOWNODE_NULL;
+		}
+		if (nowFlowNode.getStatus() == FlowConst.STATUS_FALSE){
+			return WorkFlowErrorConst.NOWNODE_STATUS_FALSE;
+		}
 		//判断有无权限
 		if (!userVO.getJobsIds().contains(nowFlowNode.getJobsId())) {
 			System.err.println("没有该权限");
 			return -1;
 		}
 		//拒绝
-		if (approveLog.getStatus() == FlowConst.AGREE_FALSE) {
+		if (agree == FlowConst.AGREE_FALSE) {
 			//标记工作流为开始状态
 			setFirstWorkFlow(workFlow, flowNodes);		
-		}else if (approveLog.getStatus() == FlowConst.AGREE_TRUE) {
+		}else if (agree == FlowConst.AGREE_TRUE) {
 			//寻找下一个节点
 			FlowNode nextFlowNode = findWorkFlowBySort(flowNodes, nowFlowNode.getNextSort());
 			checkNextFlowNode(nextFlowNode, workFlow, flowNodes);
@@ -129,6 +142,8 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 		flowParam.setId(workFlow.getId());
 		int n=workFlowDao.updateWorkFlowStatusUseWorkFlowParam(flowParam);
 		if (n==1) {
+			ApproveLog approveLog = new ApproveLog();
+			approveLog.setStatus(FlowConst.AGREE_FALSE);
 			approveLog.setUserCode(userVO.getUserCode());
 			approveLog.setUserName(userVO.getUserName());
 			approveLog.setFlowNode(nowFlowNode.getId());
@@ -164,7 +179,7 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 	 */
 	private FlowNode findWorkFlowBySort(List<FlowNode> flowNodes,int sort){
 		for (FlowNode flowNode : flowNodes) {
-			if (flowNode.getSort()==sort&&flowNode.getStatus()==FlowConst.TRUE) {
+			if (flowNode.getSort()==sort&&flowNode.getStatus()==FlowConst.STATUS_TRUE) {
 				return flowNode;
 			}
 		}
@@ -180,7 +195,7 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 	 */
 	private FlowNode findFirstWorkFlowBySort(List<FlowNode> flowNodes){
 		for (FlowNode flowNode : flowNodes) {
-			if (flowNode.getStatus()==FlowConst.TRUE) {
+			if (flowNode.getStatus()==FlowConst.STATUS_TRUE) {
 				return flowNode;
 			}
 		}
@@ -212,7 +227,7 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 	 * @param flowNodes	所用几点
 	 */
 	private void checkNextFlowNode(FlowNode nextFlowNode ,WorkFlow workFlow ,List<FlowNode> flowNodes) throws Exception{
-		if (nextFlowNode==null||nextFlowNode.getStatus()==FlowConst.FALSE) {
+		if (nextFlowNode==null||nextFlowNode.getStatus()==FlowConst.STATUS_TRUE) {
 			setFirstWorkFlow(workFlow, flowNodes);
 			 return;
 		}
@@ -220,7 +235,7 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 		if(nextFlowNode.getNodeType()!=null){
 			switch (nextFlowNode.getNodeType()) {
 			//开始节点
-			case FlowConst.node_type_start:
+			case FlowConst.NODE_TYPE_START:
 				//系统错误
 				break;
 			//任务节点

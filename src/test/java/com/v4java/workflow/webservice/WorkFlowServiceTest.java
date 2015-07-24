@@ -1,4 +1,4 @@
-package com.v4java.workflow.webservice;
+/*package com.v4java.workflow.webservice;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -56,7 +56,7 @@ public class WorkFlowServiceTest  extends TestCase{
 		userVO.setUserName("陈海龙");
 		ApproveLog approveLog = new ApproveLog()	;
 		approveLog.setStatus(0);
-		workFlowService.doWorkFlow(6, userVO, approveLog);
+		workFlowService.doWorkFlow(6, userVO, 1);
 	}
 	
 	public void doWorkFlow3()throws Exception{
@@ -68,7 +68,7 @@ public class WorkFlowServiceTest  extends TestCase{
 		userVO.setUserName("37740048@qq.com");
 		ApproveLog approveLog = new ApproveLog();
 		approveLog.setStatus(0);
-		workFlowService.doWorkFlow(6, userVO, approveLog);
+		workFlowService.doWorkFlow(6, userVO, 1);
 	}
 	
 	
@@ -81,7 +81,7 @@ public class WorkFlowServiceTest  extends TestCase{
 		userVO.setUserName("12345");
 		ApproveLog approveLog = new ApproveLog();
 		approveLog.setStatus(0);
-		workFlowService.doWorkFlow(15, userVO, approveLog);
+		workFlowService.doWorkFlow(15, userVO, 1);
 	}
 	
 	public void insertWorkFlow() throws Exception{
@@ -106,3 +106,4 @@ public class WorkFlowServiceTest  extends TestCase{
 	}
 	
 }
+*/

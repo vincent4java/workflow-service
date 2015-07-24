@@ -17,7 +17,7 @@ public class FlowConst {
 	//审批结束，不可以编辑更改
 	public static final int END = 2;
 	//开始节点
-	public static final int node_type_start = 0;
+	public static final int NODE_TYPE_START = 0;
 	//任务节点
 	public static final int NODE_TYPE_TASK = 1;
 	//判断节点
@@ -37,10 +37,10 @@ public class FlowConst {
 	
 	public static final int COMPARE_EQ = 0;
 	
-	//同意
-	public static final int TRUE = 0;
-	//拒绝
-	public static final int FALSE = 1;
+	//可用
+	public static final int STATUS_TRUE = 0;
+	//不可用
+	public static final int STATUS_FALSE = 1;
 }
 
 

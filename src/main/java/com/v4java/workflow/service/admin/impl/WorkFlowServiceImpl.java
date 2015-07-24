@@ -80,7 +80,7 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 		//拒绝
 		if (approveLog.getStatus() == FlowConst.AGREE_FALSE) {
 			//标记工作流为开始状态
-			FlowNode firstFlowNode = flowNodes.get(FlowConst.node_type_start);
+			FlowNode firstFlowNode = flowNodes.get(FlowConst.NODE_TYPE_START);
 			workFlow.setJobsId(firstFlowNode.getJobsId());
 			workFlow.setStatus(FlowConst.START);
 			workFlow.setWorkflowNode(firstFlowNode.getId());
@@ -147,7 +147,7 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 		if(nextFlowNode.getNodeType()!=null){
 			switch (nextFlowNode.getNodeType()) {
 			//开始节点
-			case FlowConst.node_type_start:
+			case FlowConst.NODE_TYPE_START:
 				//系统错误
 				break;
 			//任务节点
