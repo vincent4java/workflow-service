@@ -14,5 +14,5 @@ public class WorkFlowErrorConst {
 
 	public static final int  WORK_FLOW_END= -5;
 	
-	public static final String[] MSG={"","当前用户没有权限","该审批流不存在","该节点不可用","没有该节点","该审批任务已结束","","",""};
+	public static final String[] MSG={"","当前用户没有权限","该审批流不存在","该节点不可用","没有该审批任务","该审批任务已结束","","",""};
 }
