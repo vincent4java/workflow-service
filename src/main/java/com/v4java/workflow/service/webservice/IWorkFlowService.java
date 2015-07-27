@@ -3,7 +3,6 @@ package com.v4java.workflow.service.webservice;
 
 import java.util.List;
 
-import com.v4java.workflow.pojo.ApproveLog;
 import com.v4java.workflow.pojo.WorkFlow;
 import com.v4java.workflow.query.webservice.WorkFlowQuery;
 import com.v4java.workflow.vo.webservice.UserVO;
