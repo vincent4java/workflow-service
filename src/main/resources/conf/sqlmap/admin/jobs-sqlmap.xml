@@ -34,6 +34,10 @@
 				jobs j
 		where
 				system_id = #{systemId}
+		<if test="limit != null and offset != null">
+			  	limit   #{offset} ,#{limit} 		
+		</if>					
+				
 	</select>
 	  
 	  

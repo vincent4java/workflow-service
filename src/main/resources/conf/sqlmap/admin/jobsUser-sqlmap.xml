@@ -35,14 +35,17 @@
   <select id="findJobsUserVO" parameterType="jobsUserQuery" resultMap="jobsUserVO-resultMap">
 		select 
 				ju.id ,ju.jobs_id ,ju.user_code ,ju.user_name ,ju.status,
-				ju.create_time ,ju.update_time ,j.name
+				ju.create_time ,ju.update_time 
 		from
 				jobs_user ju
-		left	join
-				jobs j	on ju.jobs_id = j.id
-				
 		where
-				ju.system_id = #{systemId}	  
+				ju.system_id = #{systemId}
+		and
+				ju.jobs_id = #{jobsId}	
+		<if test="limit != null and offset != null">
+			  	limit   #{offset} ,#{limit} 		
+		</if>	
+						  
   </select>
 
 

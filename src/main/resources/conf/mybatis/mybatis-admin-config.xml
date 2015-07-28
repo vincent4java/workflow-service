@@ -25,27 +25,27 @@
 	<!-- 全局别名设置，在映射文件中只需写别名，而不必写出整个类路径 -->
 	<typeAliases>	
 		<!--pojo  -->
-		<typeAlias type="com.v4java.workflow.pojo.Jobs" alias="jobs" />
-		<typeAlias type="com.v4java.workflow.pojo.FlowNode" alias="flowNode" />
-		<typeAlias type="com.v4java.workflow.pojo.WorkFlow" alias="workFlow" />
-		<typeAlias type="com.v4java.workflow.pojo.WorkFlowModel" alias="workFlowModel" />
-		<typeAlias type="com.v4java.workflow.pojo.JobsUser" alias="jobsUser" />
-		<typeAlias type="com.v4java.workflow.pojo.ApproveLog" alias="approveLog" />
-		<typeAlias type="com.v4java.workflow.pojo.Xf9System" alias="xf9System" />
+		<typeAlias type="com.v4java.workflow.pojo.Jobs" 			alias="jobs" />
+		<typeAlias type="com.v4java.workflow.pojo.FlowNode" 		alias="flowNode" />
+		<typeAlias type="com.v4java.workflow.pojo.WorkFlow" 		alias="workFlow" />
+		<typeAlias type="com.v4java.workflow.pojo.WorkFlowModel" 	alias="workFlowModel" />
+		<typeAlias type="com.v4java.workflow.pojo.JobsUser" 		alias="jobsUser" />
+		<typeAlias type="com.v4java.workflow.pojo.ApproveLog" 		alias="approveLog" />
+		<typeAlias type="com.v4java.workflow.pojo.Xf9System" 		alias="xf9System" />
 		
 		<!-- vo  -->
-		<typeAlias type="com.v4java.workflow.vo.admin.WorkFlowVO" alias="workFlowVO" />	
-		<typeAlias type="com.v4java.workflow.vo.admin.JobsVO" alias="jobsVO" />
-		<typeAlias type="com.v4java.workflow.vo.admin.WorkFlowModelVO" alias="workFlowModelVO" />
-		<typeAlias type="com.v4java.workflow.vo.admin.JobsUserVO" alias="jobsUserVO" />
+		<typeAlias type="com.v4java.workflow.vo.admin.WorkFlowVO" 		alias="workFlowVO" />	
+		<typeAlias type="com.v4java.workflow.vo.admin.JobsVO" 			alias="jobsVO" />
+		<typeAlias type="com.v4java.workflow.vo.admin.WorkFlowModelVO" 	alias="workFlowModelVO" />
+		<typeAlias type="com.v4java.workflow.vo.admin.JobsUserVO" 		alias="jobsUserVO" />
+		<typeAlias type="com.v4java.workflow.vo.admin.FlowNodeVO" 		alias="flowNodeVO"/>
 			
 			
 		<!-- query  -->	
-		<typeAlias type="com.v4java.workflow.query.admin.JobsQuery" alias="jobsQuery"/>
-		<typeAlias type="com.v4java.workflow.query.admin.WorkFlowModelQuery" alias="workFlowModelQuery"/>
-		<typeAlias type="com.v4java.workflow.query.admin.JobsUserQuery" alias="jobsUserQuery"/>
-		<typeAlias type="com.v4java.workflow.query.admin.FlowNodeQuery" alias="flowNodeQuery"/>
-		
+		<typeAlias type="com.v4java.workflow.query.admin.JobsQuery" 			alias="jobsQuery"/>
+		<typeAlias type="com.v4java.workflow.query.admin.WorkFlowModelQuery" 	alias="workFlowModelQuery"/>
+		<typeAlias type="com.v4java.workflow.query.admin.JobsUserQuery" 		alias="jobsUserQuery"/>
+		<typeAlias type="com.v4java.workflow.query.admin.FlowNodeQuery" 		alias="flowNodeQuery"/>
 		
 			
 	</typeAliases>

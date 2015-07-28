@@ -12,6 +12,8 @@ public class VO implements Serializable{
 	private String statusName;
 	
 	private String createTimeName;
+	
+	private String updateTimeName;
 
 	private String operation;
 	
@@ -37,6 +39,14 @@ public class VO implements Serializable{
 
 	public void setOperation(String operation) {
 		this.operation = operation;
+	}
+
+	public String getUpdateTimeName() {
+		return updateTimeName;
+	}
+
+	public void setUpdateTimeName(String updateTimeName) {
+		this.updateTimeName = updateTimeName;
 	}
 	
 	

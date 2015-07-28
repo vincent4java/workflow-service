@@ -6,6 +6,7 @@ public class JobsUserQuery extends Query {
 
 	private static final long serialVersionUID = 1281334695988398487L;
 	
+	private Integer jobsId;
 	
 	private Integer systemId;
 	
@@ -36,4 +37,13 @@ public class JobsUserQuery extends Query {
 	public void setUserCode(String userCode) {
 		this.userCode = userCode;
 	}
+
+	public Integer getJobsId() {
+		return jobsId;
+	}
+
+	public void setJobsId(Integer jobsId) {
+		this.jobsId = jobsId;
+	}
+	
 }

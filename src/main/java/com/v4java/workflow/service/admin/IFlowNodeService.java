@@ -4,14 +4,15 @@ import java.util.List;
 
 import com.v4java.workflow.pojo.FlowNode;
 import com.v4java.workflow.query.admin.FlowNodeQuery;
+import com.v4java.workflow.vo.admin.FlowNodeVO;
 
 public interface IFlowNodeService {
 
 	
 	
-	List<FlowNode> findFlowNode(FlowNodeQuery flowNodeQuery) throws Exception;
+	List<FlowNodeVO> findFlowNodeVO(FlowNodeQuery flowNodeQuery) throws Exception;
 	
-	int findFlowNodeCount(FlowNodeQuery flowNodeQuery) throws Exception;
+	int findFlowNodeVOCount(FlowNodeQuery flowNodeQuery) throws Exception;
 	
 	FlowNode findFlowNodeById(Integer Id) throws Exception;
 	
