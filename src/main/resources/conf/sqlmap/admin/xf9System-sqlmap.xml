@@ -13,13 +13,15 @@
  	<result column="user_pwd" 				property="userPwd" 			jdbcType="VARCHAR" />
  	<result column="user_name" 				property="userName" 		jdbcType="VARCHAR" />
   	<result column="user_code" 				property="userCode" 		jdbcType="VARCHAR" />
+  	<result column="system_code" 			property="systemCode" 		jdbcType="VARCHAR" />
+  	
   </resultMap>
   
 	<insert id="insertXf9System" parameterType="xf9System">
 		insert into xf9_system(
-			name,description,status,user_name,user_code,user_pwd
+			name,description,status,user_name,user_code,user_pwd,system_code
 		)	
-		values(#{name},#{description},0,#{userName},#{userCode},#{userPwd})
+		values(#{name},#{description},0,#{userName},#{userCode},#{userPwd},{systemCode})
 	</insert>	
 	
 	<update id="updateXf9System" parameterType="xf9System" >
@@ -52,7 +54,7 @@
 	<select id="findXf9SystemByUserCode" parameterType="string" resultMap="xf9System-resultMap">
 			select
 					id ,name,description,status,user_pwd,
-					user_code,create_time,update_time,user_name
+					user_code,create_time,update_time,user_name,system_code
 			from 
 					xf9_system
 			where		
