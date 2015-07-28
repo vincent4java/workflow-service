@@ -2,8 +2,6 @@ package com.v4java.workflow.vo.system;
 
 import java.sql.Timestamp;
 
-import com.v4java.workflow.vo.VO;
-
 /**
  * 
  * @author vincent
@@ -35,9 +33,7 @@ public class JobsVO implements VO{
 	
 	private Timestamp updateTime;
 	
-	private String createTimeName;
 
-	private String operation;
 	
 	public Integer getId() {
 		return id;
@@ -111,24 +107,6 @@ public class JobsVO implements VO{
 	public void setStatusName(String statusName) {
 		this.statusName = statusName;
 	}
-
-	public String getCreateTimeName() {
-		return createTimeName;
-	}
-
-	public void setCreateTimeName(String createTimeName) {
-		this.createTimeName = createTimeName;
-	}
-
-	public String getOperation() {
-		return operation;
-	}
-
-	public void setOperation(String operation) {
-		this.operation = operation;
-	}
-	
-	
 	
 	
 }

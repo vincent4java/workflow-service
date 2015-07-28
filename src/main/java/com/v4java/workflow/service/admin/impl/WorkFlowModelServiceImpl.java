@@ -9,6 +9,7 @@ import com.v4java.workflow.dao.admin.WorkFlowModelDao;
 import com.v4java.workflow.pojo.WorkFlowModel;
 import com.v4java.workflow.query.admin.WorkFlowModelQuery;
 import com.v4java.workflow.service.admin.IWorkFlowModelService;
+import com.v4java.workflow.vo.admin.WorkFlowModelVO;
 
 
 @Service("workFlowModelService")
@@ -32,7 +33,7 @@ public class WorkFlowModelServiceImpl implements IWorkFlowModelService{
 	}
 
 	@Override
-	public List<WorkFlowModel> findWorkFlowModel(WorkFlowModelQuery workFlowModelQuery) throws Exception {
+	public List<WorkFlowModelVO> findWorkFlowModel(WorkFlowModelQuery workFlowModelQuery) throws Exception {
 		return workFlowModelDao.findWorkFlowModel(workFlowModelQuery);
 	}
 

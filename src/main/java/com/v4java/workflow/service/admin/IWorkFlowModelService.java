@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.v4java.workflow.pojo.WorkFlowModel;
 import com.v4java.workflow.query.admin.WorkFlowModelQuery;
+import com.v4java.workflow.vo.admin.WorkFlowModelVO;
 
 public interface IWorkFlowModelService {
 
@@ -20,7 +21,7 @@ public interface IWorkFlowModelService {
 	 * @return
 	 * @throws Exception
 	 */
-	List<WorkFlowModel> findWorkFlowModel(WorkFlowModelQuery workFlowModelQuery) throws Exception;
+	List<WorkFlowModelVO> findWorkFlowModel(WorkFlowModelQuery workFlowModelQuery) throws Exception;
 	
 	
 	/**

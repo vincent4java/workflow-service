@@ -3,9 +3,7 @@ package com.v4java.workflow.vo.admin;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
-import com.v4java.workflow.vo.VO;
-
-public class WorkFlowVO implements VO{
+public class WorkFlowVO extends VO{
 
 	/**
 	 * 

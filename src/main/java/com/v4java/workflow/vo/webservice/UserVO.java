@@ -1,8 +1,8 @@
 package com.v4java.workflow.vo.webservice;
 
-import java.util.List;
 
-import com.v4java.workflow.vo.VO;
+
+import java.util.List;
 
 public class UserVO implements VO{
 

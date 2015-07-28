@@ -1,4 +1,4 @@
-package com.v4java.workflow.vo;
+package com.v4java.workflow.vo.system;
 
 import java.io.Serializable;
 

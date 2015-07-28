@@ -2,8 +2,6 @@ package com.v4java.workflow.vo.webservice;
 
 import java.sql.Timestamp;
 
-import com.v4java.workflow.vo.VO;
-
 public class WorkFlowVO implements VO{
 	/**
 	 * 
