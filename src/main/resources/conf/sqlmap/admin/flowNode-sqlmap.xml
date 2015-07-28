@@ -77,7 +77,7 @@
   			next_sort,sort,name,description,status)
   	values(
   			#{jobsId},#{modelId},#{nodeType},#{flowTest},
-  			#{nextSort},#{sort},#{name},#{description}.#{status}
+  			#{nextSort},#{sort},#{name},#{description},#{status}
   			)
   </insert>
   
