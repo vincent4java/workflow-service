@@ -11,7 +11,7 @@ public interface JobsDao {
 	
 	int insertJobs (Jobs jobs) throws Exception;
 	
-	List<JobsVO> selectJobs(JobsQuery jobsQuery) throws Exception;
+	List<JobsVO> findJobsVO(JobsQuery jobsQuery) throws Exception;
 	
-	int selectJobsCount(JobsQuery jobsQuery) throws Exception;
+	int findJobsVOCount(JobsQuery jobsQuery) throws Exception;
 }

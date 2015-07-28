@@ -80,8 +80,34 @@
   			id = #{id}
   </select>
   
-
-  <!--查找系统为 systemId所有模板 -->
+  <!-- 查找系统为 systemId所有模板 -->
+  <select id="findWorkFlowModel" parameterType="workFlowModelQuery" resultMap="workFlowModel-resultMap">
+  	select
+  			id ,busy_type_id ,model_text ,name,description,system_id ,
+  			status,create_time ,update_time
+  	from 
+  			workflow_model
+  	where  
+  			system_id = #{systemId}
+	<if test="limit != null and offset != null">
+		  	limit  #{limit} ,#{offset}		
+	</if>
+  </select>
+  
+    
+    <!--查找系统为 systemId所有模板  -->
+  <select id="findWorkFlowModelCount" parameterType="workFlowModelQuery" resultType="int">
+  	select
+  			count(id)
+  	from 
+  			workflow_model 
+  	where  
+  			system_id = #{systemId}
+  </select>
+  			
+  
+<!-- 
+  查找系统为 systemId所有模板
   <select id="findWorkFlowModelBySystemId" parameterType="workFlowModelQuery" resultMap="workFlowModelVO-resultMap">
   	select
   			wm.id ,wm.busy_type_id ,wm.model_text ,wm.name,wm.description,wm.system_id ,
@@ -96,7 +122,7 @@
   			#{limit} ,#{offset}		
   </select>
   
-    <!--查找系统为 systemId所有模板 -->
+    查找系统为 systemId所有模板
   <select id="findWorkFlowModelCountBySystemId" parameterType="workFlowModelQuery" resultMap="workFlowModelVO-resultMap">
   	select
   			count(*)
@@ -108,8 +134,8 @@
   			system_id = #{systemId}
   </select>
   
-  <!--查找系统为 systemId且类型为busyTypeId的模板 -->
-   <select id="findWorkFlowModelSystemIdAndType" parameterType="workFlowModelQuery" resultMap="workFlowModel">
+  查找系统为 systemId且类型为busyTypeId的模板
+   <select id="findWorkFlowModelSystemIdAndType" parameterType="workFlowModelQuery" resultMap="workFlowModel-resultMap">
   	select
   			id ,busy_type_id ,model_text ,name,description,system_id ,
   			status
@@ -121,5 +147,7 @@
   			busy_type_id = #{busyTypeId}		
   </select>
   
+  adasdas
+   -->
    
 </mapper>

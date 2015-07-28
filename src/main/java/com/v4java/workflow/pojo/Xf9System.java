@@ -23,6 +23,8 @@ public class Xf9System  implements Pojo{
 	
 	private Integer status;
 	
+	private String systemCode;
+	
 	private Timestamp createTime;
 	
 	private Timestamp updateTime;
@@ -99,14 +101,15 @@ public class Xf9System  implements Pojo{
 		this.userPwd = userPwd;
 	}
 
-	@Override
-	public String toString() {
-		return "Xf9System [id=" + id + ", name=" + name + ", userName="
-				+ userName + ", userCode=" + userCode + ", userPwd=" + userPwd
-				+ ", description=" + description + ", status=" + status
-				+ ", createTime=" + createTime + ", updateTime=" + updateTime
-				+ "]";
+	public String getSystemCode() {
+		return systemCode;
 	}
+
+	public void setSystemCode(String systemCode) {
+		this.systemCode = systemCode;
+	}
+
+	
 
 	
 }

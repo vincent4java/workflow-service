@@ -17,14 +17,42 @@
 
   </resultMap>
   
+  <resultMap id="jobsUserVO-resultMap" type="jobsUserVO" extends="jobsUser-resultMap">
+ 	 <result column="jobs_name" 		property="jobsName" 	jdbcType="VARCHAR" />
+  </resultMap>
+  
   	<insert id="batchInsertJobsUser" parameterType="list">
   		insert into jobs_user(
   				jobs_id,user_code,user_name,status ,system_id)
   		  values 
 	    <foreach collection ="list" item ="item" index ="index" separator =","> 
-	       	(#{item.jobsId}, #{item.userCode} ,#{item.userName},0,#{systemId}) 
+	       	(#{item.jobsId}, #{item.userCode} ,#{item.userName},0,#{item.systemId}) 
 	    </foreach>
     
   	</insert>
+
+  
+  <select id="findJobsUserVO" parameterType="jobsUserQuery" resultMap="jobsUserVO-resultMap">
+		select 
+				ju.id ,ju.jobs_id ,ju.user_code ,ju.user_name ,ju.status,
+				ju.create_time ,ju.update_time ,j.name
+		from
+				jobs_user ju
+		left	join
+				jobs j	on ju.jobs_id = j.id
+				
+		where
+				ju.system_id = #{systemId}	  
+  </select>
+
+
+  <select id="findJobsUserVOCount" parameterType="jobsUserQuery" resultType="int">
+		select 
+				count(id)
+		from
+				jobs_user
+		where
+				system_id = #{systemId}	  
+  </select>
   
 </mapper>

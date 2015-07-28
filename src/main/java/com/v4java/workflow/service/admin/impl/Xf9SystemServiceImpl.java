@@ -24,8 +24,8 @@ public class Xf9SystemServiceImpl implements IXf9SystemService{
 	}
 
 	@Override
-	public Xf9System selectXf9SystemByUserCode(String userCode)throws Exception {
-		return xf9SystemDao.selectXf9SystemByUserCode(userCode);
+	public Xf9System findXf9SystemByUserCode(String userCode)throws Exception {
+		return xf9SystemDao.findXf9SystemByUserCode(userCode);
 	}
 
 }

@@ -24,7 +24,7 @@ public class JobsServiceTest extends TestCase{
 	
 	public static Test suite(){
 		TestSuite test = new TestSuite("JobsServiceTest接口测试");
-		//test.addTest(new AdminUserTest("insertSelective"));
+		//test.addTest(new AdminUserTest("insertfindive"));
 		test.addTest(new JobsServiceTest("insertJobs"));
 		
 		return test;

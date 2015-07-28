@@ -8,5 +8,5 @@ import com.v4java.workflow.query.webservice.JobsUserQuery;
 public interface IJobsUserService {
 	
 
-	List<JobsUser> selectjobsUserByUserCodeAndSystemId(JobsUserQuery jobsUserQuery) throws Exception;
+	List<JobsUser> findjobsUserByUserCodeAndSystemId(JobsUserQuery jobsUserQuery) throws Exception;
 }

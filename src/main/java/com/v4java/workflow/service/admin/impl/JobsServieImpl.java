@@ -23,12 +23,12 @@ public class JobsServieImpl implements IJobsService{
 	}
 
 	@Override
-	public List<JobsVO> selectJobs(JobsQuery jobsQuery) throws Exception {
-		return jobsDao.selectJobs(jobsQuery);
+	public List<JobsVO> findJobsBySystemId(JobsQuery jobsQuery) throws Exception {
+		return jobsDao.findJobsVO(jobsQuery);
 	}
 
 	@Override
-	public int selectJobsCount(JobsQuery jobsQuery) throws Exception {
-		return jobsDao.selectJobsCount(jobsQuery);
+	public int findJobsCountBySystemId(JobsQuery jobsQuery) throws Exception {
+		return jobsDao.findJobsVOCount(jobsQuery);
 	}
 }

@@ -9,7 +9,6 @@ import com.v4java.workflow.dao.admin.WorkFlowModelDao;
 import com.v4java.workflow.pojo.WorkFlowModel;
 import com.v4java.workflow.query.admin.WorkFlowModelQuery;
 import com.v4java.workflow.service.admin.IWorkFlowModelService;
-import com.v4java.workflow.vo.admin.WorkFlowModelVO;
 
 
 @Service("workFlowModelService")
@@ -23,8 +22,8 @@ public class WorkFlowModelServiceImpl implements IWorkFlowModelService{
 	}
 
 	@Override
-	public void insertWorkFlowModel(WorkFlowModel workFlowModel)throws Exception {
-		workFlowModelDao.insertWorkFlowModel(workFlowModel);
+	public int insertWorkFlowModel(WorkFlowModel workFlowModel)throws Exception {
+		return workFlowModelDao.insertWorkFlowModel(workFlowModel);
 	}
 
 	@Override
@@ -33,6 +32,16 @@ public class WorkFlowModelServiceImpl implements IWorkFlowModelService{
 	}
 
 	@Override
+	public List<WorkFlowModel> findWorkFlowModel(WorkFlowModelQuery workFlowModelQuery) throws Exception {
+		return workFlowModelDao.findWorkFlowModel(workFlowModelQuery);
+	}
+
+	@Override
+	public int findWorkFlowModelCount(WorkFlowModelQuery workFlowModelQuery)throws Exception {
+		return workFlowModelDao.findWorkFlowModelCount(workFlowModelQuery);
+	}
+
+/*	@Override
 	public List<WorkFlowModelVO> findWorkFlowModelBySystemId(WorkFlowModelQuery workFlowModelQuery) throws Exception {
 		return workFlowModelDao.findWorkFlowModelBySystemId(workFlowModelQuery);
 	}
@@ -45,6 +54,6 @@ public class WorkFlowModelServiceImpl implements IWorkFlowModelService{
 	@Override
 	public WorkFlowModel findWorkFlowModelSystemIdAndType(WorkFlowModelQuery workFlowModelQuery) throws Exception {
 		return workFlowModelDao.findWorkFlowModelSystemIdAndType(workFlowModelQuery);
-	}
+	}*/
 
 }

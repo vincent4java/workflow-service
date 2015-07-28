@@ -10,7 +10,7 @@ public interface IJobsService {
 
 	int insertJobs (Jobs jobs) throws Exception;
 	
-	List<JobsVO> selectJobs(JobsQuery jobsQuery) throws Exception;
+	List<JobsVO> findJobsBySystemId(JobsQuery jobsQuery) throws Exception;
 	
-	int selectJobsCount(JobsQuery jobsQuery) throws Exception;
+	int findJobsCountBySystemId(JobsQuery jobsQuery) throws Exception;
 }

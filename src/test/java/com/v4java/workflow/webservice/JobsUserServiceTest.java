@@ -28,16 +28,16 @@ public class JobsUserServiceTest extends TestCase{
 	
 	public static Test suite(){
 		TestSuite test = new TestSuite("JobsService接口测试");
-		test.addTest(new JobsUserServiceTest("selectjobsUserByUserCode"));
+		test.addTest(new JobsUserServiceTest("findjobsUserByUserCode"));
 		return test;
 	}
 	
 	
-	public void selectjobsUserByUserCode() throws Exception{
+	public void findjobsUserByUserCode() throws Exception{
 		JobsUserQuery jobsUserQuery = new JobsUserQuery();
 		jobsUserQuery.setUserCode("vzxt9999");
 		jobsUserQuery.setSystemId(7);
-		List<JobsUser> jobsUsers = jobsUserService.selectjobsUserByUserCodeAndSystemId(jobsUserQuery);
+		List<JobsUser> jobsUsers = jobsUserService.findjobsUserByUserCodeAndSystemId(jobsUserQuery);
 		for (JobsUser jobsUser : jobsUsers) {
 			System.err.println(jobsUser.toString());
 		}

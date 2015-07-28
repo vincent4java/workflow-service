@@ -17,8 +17,8 @@ public class JobsUserServiceImpl implements IJobsUserService{
 	private JobsUserDao jobsUserDao;
 
 	@Override
-	public List<JobsUser> selectjobsUserByUserCodeAndSystemId(JobsUserQuery jobsUserQuery)throws Exception {
-		return jobsUserDao.selectjobsUserByUserCodeAndSystemId(jobsUserQuery);
+	public List<JobsUser> findjobsUserByUserCodeAndSystemId(JobsUserQuery jobsUserQuery)throws Exception {
+		return jobsUserDao.findjobsUserByUserCodeAndSystemId(jobsUserQuery);
 	}
 
 }

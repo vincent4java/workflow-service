@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.v4java.workflow.dao.admin.FlowNodeDao;
 import com.v4java.workflow.pojo.FlowNode;
+import com.v4java.workflow.query.admin.FlowNodeQuery;
 import com.v4java.workflow.service.admin.IFlowNodeService;
 
 @Service("flowNodeService")
@@ -14,10 +15,6 @@ public class FlowNodeServiceImpl implements IFlowNodeService{
 
 	@Autowired
 	private FlowNodeDao flowNodeDao;
-	@Override
-	public List<FlowNode> findFlowNodeByModelId(Integer workFlowId)throws Exception {
-		return flowNodeDao.findFlowNodeByModelId(workFlowId);
-	}
 
 	@Override
 	public FlowNode findFlowNodeById(Integer Id) throws Exception {
@@ -32,6 +29,16 @@ public class FlowNodeServiceImpl implements IFlowNodeService{
 	@Override
 	public int updateFlowNode(FlowNode flowNode) throws Exception {
 		return flowNodeDao.updateFlowNode(flowNode);
+	}
+
+	@Override
+	public List<FlowNode> findFlowNode(FlowNodeQuery flowNodeQuery)throws Exception {
+		return flowNodeDao.findFlowNode(flowNodeQuery);
+	}
+
+	@Override
+	public int findFlowNodeCount(FlowNodeQuery flowNodeQuery) throws Exception {
+		return flowNodeDao.findFlowNodeCount(flowNodeQuery);
 	}
 
 	

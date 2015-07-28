@@ -8,5 +8,5 @@ public interface IXf9SystemService {
 		
 	 int updateXf9System(Xf9System xf9System) throws Exception;
 
-	 Xf9System selectXf9SystemByUserCode(String userCode) throws Exception;	
+	 Xf9System findXf9SystemByUserCode(String userCode) throws Exception;	
 }

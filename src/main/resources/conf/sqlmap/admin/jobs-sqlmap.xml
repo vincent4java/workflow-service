@@ -14,16 +14,7 @@
   </resultMap>
   
   
-   <resultMap id="jobsVO-resultMap" type="jobsVO" >
-    <id 	column="id" 			property="id" 			jdbcType="INTEGER" />
-    <result column="name" 			property="name" 		jdbcType="VARCHAR" />
-    <result column="description" 	property="description" 	jdbcType="VARCHAR" />
-    <result column="status" 		property="status" 		jdbcType="INTEGER" />
-    <result column="create_time" 	property="createTime" 	jdbcType="TIMESTAMP" />
-    <!--  -->
-    <result column="update_time" 	property="updateTime" 	jdbcType="TIMESTAMP" />
-    <result column="system_id" 		property="systemId" 	jdbcType="INTEGER" />
-    <result column="system_name" 	property="systemName" 	jdbcType="VARCHAR" />
+   <resultMap id="jobsVO-resultMap" type="jobsVO" extends="jobs-resultMap">
   </resultMap>
   
 	<insert id="insertJobs" parameterType="jobs">
@@ -33,7 +24,29 @@
 		values(#{name},#{description},#{status},#{systemId})
 	</insert>	
 	  
-	<select id="selectJobsBySystemId" parameterType="jobs" resultMap="jobsVO-resultMap">
+	  
+	 <select id="findJobsVO" parameterType="jobsQuery" resultMap="jobsVO-resultMap">
+		select 
+				id,name,description,status,create_time,
+				update_time 
+				
+		from
+				jobs j
+		where
+				system_id = #{systemId}
+	</select>
+	  
+	  
+	<select id="findJobsVOCount" parameterType="jobsQuery" resultType="int">
+		select 
+				count(id)
+		from
+				jobs j
+		where
+				system_id = #{systemId}
+	</select>	
+	
+<!-- 	<select id="findJobsVO" parameterType="jobsQuery" resultMap="jobsVO-resultMap">
 		select 
 				j.id,j.name,j.description,j.status,j.system_id,
 				j.create_time,j.update_time,xs.name as  system_name 
@@ -46,35 +59,16 @@
 				system_id = #{systemId}
 	</select>
 	  
-	<select id="selectJobsCountBySystemId" parameterType="jobs" resultType="int">
+	  
+	<select id="findJobsVOCount" parameterType="jobsQuery" resultType="int">
 		select 
-				count(id)
+				count(j.id)
 		from
 				jobs j
 		left join
 				xf9_system xs on j.system_id = xs.id	
 		where
 				system_id = #{systemId}
-	</select>	  
-	  
-	 <select id="selectJobs" parameterType="jobsQuery" resultMap="jobsVO-resultMap">
-		select 
-				j.id,j.name,j.description,j.status,j.system_id,
-				j.create_time,j.update_time,xs.name as  system_name 
-				
-		from
-				jobs j
-		left join
-				xf9_system xs on j.system_id = xs.id
-		order by
-				j.system_id ASC ,j.id ASC
-	</select>
-	  
-	<select id="selectJobsCount" parameterType="jobsQuery" resultType="int">
-		select 
-				count(j.id)
-		from
-				jobs j
-	</select> 
+	</select>	 -->  
 	  
 </mapper>

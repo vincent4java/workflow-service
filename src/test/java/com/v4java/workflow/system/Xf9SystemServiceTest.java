@@ -26,13 +26,13 @@ public class Xf9SystemServiceTest extends TestCase{
 	
 	public static Test suite(){
 		TestSuite test = new TestSuite("Xf9SystemServiceTest接口测试");
-		test.addTest(new Xf9SystemServiceTest("selectXf9SystemByUserCode"));
+		test.addTest(new Xf9SystemServiceTest("findXf9SystemByUserCode"));
 		return test;
 	}
 	
 	
-	public void selectXf9SystemByUserCode() throws Exception{
-		Xf9System system = xf9SystemService.selectXf9SystemByUserCode("vz238");
+	public void findXf9SystemByUserCode() throws Exception{
+		Xf9System system = xf9SystemService.findXf9SystemByUserCode("vz238");
 		System.out.println(system.toString());
 	}
 	

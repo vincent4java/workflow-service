@@ -16,7 +16,7 @@
 	
   </resultMap>
   
-	<select id="selectjobsUserByUserCodeAndSystemId" resultMap="jobsUser-resultMap" parameterType="jobsUserQuery">
+	<select id="findjobsUserByUserCodeAndSystemId" resultMap="jobsUser-resultMap" parameterType="jobsUserQuery">
 		select 
 				id , jobs_id ,user_name,user_code ,status,system_id
 		from 

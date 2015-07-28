@@ -21,7 +21,7 @@
     <!--  -->
   </resultMap>
   
-  <select id="findFlowNodeByModelId" parameterType="java.lang.Integer" resultMap="flowNode-resultMap">
+  <select id="findFlowNode" parameterType="flowNodeQuery" resultMap="flowNode-resultMap">
   	select
   			id,jobs_id,model_id,node_type,flow_test ,status
   			next_sort,sort,name,description
@@ -31,6 +31,21 @@
   			model_id = #{modelId}
   	order by 
   			sort ASC
+	<if test="limit != null and offset != null">
+		  	limit  #{limit} ,#{offset}		
+	</if>	
+  </select>
+  
+   <select id="findFlowNodeCount" parameterType="flowNodeQuery" resultType="int">
+  	select
+  			count(id)
+    from			
+  			flow_node
+  	where
+  			model_id = #{modelId}
+ 	<if test="limit != null and offset != null">
+		  	limit  #{limit} ,#{offset}		
+	</if>	 			
   </select>
   
    <select id="findFirstFlowNodeById" parameterType="java.lang.Integer" resultMap="flowNode-resultMap">

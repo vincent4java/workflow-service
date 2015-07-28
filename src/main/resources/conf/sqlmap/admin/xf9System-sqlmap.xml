@@ -49,7 +49,7 @@
 				id = #{id}
 	</update>	  
 
-	<select id="selectXf9SystemByUserCode" parameterType="string" resultMap="xf9System-resultMap">
+	<select id="findXf9SystemByUserCode" parameterType="string" resultMap="xf9System-resultMap">
 			select
 					id ,name,description,status,user_pwd,
 					user_code,create_time,update_time,user_name
