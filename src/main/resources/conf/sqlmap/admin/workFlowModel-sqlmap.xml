@@ -95,7 +95,17 @@
   			system_id = #{systemId}
   </select>
   			
-  
+    <update id="updateWorkFlowModelStatus" parameterType="workFlowModel">
+   		update 
+   				workflow_model
+   		set
+				status = #{status},update_time = now()     		
+   		where 
+   				id = #{id}
+   		and
+   			(select count(*) from flow_node where model_id= #{id} and node_type = 3 ) = 1		
+   </update>
+   
 <!-- 
   查找系统为 systemId所有模板
   <select id="findWorkFlowModelBySystemId" parameterType="workFlowModelQuery" resultMap="workFlowModelVO-resultMap">

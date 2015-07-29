@@ -15,6 +15,7 @@ public interface WorkFlowModelDao {
 
 	int updateWorkFlowModel(WorkFlowModel workFlowModel) throws Exception;
 	
+	int updateWorkFlowModelStatus(WorkFlowModel workFlowModel) throws Exception;
 	
 	/**
 	 * 查找某个系统的所有模板
