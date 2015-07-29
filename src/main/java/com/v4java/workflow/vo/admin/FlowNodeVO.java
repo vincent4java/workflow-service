@@ -20,6 +20,7 @@ public class FlowNodeVO extends VO{
 	private String description;// '审批流节点描述'
 	private Timestamp createTime ;//
 	private Timestamp updateTime ;//
+	private String nodeTypeName;
 	public Integer getId() {
 		return id;
 	}
@@ -92,15 +93,11 @@ public class FlowNodeVO extends VO{
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
-	@Override
-	public String toString() {
-		return "FlowNode [id=" + id + ", jobsId=" + jobsId + ", modelId="
-				+ modelId + ", nodeType=" + nodeType + ", flowTest=" + flowTest
-				+ ", sort=" + sort + ", nextSort=" + nextSort + ", name="
-				+ name + ", status=" + status + ", description=" + description
-				+ ", createTime=" + createTime + ", updateTime=" + updateTime
-				+ "]";
+	public String getNodeTypeName() {
+		return nodeTypeName;
 	}
-	
+	public void setNodeTypeName(String nodeTypeName) {
+		this.nodeTypeName = nodeTypeName;
+	}
 	
 }

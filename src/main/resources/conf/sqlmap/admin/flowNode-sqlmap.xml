@@ -21,15 +21,16 @@
     <!--  -->
   </resultMap>
   
-    <resultMap id="flowNodeVO-resultMap" type="flowNode" extends="flowNode-resultMap">
+    <resultMap id="flowNodeVO-resultMap" type="flowNodeVO" extends="flowNode-resultMap">
     <!--  -->
   </resultMap>
   
   
   <select id="findFlowNodeVO" parameterType="flowNodeQuery" resultMap="flowNodeVO-resultMap">
   	select
-  			id,jobs_id,model_id,node_type,flow_test ,status
-  			next_sort,sort,name,description
+  			id,jobs_id,model_id,node_type,flow_test ,status,
+  			next_sort,sort,name,description,create_time,
+  			update_time
     from			
   			flow_node
   	where
