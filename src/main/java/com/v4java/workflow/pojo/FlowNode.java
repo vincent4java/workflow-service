@@ -12,6 +12,7 @@ public class FlowNode implements Pojo{
 	private Integer jobsId;//  '岗位id',
 	private Integer modelId;
 	private Integer nodeType ;//   '节点类型类型 0开始节点 1.任务节点 2.判断节点 3.结束 ',
+	private Integer nodeTypeId ;//   '节点类型类型 0开始节点 1.任务节点 2.判断节点 3.结束 ',
 	private String flowTest ;//'判断json 正则判断'
 	private Integer sort ;// '下一个节点'
 	private Integer nextSort ;// '下一个节点'
@@ -92,14 +93,11 @@ public class FlowNode implements Pojo{
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
-	@Override
-	public String toString() {
-		return "FlowNode [id=" + id + ", jobsId=" + jobsId + ", modelId="
-				+ modelId + ", nodeType=" + nodeType + ", flowTest=" + flowTest
-				+ ", sort=" + sort + ", nextSort=" + nextSort + ", name="
-				+ name + ", status=" + status + ", description=" + description
-				+ ", createTime=" + createTime + ", updateTime=" + updateTime
-				+ "]";
+	public Integer getNodeTypeId() {
+		return nodeTypeId;
+	}
+	public void setNodeTypeId(Integer nodeTypeId) {
+		this.nodeTypeId = nodeTypeId;
 	}
 	
 	

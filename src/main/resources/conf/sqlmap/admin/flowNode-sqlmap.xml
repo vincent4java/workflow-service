@@ -78,10 +78,23 @@
   	insert into  flow_node(
   			jobs_id,model_id,node_type,flow_test,
   			next_sort,sort,name,description,status)
-  	values(
+  	select		
   			#{jobsId},#{modelId},#{nodeType},#{flowTest},
   			#{nextSort},#{sort},#{name},#{description},#{status}
-  			)
+  	from
+  			dual
+	  	
+	  	WHERE NOT EXISTS
+	  			(SELECT 
+	  				id 
+	  			from 
+	  				flow_node 
+	  			where 
+	  				model_id = #{modelId} 
+	  			and 
+	  				sort = #{sort} 
+	  			and 
+	  				status = 0 )		
   </insert>
   
   <update id="updateFlowNode" parameterType="flowNode">
