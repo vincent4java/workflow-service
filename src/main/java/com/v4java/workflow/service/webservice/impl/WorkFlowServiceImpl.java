@@ -148,6 +148,13 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 			approveLog.setUserName(userVO.getUserName());
 			approveLog.setFlowNode(nowFlowNode.getId());
 			approveLog.setWorkFlowId(workFlowId);
+			approveLog.setBusyTypeId(workFlow.getBusyTypeId());
+			approveLog.setBusyTypeName(workFlow.getBusyTypeName());
+			approveLog.setJobsId(flowParam.getNowJobsId());
+			approveLog.setJobsId(nowFlowNode.getJobsId());
+			approveLog.setNodeName(nowFlowNode.getName());
+			approveLog.setModelId(nowFlowNode.getModelId());
+			approveLog.setSystemId(userVO.getSystemId());
 			approveLogDao.insertApproveLog(approveLog);
 		}
 		return n;

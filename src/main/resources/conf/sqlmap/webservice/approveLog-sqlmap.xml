@@ -11,17 +11,32 @@
     
     <result column="user_name" 		property="userName" 	jdbcType="VARCHAR" />
     <result column="flow_node" 		property="flowNode" 	jdbcType="INTEGER" />
-    <result column="create_time" 	property="createTime" 	jdbcType="TIMESTAMP" />
+    <result column="create_time" 	property="createTime" 	jdbcType="TIMESTAMP"/>
+    <result column="busy_type_name" property="busyTypeName" jdbcType="VARCHAR" />
+    <result column="busy_type_id" 	property="busyTypeId" 	jdbcType="INTEGER" />
+    
+    <result column="jobs_id" 		property="jobsId" 		jdbcType="INTEGER" />
+    <result column="jobs_name" 		property="jobsName" 	jdbcType="VARCHAR" />
+    <result column="node_name" 		property="nodeName" 	jdbcType="VARCHAR" />
+    <result column="model_id" 		property="modelId" 		jdbcType="INTEGER" />
+    <result column="model_name" 	property="modelName" 	jdbcType="VARCHAR" />
+
+    <result column="name" 			property="workflowName" jdbcType="VARCHAR" />
+    <result column="system_id" 		property="systemId" 	jdbcType="INTEGER" />
     <!--  -->
   </resultMap>
   
 	<insert id="insertApproveLog" parameterType="approveLog">
 		insert into approve_log(
 			workflow_id,status,description,user_code,user_name,
-			flow_node
+			flow_node,create_time,busy_type_name,busy_type_id,jobs_id,
+			jobs_name,node_name,model_id,model_name,workflow_name,
+			system_id
 		)	
 		values(#{workFlowId},#{status},#{description},#{userCode},#{userName},
-				#{flowNode}				
+				#{flowNode},now(),#{busyTypeName},#{busyTypeId}	,#{jobsId}	,	
+				#{jobsName},#{nodeName},#{modelId},#{modelName},{name},#{workflowName},
+				#{systemId}
 		)
 	</insert>	
 	  

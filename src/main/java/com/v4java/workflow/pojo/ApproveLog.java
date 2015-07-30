@@ -22,6 +22,20 @@ public class ApproveLog  implements Pojo{
 	private String  userName ;
 	private Integer flowNode ;//
 	private Timestamp createTime ;//
+	
+	private Integer busyTypeId ;// '业务类型id',
+	private String busyTypeName ;// '业务类型',
+	
+	private Integer jobsId;
+	private String jobsName;
+	
+	private String nodeName;//  '审批流节点名称'
+	
+	private Integer modelId;//  '审批流名称
+	private String modelName;//  '审批名称'
+	private String name;
+	private Integer systemId;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -70,6 +84,60 @@ public class ApproveLog  implements Pojo{
 	}
 	public void setCreateTime(Timestamp createTime) {
 		this.createTime = createTime;
+	}
+	public Integer getBusyTypeId() {
+		return busyTypeId;
+	}
+	public void setBusyTypeId(Integer busyTypeId) {
+		this.busyTypeId = busyTypeId;
+	}
+	public String getBusyTypeName() {
+		return busyTypeName;
+	}
+	public void setBusyTypeName(String busyTypeName) {
+		this.busyTypeName = busyTypeName;
+	}
+	public Integer getJobsId() {
+		return jobsId;
+	}
+	public void setJobsId(Integer jobsId) {
+		this.jobsId = jobsId;
+	}
+	public String getJobsName() {
+		return jobsName;
+	}
+	public void setJobsName(String jobsName) {
+		this.jobsName = jobsName;
+	}
+	public Integer getModelId() {
+		return modelId;
+	}
+	public void setModelId(Integer modelId) {
+		this.modelId = modelId;
+	}
+	public String getModelName() {
+		return modelName;
+	}
+	public void setModelName(String modelName) {
+		this.modelName = modelName;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getNodeName() {
+		return nodeName;
+	}
+	public void setNodeName(String nodeName) {
+		this.nodeName = nodeName;
+	}
+	public Integer getSystemId() {
+		return systemId;
+	}
+	public void setSystemId(Integer systemId) {
+		this.systemId = systemId;
 	}
 	
 	
