@@ -25,9 +25,11 @@
   
   <insert id="insertWorkFlowModel" parameterType="workFlowModel">
 	insert into workflow_model(
-			busy_type_id ,model_text ,name,description,status ,system_id)
+			busy_type_id ,model_text ,name,description,status ,
+			system_id,create_time)
 			
-			values(#{busyTypeId} ,#{modelText} ,#{name},#{description},#{status},#{systemId})
+			values(#{busyTypeId} ,#{modelText} ,#{name},#{description},#{status},
+			#{systemId},now())
    </insert>
    
    

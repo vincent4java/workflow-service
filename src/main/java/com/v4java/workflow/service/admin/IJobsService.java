@@ -13,4 +13,6 @@ public interface IJobsService {
 	List<JobsVO> findJobsBySystemId(JobsQuery jobsQuery) throws Exception;
 	
 	int findJobsCountBySystemId(JobsQuery jobsQuery) throws Exception;
+
+	int updateJobsStatus (Jobs jobs) throws Exception;
 }

@@ -19,18 +19,18 @@
   
 	<insert id="insertJobs" parameterType="jobs">
 		insert into jobs(
-			name,description,status,system_id
+			name,description,status,system_id,create_time
 		)	
-		values(#{name},#{description},#{status},#{systemId})
+		values(#{name},#{description},#{status},#{systemId},now())
 	</insert>	
 	  
-	 <update id="updateJobsStatus">
+	 <update id="updateJobsStatus"  parameterType="jobs">
 	 	update 
 	 			jobs
 	 	set
 	 			status = #{status} , update_time = now()		
 	 	where
-	 			id = #{Id}
+	 			id = #{id}
 	 	and
 	 			(select 
 						count(fn.jobs_id)
@@ -39,7 +39,7 @@
 					left join	
 						flow_node fn on wm.id = fn.model_id
 					where
-						fn.jobs_id  = #{Id} ) = 0			
+						fn.jobs_id  = #{id} ) = 0			
 	 </update>
 	 
 	 

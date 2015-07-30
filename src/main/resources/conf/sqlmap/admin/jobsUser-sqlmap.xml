@@ -23,10 +23,10 @@
   
   	<insert id="batchInsertJobsUser" parameterType="list">
   		insert into jobs_user(
-  				jobs_id,user_code,user_name,status ,system_id)
+  				jobs_id,user_code,user_name,status ,system_id,create_time)
   		  values 
 	    <foreach collection ="list" item ="item" index ="index" separator =","> 
-	       	(#{item.jobsId}, #{item.userCode} ,#{item.userName},0,#{item.systemId}) 
+	       	(#{item.jobsId}, #{item.userCode} ,#{item.userName},0,#{item.systemId},now()) 
 	    </foreach>
     
   	</insert>

@@ -77,10 +77,11 @@
   <insert id="insertFlowNode" parameterType="flowNode">
   	insert into  flow_node(
   			jobs_id,model_id,node_type,flow_test,
-  			next_sort,sort,name,description,status)
+  			next_sort,sort,name,description,status,
+  			create_time)
   	select		
   			#{jobsId},#{modelId},#{nodeType},#{flowTest},
-  			#{nextSort},#{sort},#{name},#{description},#{status}
+  			#{nextSort},#{sort},#{name},#{description},#{status},now()
   	from
   			dual
 	  	

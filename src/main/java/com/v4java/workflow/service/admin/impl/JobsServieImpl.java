@@ -31,4 +31,9 @@ public class JobsServieImpl implements IJobsService{
 	public int findJobsCountBySystemId(JobsQuery jobsQuery) throws Exception {
 		return jobsDao.findJobsVOCount(jobsQuery);
 	}
+
+	@Override
+	public int updateJobsStatus(Jobs jobs) throws Exception {
+		return jobsDao.updateJobsStatus(jobs);
+	}
 }

@@ -17,13 +17,6 @@
   	
   </resultMap>
   
-	<insert id="insertXf9System" parameterType="xf9System">
-		insert into xf9_system(
-			name,description,status,user_name,user_code,user_pwd,system_code
-		)	
-		values(#{name},#{description},0,#{userName},#{userCode},#{userPwd},{systemCode})
-	</insert>	
-	
 	<update id="updateXf9System" parameterType="xf9System" >
 		update  xf9_system
 			<set>

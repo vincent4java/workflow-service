@@ -13,11 +13,7 @@ public class Xf9SystemServiceImpl implements IXf9SystemService{
 
 	@Autowired
 	private Xf9SystemDao xf9SystemDao; 
-	@Override
-	public int insertXf9System(Xf9System xf9System) throws Exception {
-		return xf9SystemDao.insertXf9System(xf9System);
-	}
-
+	
 	@Override
 	public int updateXf9System(Xf9System xf9System) throws Exception {
 		return xf9SystemDao.updateXf9System(xf9System);

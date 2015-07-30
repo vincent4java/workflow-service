@@ -77,11 +77,13 @@
 	<insert id="insertWorkFlow" parameterType="workFlow">
 		insert into workflow(
 				busy_type_id ,model_id ,name ,description ,jobs_id
-				,workflow_node ,status,money,busy_type_name,json
+				,workflow_node ,status,money,busy_type_name,json,
+				create_time
 			)
 		values(
 			#{busyTypeId},#{modelId},#{name},#{description},#{jobsId},
-			#{workflowNode},#{status},#{money},#{busyTypeName}
+			#{workflowNode},#{status},#{money},#{busyTypeName},
+			now()
 			)
 	
 	</insert>
