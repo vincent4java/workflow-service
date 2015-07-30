@@ -39,7 +39,7 @@
 					left join	
 						flow_node fn on wm.id = fn.model_id
 					where
-						fn.jobs_id  =#{Id} ) = 0			
+						fn.jobs_id  = #{Id} ) = 0			
 	 </update>
 	 
 	 
