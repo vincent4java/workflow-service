@@ -55,7 +55,9 @@
 		from
 				jobs_user
 		where
-				system_id = #{systemId}	  
+				system_id = #{systemId}	
+		and
+				jobs_id = #{jobsId}			  
   </select>
   
 </mapper>

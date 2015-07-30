@@ -24,7 +24,25 @@
 		values(#{name},#{description},#{status},#{systemId})
 	</insert>	
 	  
-	  
+	 <update id="updateJobsStatus">
+	 	update 
+	 			jobs
+	 	set
+	 			status = #{status} , update_time = now()		
+	 	where
+	 			id = #{Id}
+	 	and
+	 			(select 
+						count(fn.jobs_id)
+					from
+						workflow_model wm
+					left join	
+						flow_node fn on wm.id = fn.model_id
+					where
+						fn.jobs_id  =#{Id} ) = 0			
+	 </update>
+	 
+	 
 	 <select id="findJobsVO" parameterType="jobsQuery" resultMap="jobsVO-resultMap">
 		select 
 				id,name,description,status,create_time,
