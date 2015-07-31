@@ -30,12 +30,12 @@
 		insert into approve_log(
 			workflow_id,status,description,user_code,user_name,
 			flow_node,create_time,busy_type_name,busy_type_id,jobs_id,
-			jobs_name,node_name,model_id,model_name,workflow_name,
+			jobs_name,node_name,model_id,model_name,name,
 			system_id
 		)	
 		values(#{workFlowId},#{status},#{description},#{userCode},#{userName},
 				#{flowNode},now(),#{busyTypeName},#{busyTypeId}	,#{jobsId}	,	
-				#{jobsName},#{nodeName},#{modelId},#{modelName},{name},#{workflowName},
+				(select name from jobs where id= #{jobsId}),#{nodeName},#{modelId},(select name from workflow_model where id= #{modelId}),#{name},
 				#{systemId}
 		)
 	</insert>	

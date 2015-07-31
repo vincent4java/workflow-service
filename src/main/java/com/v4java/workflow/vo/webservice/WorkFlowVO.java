@@ -2,7 +2,8 @@ package com.v4java.workflow.vo.webservice;
 
 import java.sql.Timestamp;
 
-public class WorkFlowVO implements VO{
+
+public class WorkFlowVO extends VO{
 	/**
 	 * 
 	 */
@@ -25,6 +26,7 @@ public class WorkFlowVO implements VO{
 	private String nodeName;
 	private String nodeDescription;
 	private Integer workflowNode;
+	private String workFlowCode ;//
 	
 	
 	public Integer getId() {
@@ -117,6 +119,11 @@ public class WorkFlowVO implements VO{
 	public void setWorkflowNode(Integer workflowNode) {
 		this.workflowNode = workflowNode;
 	}
-	
+	public String getWorkFlowCode() {
+		return workFlowCode;
+	}
+	public void setWorkFlowCode(String workFlowCode) {
+		this.workFlowCode = workFlowCode;
+	}
 	
 }

@@ -143,7 +143,7 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 		int n=workFlowDao.updateWorkFlowStatusUseWorkFlowParam(flowParam);
 		if (n==1) {
 			ApproveLog approveLog = new ApproveLog();
-			approveLog.setStatus(FlowConst.AGREE_FALSE);
+			approveLog.setStatus(agree);
 			approveLog.setUserCode(userVO.getUserCode());
 			approveLog.setUserName(userVO.getUserName());
 			approveLog.setFlowNode(nowFlowNode.getId());
@@ -155,6 +155,7 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 			approveLog.setNodeName(nowFlowNode.getName());
 			approveLog.setModelId(nowFlowNode.getModelId());
 			approveLog.setSystemId(userVO.getSystemId());
+			approveLog.setName(workFlow.getName());
 			approveLogDao.insertApproveLog(approveLog);
 		}
 		return n;
@@ -234,7 +235,7 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 	 * @param flowNodes	所用几点
 	 */
 	private void checkNextFlowNode(FlowNode nextFlowNode ,WorkFlow workFlow ,List<FlowNode> flowNodes) throws Exception{
-		if (nextFlowNode==null||nextFlowNode.getStatus()==FlowConst.STATUS_TRUE) {
+		if (nextFlowNode==null||nextFlowNode.getStatus()==FlowConst.STATUS_FALSE) {
 			setFirstWorkFlow(workFlow, flowNodes);
 			 return;
 		}

@@ -51,7 +51,8 @@
   	<result column="node_description" 		property="nodeDescription" 	jdbcType="VARCHAR" />
   	<result column="node_name" 				property="nodeName" 		jdbcType="VARCHAR" />
   	<result column="work_flow_code" 		property="workFlowCode" 	jdbcType="VARCHAR"/>
-  </resultMap>
+  	<result column="jobs_name" 				property="jobsName" 		jdbcType="VARCHAR"/>
+  </resultMap>	
   
   	
 	<insert id="insertWorkFlow" parameterType="workFlow">
@@ -128,7 +129,7 @@
   				wf.id,wf.busy_type_id,wf.name,wf.model_id,wf.description ,
   				wf.create_time ,wf.update_time,wf.busy_type_name,wf.json ,wf.system_id,
   				wf.workflow_node ,fn.name as node_name ,fn.description as node_description,
-  				wf.work_flow_code
+  				wf.work_flow_code ,j.name as jobs_name,wf.update_time,wf.status
   		from 
   				workflow  wf 
   		left join 
