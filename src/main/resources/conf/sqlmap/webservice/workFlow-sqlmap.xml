@@ -143,7 +143,11 @@
   		and
   				wf.system_id = #{systemId}
    		and			
-  				wf.status != 2		 				
+  				wf.status != 2
+  		<if test="busyTypeId != null ">
+  				busy_type_id = #{busyTypeId}
+  		</if>			
+  						 				
   		<if test="limit != null and offset != null">
   				limit #{limit},#{offset}
   		</if>					
