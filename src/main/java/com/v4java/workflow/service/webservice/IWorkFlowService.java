@@ -25,7 +25,7 @@ public interface IWorkFlowService {
 	 * @return
 	 * @throws Exception
 	 */
-	int doWorkFlow(Integer workFlowId, UserVO userVO,int agree)throws Exception;
+	int doWorkFlow(WorkFlow workFlow, UserVO userVO,int agree)throws Exception;
 	
 	int updateWorkFlow(WorkFlow workFlow) throws Exception;
 

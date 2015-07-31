@@ -97,8 +97,8 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 
 	@Override
 	@Transactional	
-	public int doWorkFlow(Integer workFlowId, UserVO userVO,int agree) throws Exception {
-		WorkFlow workFlow = workFlowDao.findWorkFlowById(workFlowId);
+	public int doWorkFlow(WorkFlow workFlow, UserVO userVO,int agree) throws Exception {
+		workFlow = workFlowDao.findWorkFlowById(workFlow.getId());
 		if (workFlow==null) {
 			return WorkFlowErrorConst.NO_WORK_FLOW;
 		}
@@ -147,7 +147,7 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 			approveLog.setUserCode(userVO.getUserCode());
 			approveLog.setUserName(userVO.getUserName());
 			approveLog.setFlowNode(nowFlowNode.getId());
-			approveLog.setWorkFlowId(workFlowId);
+			approveLog.setWorkFlowId(workFlow.getId());
 			approveLog.setBusyTypeId(workFlow.getBusyTypeId());
 			approveLog.setBusyTypeName(workFlow.getBusyTypeName());
 			approveLog.setJobsId(flowParam.getNowJobsId());
