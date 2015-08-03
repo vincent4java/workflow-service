@@ -15,7 +15,7 @@ public class FlowNode implements Pojo{
 	private Integer nodeTypeId ;//   '节点类型类型 0开始节点 1.任务节点 2.判断节点 3.结束 ',
 	private String flowTest ;//'判断json 正则判断'
 	private Integer sort ;// '下一个节点'
-	private Integer nextSort ;// '下一个节点'
+	private Integer nextSort = 0 ;// '下一个节点'
 	private String name;//  '审批流节点名称'
 	private Integer status;
 	private String description;// '审批流节点描述'
@@ -99,6 +99,5 @@ public class FlowNode implements Pojo{
 	public void setNodeTypeId(Integer nodeTypeId) {
 		this.nodeTypeId = nodeTypeId;
 	}
-	
 	
 }

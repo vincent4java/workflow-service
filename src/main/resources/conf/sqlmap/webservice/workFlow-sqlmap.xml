@@ -144,8 +144,9 @@
   				wf.system_id = #{systemId}
    		and			
   				wf.status != 2
+  				
   		<if test="busyTypeId != null ">
-  				busy_type_id = #{busyTypeId}
+  		and		busy_type_id = #{busyTypeId}
   		</if>			
   						 				
   		<if test="limit != null and offset != null">
