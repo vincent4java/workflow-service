@@ -21,7 +21,7 @@
     <result column="model_id" 		property="modelId" 		jdbcType="INTEGER" />
     <result column="model_name" 	property="modelName" 	jdbcType="VARCHAR" />
 
-    <result column="name" 			property="workflowName" jdbcType="VARCHAR" />
+    <result column="name" 			property="name" 		jdbcType="VARCHAR" />
     <result column="system_id" 		property="systemId" 	jdbcType="INTEGER" />
     <!--  -->
   </resultMap>
@@ -39,5 +39,14 @@
 				#{systemId}
 		)
 	</insert>	
+	  
+	  <select id="findApproveLogsByWorkfLowId" resultMap="approveLog-resultMap" parameterType="int">
+	  		select
+	  				*
+	  		from
+	  				approve_log
+	  		where
+	  				workflow_id = #{workFlowId}		
+	  </select>
 	  
 </mapper>

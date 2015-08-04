@@ -150,7 +150,7 @@
   		</if>			
   						 				
   		<if test="limit != null and offset != null">
-  				limit #{limit},#{offset}
+  				limit #{offset},#{limit}
   		</if>					
   	</select>
   	
