@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.v4java.workflow.dao.webservice.Xf9SystemDao" >
+
+  <resultMap id="xf9System-resultMap" type="xf9System" >
+    <id 		column="id" 				property="id" 				jdbcType="INTEGER" />
+    <result column="name" 					property="name" 			jdbcType="VARCHAR" />
+    <result column="description" 			property="description" 		jdbcType="VARCHAR" />
+    <result column="status" 				property="status" 			jdbcType="INTEGER" />
+    <result column="create_time" 			property="createTime" 		jdbcType="TIMESTAMP" />
+    <!--  -->
+    <result column="update_time" 			property="updateTime" 		jdbcType="TIMESTAMP" />
+ 	<result column="user_pwd" 				property="userPwd" 			jdbcType="VARCHAR" />
+ 	<result column="user_name" 				property="userName" 		jdbcType="VARCHAR" />
+  	<result column="user_code" 				property="userCode" 		jdbcType="VARCHAR" />
+  	<result column="system_code" 			property="systemCode" 		jdbcType="VARCHAR" />
+  	
+  </resultMap>
+
+	<select id="findXf9SystemBySystemCode" parameterType="string" resultMap="xf9System-resultMap">
+			select
+					id ,name,status,user_code,user_name,system_code
+			from 
+					xf9_system
+			where		
+					system_code = #{systemCode}
+	</select>
+</mapper>
