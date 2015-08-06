@@ -336,12 +336,6 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 		
 	}
 
-	
-	@Override
-	public int updateWorkFlow(WorkFlow workFlow) throws Exception {
-		return workFlowDao.updateWorkFlow(workFlow);
-	}
-
 	@Override
 	public List<WorkFlowVO> findUserWorkFlowVOByUserCodeAndSystemId(WorkFlowQuery workFlowQueryd) throws Exception {
 		return workFlowDao.findUserWorkFlowVOByUserCodeAndSystemId(workFlowQueryd);
@@ -349,5 +343,10 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 	@Override
 	public int findUserWorkFlowVOCountByUserCodeAndSystemId(WorkFlowQuery workFlowQuery) throws Exception {
 		return workFlowDao.findUserWorkFlowVOCountByUserCodeAndSystemId(workFlowQuery);
+	}
+
+	@Override
+	public int updateWorkFlowJson(WorkFlow workFlow) throws Exception {
+		return workFlowDao.updateWorkFlowJson(workFlow);
 	}
 }

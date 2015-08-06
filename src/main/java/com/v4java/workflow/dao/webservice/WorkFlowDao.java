@@ -13,9 +13,6 @@ public interface WorkFlowDao {
 	WorkFlow findWorkFlowById(Integer id) throws Exception;
 	
 	int insertWorkFlow(WorkFlow workFlow) throws Exception;
-
-	
-	int updateWorkFlow(WorkFlow workFlow) throws Exception;
 	
 	int updateWorkFlowStatusUseWorkFlowParam(WorkFlowParam workFlowParam) throws Exception;
 	
@@ -33,4 +30,6 @@ public interface WorkFlowDao {
 	 * @throws Exception
 	 */
 	int findUserWorkFlowVOCountByUserCodeAndSystemId(WorkFlowQuery workFlowQuery) throws Exception;
+	
+	int updateWorkFlowJson(WorkFlow workFlow) throws Exception;
 }

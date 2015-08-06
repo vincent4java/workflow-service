@@ -27,8 +27,6 @@ public interface IWorkFlowService {
 	 */
 	int doWorkFlow(WorkFlow workFlow, UserVO userVO,int agree)throws Exception;
 	
-	int updateWorkFlow(WorkFlow workFlow) throws Exception;
-
 
 	/**
 	 * 查找用户代办审批 WorkFlowVO
@@ -45,4 +43,11 @@ public interface IWorkFlowService {
 	 */
 	int findUserWorkFlowVOCountByUserCodeAndSystemId(WorkFlowQuery workFlowQuery) throws Exception;
 	
+	/**
+	 * 更工作流json
+	 * @param workFlow
+	 * @return
+	 * @throws Exception
+	 */
+	int updateWorkFlowJson(WorkFlow workFlow) throws Exception;
 }

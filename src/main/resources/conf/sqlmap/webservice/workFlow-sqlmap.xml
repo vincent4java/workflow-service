@@ -69,29 +69,12 @@
 	
 	</insert>
 	
-	<update id="updateWorkFlow" parameterType="workFlow" >
-		update workflow	 
-		<set> 
-			<if test="name != null">
-       			 name = #{name,jdbcType=VARCHAR},
-      		</if>
-			<if test="description != null">
-       			 description = #{description,jdbcType=VARCHAR},
-      		</if>		
-			<if test="jobsId != null">
-       			 jobs_id = #{jobsId,jdbcType=INTEGER},
-      		</if>
-			<if test="workflowNode != null">
-       			 workflow_node = #{workflowNode,jdbcType=INTEGER},
-      		</if>      		
- 			<if test="status != null">
-       			 status = #{status,jdbcType=INTEGER},
-      		</if> 
-			<if test="json != null">
+	<update id="updateWorkFlowJson" parameterType="workFlow" >
+		update 
+				workflow	 
+		set
        			 json = #{json,jdbcType=VARCHAR},
-      		</if> 
       			update_time  = now()		    		
-      </set>			
 		where id = #{id}	
 	</update>
 	
