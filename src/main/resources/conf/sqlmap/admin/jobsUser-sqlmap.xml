@@ -60,4 +60,18 @@
 				jobs_id = #{jobsId}			  
   </select>
   
+  
+  
+    <select id="findJobsUser" parameterType="jobsUserQuery" resultMap="jobsUser-resultMap">
+		select 
+				jobs_id ,status
+		from
+				jobs_user 
+		where
+				system_id = #{systemId}
+		and
+				user_code = #{userCode}	
+						  
+  </select>
+  
 </mapper>

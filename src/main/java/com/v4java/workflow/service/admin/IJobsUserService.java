@@ -14,4 +14,7 @@ public interface IJobsUserService {
 	List<JobsUserVO> findJobsUserVO(JobsUserQuery jobsUserQuery) throws Exception;
 	
 	int findJobsUserVOCount(JobsUserQuery jobsUserQuery) throws Exception;
+	
+	
+	List<JobsUser> findJobsUser(JobsUserQuery jobsUserQuery) throws Exception;
 }

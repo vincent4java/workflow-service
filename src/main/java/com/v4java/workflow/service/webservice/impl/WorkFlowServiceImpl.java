@@ -62,6 +62,9 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 		workFlowModelQuery.setBusyTypeId(workFlow.getBusyTypeId());
 		workFlowModelQuery.setSystemId(userVO.getSystemId());
 		WorkFlowModel workFlowModel = workFlowModelDao.findWorkFlowModelSystemIdAndType(workFlowModelQuery);
+		if (workFlowModel==null) {
+			return -1;
+		}
 		if (userVO.getJobsIds()==null||userVO.getJobsIds().size()<=0) {
 			FlowNode firstNode = flowNodeDao.findFirstFlowNodeById(workFlowModel.getId());
 			workFlow.setJobsId(firstNode.getJobsId());

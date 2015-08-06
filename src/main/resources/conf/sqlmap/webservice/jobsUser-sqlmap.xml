@@ -26,4 +26,7 @@
 		and
 				system_id  = #{systemId}		
 	</select>  
+	
+
+	
 </mapper>

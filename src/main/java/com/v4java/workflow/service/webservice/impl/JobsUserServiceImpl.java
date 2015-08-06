@@ -1,6 +1,7 @@
 package com.v4java.workflow.service.webservice.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,5 +21,6 @@ public class JobsUserServiceImpl implements IJobsUserService{
 	public List<JobsUser> findjobsUserByUserCodeAndSystemId(JobsUserQuery jobsUserQuery)throws Exception {
 		return jobsUserDao.findjobsUserByUserCodeAndSystemId(jobsUserQuery);
 	}
+
 
 }

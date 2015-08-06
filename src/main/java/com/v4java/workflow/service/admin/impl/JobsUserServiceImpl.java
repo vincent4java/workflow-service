@@ -36,6 +36,12 @@ public class JobsUserServiceImpl implements IJobsUserService{
 		return jobsUserDao.findJobsUserVOCount(jobsUserQuery);
 	}
 
+
+	@Override
+	public List<JobsUser> findJobsUser(JobsUserQuery jobsUserQuery)throws Exception {
+		return jobsUserDao.findJobsUser(jobsUserQuery);
+	}
+
 	
 	
 }
