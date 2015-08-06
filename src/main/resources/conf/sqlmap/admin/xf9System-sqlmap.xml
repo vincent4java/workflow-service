@@ -17,31 +17,16 @@
   	
   </resultMap>
   
-	<update id="updateXf9System" parameterType="xf9System" >
-		update  xf9_system
-			<set>
-				<if test="name != null and name != '' ">
-					name = #{name}
-				</if>			
-				<if test="description != null and description != '' ">
-					description = #{description}
-				</if>		
-				<if test="status != null ">
-					status = #{status}
-				</if>		
-				<if test="userName != null and userName != '' ">
-					user_name = #{userName}
-				</if>					
-				<if test="userPwd != null and userPwd != '' ">
-					user_pwd = #{userPwd}
-				</if>	
-				<if test="userCode != null and userCode != '' ">
-					user_code = #{userCode}
-				</if>	
-			</set>
+	<update id="updateXf9System" parameterType="xf9SystemParam" >
+		update  
+				xf9_system
+		set			
+				user_pwd = #{nowPwd},
 				update_time = now()
 		where  
 				id = #{id}
+		and
+				user_pwd = #{oldPwd}
 	</update>	  
 
 	<select id="findXf9SystemByUserCode" parameterType="string" resultMap="xf9System-resultMap">
