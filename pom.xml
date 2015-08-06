@@ -24,6 +24,11 @@
 			<artifactId>v4java-utils</artifactId>
 		</dependency>
 		
+		  	<dependency>
+				<groupId>com.v4java</groupId>
+				<artifactId>workflow-pojo</artifactId>
+			</dependency>
+		
 		<!-- spring核心包 -->
 		<!-- springframe start -->
 		<dependency>
