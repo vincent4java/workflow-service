@@ -83,7 +83,7 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 			checkNextFlowNode(nextFlowNode, workFlow, flowNodes);
 			
 		}
-		if (workFlow.getName()==null) {
+		if (workFlow.getName()==null||workFlow.getName().equals("")) {
 			workFlow.setName(workFlowModel.getName());
 		}
 		workFlow.setSystemId(userVO.getSystemId());

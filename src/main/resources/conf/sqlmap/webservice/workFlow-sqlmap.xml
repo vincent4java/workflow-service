@@ -169,7 +169,10 @@
   		and
   				wf.system_id = #{systemId}
   		and			
-  				wf.status != 2		
+  				wf.status != 2	
+  	  	<if test="busyTypeId != null ">
+  		and		busy_type_id = #{busyTypeId}
+  		</if>					
   	</select>
   	
   
