@@ -17,6 +17,10 @@ public class WorkFlowParam extends Param{
 	
 	private Integer nowWorkflowNode ;// '审批节点',
 
+	private Integer count;
+	
+	private Integer isDelete;
+
 	public Integer getNowJobsId() {
 		return nowJobsId;
 	}
@@ -49,7 +53,23 @@ public class WorkFlowParam extends Param{
 		this.nowWorkflowNode = nowWorkflowNode;
 	}
 
+	public Integer getCount() {
+		return count;
+	}
 
+	public void setCount(Integer count) {
+		this.count = count;
+	}
+
+	public Integer getIsDelete() {
+		return isDelete;
+	}
+
+	public void setIsDelete(Integer isDelete) {
+		this.isDelete = isDelete;
+	}
+	
+	
 	
 	
 }

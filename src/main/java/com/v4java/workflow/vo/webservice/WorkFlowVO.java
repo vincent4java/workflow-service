@@ -27,7 +27,7 @@ public class WorkFlowVO extends VO{
 	private String nodeDescription;
 	private Integer workflowNode;
 	private String workFlowCode ;//
-	
+	private Integer isDelete ;// 
 	
 	public Integer getId() {
 		return id;
@@ -124,6 +124,12 @@ public class WorkFlowVO extends VO{
 	}
 	public void setWorkFlowCode(String workFlowCode) {
 		this.workFlowCode = workFlowCode;
+	}
+	public Integer getIsDelete() {
+		return isDelete;
+	}
+	public void setIsDelete(Integer isDelete) {
+		this.isDelete = isDelete;
 	}
 	
 }

@@ -42,6 +42,12 @@ public class FlowConst {
 	//不可用
 	public static final int STATUS_FALSE = 1;
 	
+	//可用
+	public static final int DELETE_TRUE = 0;
+	//不可用
+	public static final int DELETE_FALSE = 1;
+	
+	
 	public static final String[] NODE_TYPE_NAME ={"开始","任务","判断","结束"};
 }
 

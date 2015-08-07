@@ -7,7 +7,7 @@ public class Query implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 6224951166656962013L;
+	private static final long serialVersionUID = -3394180983677381799L;
 
 	
 	private Integer limit;

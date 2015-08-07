@@ -3,6 +3,7 @@ package com.v4java.workflow.service.webservice;
 
 import java.util.List;
 
+import com.v4java.workflow.param.webservice.WorkFlowParam;
 import com.v4java.workflow.pojo.WorkFlow;
 import com.v4java.workflow.query.webservice.WorkFlowQuery;
 import com.v4java.workflow.vo.webservice.UserVO;
@@ -25,7 +26,7 @@ public interface IWorkFlowService {
 	 * @return
 	 * @throws Exception
 	 */
-	int doWorkFlow(WorkFlow workFlow, UserVO userVO,int agree)throws Exception;
+	WorkFlowParam doWorkFlow(WorkFlow workFlow, UserVO userVO,int agree)throws Exception;
 	
 
 	/**
@@ -50,4 +51,7 @@ public interface IWorkFlowService {
 	 * @throws Exception
 	 */
 	int updateWorkFlowJson(WorkFlow workFlow) throws Exception;
+	
+	
+	WorkFlowParam deleteWorkflow(WorkFlow workFlow, UserVO userVO)throws Exception;
 }

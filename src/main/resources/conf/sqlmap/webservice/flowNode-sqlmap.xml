@@ -6,7 +6,7 @@
   
     <id 	column="id" 				property="id" 			jdbcType="INTEGER" />
     <result column="jobs_id" 			property="jobsId" 		jdbcType="INTEGER" />
-    <result column="model_id" 			property="modelId" 			jdbcType="INTEGER" />
+    <result column="model_id" 			property="modelId" 		jdbcType="INTEGER" />
     <result column="node_type" 			property="nodeType" 	jdbcType="INTEGER" />
     <result column="flow_test" 			property="flowTest" 	jdbcType="VARCHAR" />
 	

@@ -23,7 +23,7 @@
   	
   	<result column="system_id"      property="systemId"    	jdbcType="INTEGER"/>
   	<result column="work_flow_code" property="workFlowCode" jdbcType="VARCHAR"/>
-  	
+  	<result column="is_delete" 		property="isDelete" 	jdbcType="INTEGER" />
   	
   </resultMap>
   
@@ -52,6 +52,9 @@
   	<result column="node_name" 				property="nodeName" 		jdbcType="VARCHAR" />
   	<result column="work_flow_code" 		property="workFlowCode" 	jdbcType="VARCHAR"/>
   	<result column="jobs_name" 				property="jobsName" 		jdbcType="VARCHAR"/>
+  	
+  	<result column="is_delete" 				property="isDelete" 		jdbcType="INTEGER" />
+  	
   </resultMap>	
   
   	
@@ -59,12 +62,12 @@
 		insert into workflow(
 				busy_type_id ,model_id ,name ,description ,jobs_id
 				,workflow_node ,status,money,busy_type_name,json,
-				user_name,user_code,system_id,work_flow_code
+				user_name,user_code,system_id,work_flow_code,is_delete
 			)
 		values(
 			#{busyTypeId},#{modelId},#{name},#{description},#{jobsId},
 			#{workflowNode},#{status},#{money},#{busyTypeName},#{json},
-			#{userName},#{userCode},#{systemId},#{workFlowCode}
+			#{userName},#{userCode},#{systemId},#{workFlowCode},0
 			)
 	
 	</insert>
@@ -100,7 +103,8 @@
 	<select id="findWorkFlowById" parameterType="java.lang.Integer" resultMap="workFlow-resultMap">
 		select 
 				id ,busy_type_id ,model_id ,name ,description ,
-				jobs_id ,workflow_node ,status,money,busy_type_name,json
+				jobs_id ,workflow_node ,status,money,busy_type_name,
+				json,is_delete
 		from 
 				workflow 
 		where
@@ -127,7 +131,8 @@
   				wf.system_id = #{systemId}
    		and			
   				wf.status != 2
-  				
+  		and
+  				wf.is_delete = 0		
   		<if test="busyTypeId != null ">
   		and		busy_type_id = #{busyTypeId}
   		</if>			
@@ -153,10 +158,22 @@
   				wf.system_id = #{systemId}
   		and			
   				wf.status != 2	
+  		and			
+  				wf.is_delete = 0	  				
   	  	<if test="busyTypeId != null ">
   		and		busy_type_id = #{busyTypeId}
   		</if>					
   	</select>
   	
-  
+
+	<update id="deleteWorkflow" parameterType="workFlow">
+		update
+				workflow
+		set
+				is_delete = 1,
+				update_time = now()
+		where
+				id = #{id}				 
+	</update>
+	  
 </mapper>

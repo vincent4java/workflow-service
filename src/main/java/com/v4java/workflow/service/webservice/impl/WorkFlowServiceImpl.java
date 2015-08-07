@@ -97,19 +97,25 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 	}
 
 
-
 	@Override
 	@Transactional	
-	public int doWorkFlow(WorkFlow workFlow, UserVO userVO,int agree) throws Exception {
+	public WorkFlowParam doWorkFlow(WorkFlow workFlow, UserVO userVO,int agree) throws Exception {
 		workFlow = workFlowDao.findWorkFlowById(workFlow.getId());
+		WorkFlowParam flowParam  = new WorkFlowParam();
 		if (workFlow==null) {
-			return WorkFlowErrorConst.NO_WORK_FLOW;
+			flowParam.setCount(WorkFlowErrorConst.NO_WORK_FLOW);
+			return flowParam;
+		}
+		if (workFlow.getIsDelete()==FlowConst.DELETE_FALSE) {
+			flowParam.setCount(WorkFlowErrorConst.ISDELETE_FALSE);
+			return flowParam ;
 		}
 		if (workFlow.getStatus()==FlowConst.END) {
-			return WorkFlowErrorConst.WORK_FLOW_END;
+			flowParam.setCount(WorkFlowErrorConst.WORK_FLOW_END);
+			return flowParam;
 		}
+		
 		List<FlowNode> flowNodes = flowNodeDao.findFlowNodeByModelId(workFlow.getModelId()); 
-		WorkFlowParam flowParam = new WorkFlowParam();
 		//原来的状态
 		flowParam.setOldJobsId(workFlow.getJobsId());
 		flowParam.setOldStatus(workFlow.getStatus());
@@ -117,15 +123,17 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 		//得到当前节点
 		FlowNode nowFlowNode = findWorkFlowById(flowNodes, workFlow.getWorkflowNode());
 		if (nowFlowNode==null) {
-			return WorkFlowErrorConst.NOWNODE_NULL;
+			flowParam.setCount(WorkFlowErrorConst.NOWNODE_NULL);
+			return flowParam ;
 		}
 		if (nowFlowNode.getStatus() == FlowConst.STATUS_FALSE){
-			return WorkFlowErrorConst.NOWNODE_STATUS_FALSE;
+			flowParam.setCount(WorkFlowErrorConst.NOWNODE_STATUS_FALSE);
+			return flowParam ;
 		}
 		//判断有无权限
 		if (!userVO.getJobsIds().contains(nowFlowNode.getJobsId())) {
-			System.err.println("没有该权限");
-			return -1;
+			flowParam.setCount(WorkFlowErrorConst.N0_PERMISSION);
+			return flowParam ;
 		}
 		//拒绝
 		if (agree == FlowConst.AGREE_FALSE) {
@@ -160,8 +168,10 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 			approveLog.setSystemId(userVO.getSystemId());
 			approveLog.setName(workFlow.getName());
 			approveLogDao.insertApproveLog(approveLog);
+			flowParam.setIsDelete(0);
 		}
-		return n;
+		flowParam.setCount(n);
+		return flowParam;
 	}
 	
 	/**
@@ -351,5 +361,64 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 	@Override
 	public int updateWorkFlowJson(WorkFlow workFlow) throws Exception {
 		return workFlowDao.updateWorkFlowJson(workFlow);
+	}
+
+	@Override
+	public WorkFlowParam deleteWorkflow(WorkFlow workFlow, UserVO userVO) throws Exception {
+		workFlow = workFlowDao.findWorkFlowById(workFlow.getId());
+		WorkFlowParam flowParam  = new WorkFlowParam();
+		if (workFlow==null) {
+			flowParam.setCount(WorkFlowErrorConst.NO_WORK_FLOW);
+			return flowParam;
+		}
+		if (workFlow.getIsDelete()==FlowConst.DELETE_FALSE) {
+			flowParam.setCount(WorkFlowErrorConst.ISDELETE_FALSE);
+			return flowParam ;
+		}
+		if (workFlow.getStatus()==FlowConst.END) {
+			flowParam.setCount(WorkFlowErrorConst.WORK_FLOW_END);
+			return flowParam;
+		}
+		List<FlowNode> flowNodes = flowNodeDao.findFlowNodeByModelId(workFlow.getModelId()); 
+		//原来的状态
+		flowParam.setOldJobsId(workFlow.getJobsId());
+		flowParam.setOldStatus(workFlow.getStatus());
+		flowParam.setOldWorkflowNode(workFlow.getWorkflowNode());
+		//得到当前节点
+		FlowNode nowFlowNode = findWorkFlowById(flowNodes, workFlow.getWorkflowNode());
+		if (nowFlowNode==null) {
+			flowParam.setCount(WorkFlowErrorConst.NOWNODE_NULL);
+			return flowParam ;
+		}
+		if (nowFlowNode.getStatus() == FlowConst.STATUS_FALSE){
+			flowParam.setCount(WorkFlowErrorConst.NOWNODE_STATUS_FALSE);
+			return flowParam ;
+		}
+		//判断有无权限
+		if (!userVO.getJobsIds().contains(nowFlowNode.getJobsId())) {
+			flowParam.setCount(WorkFlowErrorConst.N0_PERMISSION);
+			return flowParam ;
+		}
+		int n = workFlowDao.deleteWorkflow(workFlow);
+		if (n==1) {
+			ApproveLog approveLog = new ApproveLog();
+			approveLog.setStatus(2);
+			approveLog.setUserCode(userVO.getUserCode());
+			approveLog.setUserName(userVO.getUserName());
+			approveLog.setFlowNode(nowFlowNode.getId());
+			approveLog.setWorkFlowId(workFlow.getId());
+			approveLog.setBusyTypeId(workFlow.getBusyTypeId());
+			approveLog.setBusyTypeName(workFlow.getBusyTypeName());
+			approveLog.setJobsId(flowParam.getNowJobsId());
+			approveLog.setJobsId(nowFlowNode.getJobsId());
+			approveLog.setNodeName(nowFlowNode.getName());
+			approveLog.setModelId(nowFlowNode.getModelId());
+			approveLog.setSystemId(userVO.getSystemId());
+			approveLog.setName(workFlow.getName());
+			approveLogDao.insertApproveLog(approveLog);
+			flowParam.setIsDelete(1);
+		}
+		flowParam.setCount(n);
+		return flowParam;
 	}
 }

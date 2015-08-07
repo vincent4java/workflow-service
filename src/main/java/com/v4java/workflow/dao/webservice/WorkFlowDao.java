@@ -32,4 +32,7 @@ public interface WorkFlowDao {
 	int findUserWorkFlowVOCountByUserCodeAndSystemId(WorkFlowQuery workFlowQuery) throws Exception;
 	
 	int updateWorkFlowJson(WorkFlow workFlow) throws Exception;
+	
+	
+	int deleteWorkflow(WorkFlow workFlow)throws Exception;
 }
