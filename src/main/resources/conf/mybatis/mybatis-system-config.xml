@@ -25,23 +25,7 @@
 	<!-- 全局别名设置，在映射文件中只需写别名，而不必写出整个类路径 -->
 	<typeAliases>	
 		<!--pojo  -->
-		<typeAlias type="com.v4java.workflow.pojo.Jobs" alias="jobs" />
-		<typeAlias type="com.v4java.workflow.pojo.FlowNode" alias="flowNode" />
-		<typeAlias type="com.v4java.workflow.pojo.WorkFlow" alias="workFlow" />
-		<typeAlias type="com.v4java.workflow.pojo.WorkFlowModel" alias="workFlowModel" />
-		<typeAlias type="com.v4java.workflow.pojo.JobsUser" alias="jobsUser" />
-		<typeAlias type="com.v4java.workflow.pojo.ApproveLog" alias="approveLog" />
 		<typeAlias type="com.v4java.workflow.pojo.Xf9System" alias="xf9System" />
-		
-		<!-- vo  -->
-		<typeAlias type="com.v4java.workflow.vo.system.WorkFlowVO" alias="workFlowVO" />	
-		<typeAlias type="com.v4java.workflow.vo.system.JobsVO" alias="jobsVO" />
-		<typeAlias type="com.v4java.workflow.vo.system.WorkFlowModelVO" alias="workFlowModelVO" />
-			
-		<!-- query  -->	
-		<typeAlias type="com.v4java.workflow.query.system.JobsQuery" alias="jobsQuery"/>
-		<typeAlias type="com.v4java.workflow.query.system.WorkFlowModelQuery" alias="workFlowModelQuery"/>
-			
 	</typeAliases>
 	
 </configuration>
