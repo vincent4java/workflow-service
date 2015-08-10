@@ -145,4 +145,31 @@
   			id = #{id}
   </update>
   
+  <select id="findNextSortCountBySort" parameterType="flowNode" resultType="int">
+  
+ 	 select 
+  	  			count(*)
+  	 from
+  	  		  flow_node
+ 	  where
+  	  		  next_sort = (select sort from flow_node where id = #{id})
+  	 and
+  	 		  model_id = (select model_id from flow_node where id = #{id} )
+  	 for 
+  	 		update
+  	 		
+  </select>
+  
+ 	<update id="updateFlowNodeStatus" parameterType="flowNode">
+ 	  UPDATE 
+  			flow_node
+  	  SET
+  			STATUS = #{status},
+  			UPDATE_TIME = now()
+  	  where
+  	  		node_type != 0
+  	  and 
+  	  		id = #{id}		  								
+ 	</update> 
+  
 </mapper>

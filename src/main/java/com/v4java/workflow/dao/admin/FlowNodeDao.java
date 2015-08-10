@@ -22,4 +22,9 @@ public interface FlowNodeDao {
 	
 	int updateFlowNode(FlowNode flowNode) throws Exception;
 	
+	
+	int updateFlowNodeStatus(FlowNode flowNode) throws Exception;
+	
+	int findNextSortCountBySort(FlowNode flowNode) throws Exception;
+	
 }

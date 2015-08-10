@@ -19,5 +19,10 @@ public class FlowNodeServiceImpl implements IFlowNodeService{
 	public List<FlowNode> findFlowNodeByModelId(Integer modelId)throws Exception {
 		return flowNodeDao.findFlowNodeByModelId(modelId);
 	}
+
+	@Override
+	public int updateFlowNodeStatus(FlowNode flowNode) throws Exception {
+		return 0;
+	}
 	
 }

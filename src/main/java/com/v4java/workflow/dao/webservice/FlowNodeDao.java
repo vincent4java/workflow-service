@@ -11,4 +11,6 @@ public interface FlowNodeDao {
 	
 	FlowNode findFirstFlowNodeById(Integer modelId) throws Exception;
 	
+	int updateFlowNodeStatus(FlowNode flowNode)throws Exception;
+	
 }

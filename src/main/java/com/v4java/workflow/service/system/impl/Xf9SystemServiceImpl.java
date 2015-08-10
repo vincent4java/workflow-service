@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.v4java.workflow.dao.system.Xf9SystemDao;
+import com.v4java.workflow.param.system.Xf9SystemParam;
 import com.v4java.workflow.pojo.Xf9System;
 import com.v4java.workflow.query.system.Xf9SystemQuery;
 import com.v4java.workflow.service.system.IXf9SystemService;
@@ -38,6 +39,16 @@ public class Xf9SystemServiceImpl implements IXf9SystemService{
 	@Override
 	public List<Xf9SystemVO> findXf9Systems(Xf9SystemQuery xf9SystemQuery)throws Exception {
 		return xf9SystemDao.findXf9Systems(xf9SystemQuery);
+	}
+
+	@Override
+	public int updateXf9SystemStatus(Xf9System xf9System) throws Exception {
+		return xf9SystemDao.updateXf9SystemStatus(xf9System);
+	}
+
+	@Override
+	public int updateXf9SystemPwd(Xf9SystemParam xf9SystemParam)throws Exception {
+		return xf9SystemDao.updateXf9SystemPwd(xf9SystemParam);
 	}
 
 }

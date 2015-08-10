@@ -14,4 +14,6 @@ public interface WorkFlowModelDao {
 	 * @throws Exception
 	 */
 	WorkFlowModel findWorkFlowModelSystemIdAndType(WorkFlowModelQuery workFlowModelQuery) throws Exception;
+	
+	
 }

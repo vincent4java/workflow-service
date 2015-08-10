@@ -42,5 +42,14 @@ public class FlowNodeServiceImpl implements IFlowNodeService{
 		return flowNodeDao.findFlowNodeVOCount(flowNodeQuery);
 	}
 
-	
+	@Override
+	public int updateFlowNodeStatus(FlowNode flowNode) throws Exception {
+		int n = flowNodeDao.findNextSortCountBySort(flowNode);
+		if (n==0) {
+			return  flowNodeDao.updateFlowNodeStatus(flowNode);
+		}
+		return -1;
+	}
+
+
 }

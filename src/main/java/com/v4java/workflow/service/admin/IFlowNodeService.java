@@ -19,4 +19,6 @@ public interface IFlowNodeService {
 	int insertFlowNode(FlowNode flowNode) throws Exception;
 	
 	int updateFlowNode(FlowNode flowNode) throws Exception;
+	
+	int updateFlowNodeStatus(FlowNode flowNode) throws Exception;
 }

@@ -15,5 +15,5 @@ public interface IFlowNodeService {
 	 */
 	List<FlowNode> findFlowNodeByModelId(Integer modelId) throws Exception;
 	
-	
+	int updateFlowNodeStatus(FlowNode flowNode)throws Exception;
 }

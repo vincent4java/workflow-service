@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.v4java.workflow.dao.admin.FlowNodeDao;
 import com.v4java.workflow.dao.admin.WorkFlowModelDao;
 import com.v4java.workflow.pojo.WorkFlowModel;
 import com.v4java.workflow.query.admin.WorkFlowModelQuery;
@@ -17,6 +18,8 @@ public class WorkFlowModelServiceImpl implements IWorkFlowModelService{
 
 	@Autowired
 	private WorkFlowModelDao workFlowModelDao ;
+	@Autowired
+	private FlowNodeDao flowNodeDao;
 	@Override
 	public WorkFlowModel findWorkFlowModelById(Integer id) throws Exception {
 		return workFlowModelDao.findWorkFlowModelById(id);

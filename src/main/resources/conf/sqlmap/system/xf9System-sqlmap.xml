@@ -41,7 +41,7 @@
 					NAME,DESCRIPTION,STATUS,USER_PWD,USER_NAME,
 					USER_CODE,SYSTEM_CODE)
 			VALUES
-					(#{name},#{description},#{status},#{userPwd},#{userName},
+					(#{name},#{description},0,#{userPwd},#{userName},
 					#{userCode},#{systemCode})
 	
 	</insert>
@@ -63,4 +63,28 @@
 		FROM 
 				xf9_system
 	</select>
+	
+	<update id="updateXf9SystemStatus" parameterType="xf9System">
+		UPDATE
+				xf9_system
+		SET
+				STATUS  = #{status}	,
+				UPDATE_TIME = now()	
+		WHERE
+				id  =  #{id}
+	</update>
+	
+	
+		<update id="updateXf9SystemPwd" parameterType="xf9SystemParam" >
+		UPDATE  
+				xf9_system
+		SET			
+				user_pwd = #{nowPwd},
+				UPDATE_TIME = now()
+		WHERE  
+				ID = #{id}
+		AND
+				USER_PWD = #{oldPwd}
+	</update>	  
+	
 </mapper>

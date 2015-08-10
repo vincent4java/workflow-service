@@ -23,5 +23,7 @@ public class WorkFlowErrorConst {
 	
 	public static final int  ISDELETE_FALSE= -9;
 	
-	public static final String[] MSG={"","当前用户没有权限","该审批流不存在","该节点不可用","没有该审批任务","该审批任务已结束","当前用户未在该系统注册","该系统未注册","该系统已被禁用","该审批人物已被关闭"};
+	public static final int  MODEL_FALSE= -10;
+	
+	public static final String[] MSG={"","当前用户没有权限","该审批流不存在","该节点不可用","没有该审批任务","该审批任务已结束","当前用户未在该系统注册","该系统未注册","该系统已被禁用","该审批任务已被关闭","该类型任务不可用"};
 }

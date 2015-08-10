@@ -62,8 +62,8 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 		workFlowModelQuery.setBusyTypeId(workFlow.getBusyTypeId());
 		workFlowModelQuery.setSystemId(userVO.getSystemId());
 		WorkFlowModel workFlowModel = workFlowModelDao.findWorkFlowModelSystemIdAndType(workFlowModelQuery);
-		if (workFlowModel==null) {
-			return -1;
+		if (workFlowModel==null||workFlowModel.getStatus()==FlowConst.STATUS_FALSE) {
+			return WorkFlowErrorConst.MODEL_FALSE;
 		}
 		if (userVO.getJobsIds()==null||userVO.getJobsIds().size()<=0) {
 			FlowNode firstNode = flowNodeDao.findFirstFlowNodeById(workFlowModel.getId());
@@ -215,8 +215,12 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 	 * @return
 	 */
 	private FlowNode findFirstWorkFlowBySort(List<FlowNode> flowNodes){
+		int sort = -1;
+		if (flowNodes!=null&&flowNodes.size()>0) {
+			sort= flowNodes.get(0).getNextSort();
+		}
 		for (FlowNode flowNode : flowNodes) {
-			if (flowNode.getStatus()==FlowConst.STATUS_TRUE) {
+			if (sort == flowNode.getSort()&&flowNode.getStatus()==FlowConst.STATUS_TRUE) {
 				return flowNode;
 			}
 		}

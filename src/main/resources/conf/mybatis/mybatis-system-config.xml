@@ -30,6 +30,10 @@
 		<typeAlias type="com.v4java.workflow.vo.system.Xf9SystemVO" 		alias="xf9SystemVO"/>
 	    <!-- query  -->	
 		<typeAlias type="com.v4java.workflow.query.system.Xf9SystemQuery" 	alias="xf9SystemQuery"/>
+		
+		<!--  -->
+		<typeAlias type="com.v4java.workflow.param.system.Xf9SystemParam" 	alias="xf9SystemParam"/>
+		
 	</typeAliases>
 	
 </configuration>
