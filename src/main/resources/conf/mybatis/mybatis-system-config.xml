@@ -25,7 +25,11 @@
 	<!-- 全局别名设置，在映射文件中只需写别名，而不必写出整个类路径 -->
 	<typeAliases>	
 		<!--pojo  -->
-		<typeAlias type="com.v4java.workflow.pojo.Xf9System" alias="xf9System" />
+		<typeAlias type="com.v4java.workflow.pojo.Xf9System" 				alias="xf9System" />
+		<!--  vo -->
+		<typeAlias type="com.v4java.workflow.vo.system.Xf9SystemVO" 		alias="xf9SystemVO"/>
+	    <!-- query  -->	
+		<typeAlias type="com.v4java.workflow.query.system.Xf9SystemQuery" 	alias="xf9SystemQuery"/>
 	</typeAliases>
 	
 </configuration>

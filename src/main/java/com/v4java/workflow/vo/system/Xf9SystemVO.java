@@ -2,39 +2,35 @@ package com.v4java.workflow.vo.system;
 
 import java.sql.Timestamp;
 
-/**
- * 
- * @author vincent
- * 岗位VO
- */
-public class JobsVO implements VO{
+import com.v4java.workflow.vo.VO;
+
+public class Xf9SystemVO  extends VO{
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 6002937068191730416L;
+	private static final long serialVersionUID = -1923522191799766151L;
 
-	
 	private Integer id;
 	
 	private String name;
+	
+	private String userName;
+	
+	private String userCode;
+	
+	private String userPwd;
 	
 	private String description;
 	
 	private Integer status;
 	
-	private String statusName;
-	
-	private Integer systemId;
-	
-	private String systemName;
+	private String systemCode;
 	
 	private Timestamp createTime;
 	
 	private Timestamp updateTime;
-	
 
-	
 	public Integer getId() {
 		return id;
 	}
@@ -49,6 +45,22 @@ public class JobsVO implements VO{
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getUserCode() {
+		return userCode;
+	}
+
+	public void setUserCode(String userCode) {
+		this.userCode = userCode;
 	}
 
 	public String getDescription() {
@@ -67,23 +79,6 @@ public class JobsVO implements VO{
 		this.status = status;
 	}
 
-	public Integer getSystemId() {
-		return systemId;
-	}
-
-	public void setSystemId(Integer systemId) {
-		this.systemId = systemId;
-	}
-	
-	
-	public String getSystemName() {
-		return systemName;
-	}
-
-	public void setSystemName(String systemName) {
-		this.systemName = systemName;
-	}
-
 	public Timestamp getCreateTime() {
 		return createTime;
 	}
@@ -100,13 +95,23 @@ public class JobsVO implements VO{
 		this.updateTime = updateTime;
 	}
 
-	public String getStatusName() {
-		return statusName;
+	public String getUserPwd() {
+		return userPwd;
 	}
 
-	public void setStatusName(String statusName) {
-		this.statusName = statusName;
+	public void setUserPwd(String userPwd) {
+		this.userPwd = userPwd;
 	}
+
+	public String getSystemCode() {
+		return systemCode;
+	}
+
+	public void setSystemCode(String systemCode) {
+		this.systemCode = systemCode;
+	}
+
 	
+
 	
 }

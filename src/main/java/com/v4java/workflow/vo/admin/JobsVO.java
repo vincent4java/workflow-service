@@ -2,6 +2,8 @@ package com.v4java.workflow.vo.admin;
 
 import java.sql.Timestamp;
 
+import com.v4java.workflow.vo.VO;
+
 /**
  * 
  * @author vincent

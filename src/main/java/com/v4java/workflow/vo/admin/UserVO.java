@@ -2,6 +2,8 @@ package com.v4java.workflow.vo.admin;
 
 import java.util.List;
 
+import com.v4java.workflow.vo.VO;
+
 public class UserVO extends VO{
 
 	/**
