@@ -14,10 +14,6 @@
 
 
 	<dependencies>
-<!-- 		<dependency>
-			<groupId>com.vincent</groupId>
-			<artifactId>v4java-exception</artifactId>
-		</dependency> -->
 		
 		<dependency>
 			<groupId>com.vincent</groupId>
