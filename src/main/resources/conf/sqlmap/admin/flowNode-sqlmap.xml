@@ -150,10 +150,10 @@
   	  SET
   			STATUS = #{status},
   			UPDATE_TIME = now()
-  	  where
-  	  		node_type != 0
-  	  and 
-  	  		id = #{id}		  								
+  	  WHERE
+  	  		NODE_TYPE != 0
+  	  AND 
+  	  		ID = #{id}		  								
  	</update> 
   
 </mapper>

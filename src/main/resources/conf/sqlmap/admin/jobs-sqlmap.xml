@@ -33,13 +33,11 @@
 	 			ID = #{id}
 	 	AND
 	 			(SELECT 
-						COUNT(fn.`jobs_id`)
+						COUNT(jobs_id)
 					FROM
-						workflow_model wm
-					LEFT JOIN	
-						flow_node fn ON wm.id = fn.`model_id`
+						flow_node  
 					WHERE
-						fn.`jobs_id`  = #{id} ) = 0			
+						jobs_id  = #{id} ) = 0			
 	 </update>
 	 
 	 

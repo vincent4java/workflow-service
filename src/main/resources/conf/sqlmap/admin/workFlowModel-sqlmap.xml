@@ -45,9 +45,9 @@
    		where 
    				id = #{id}
    		and
-   			( select count(id) from workflow where model_id = #{id} and status = 1)	= 0
+   			( select count(id) from workflow where model_id = #{id} and status in (0,1))	= 0
    		and
-   			( select count(id) from flow_node where model_id = #{id} and node_type = 3)	= 1	
+   			( select count(id) from flow_node where model_id = #{id} and node_type = 3 )	= 1	
    </update>
    
    <update id="updateWorkFlowModel" parameterType="workFlowModel">
