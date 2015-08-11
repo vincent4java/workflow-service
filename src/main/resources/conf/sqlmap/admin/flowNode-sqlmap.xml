@@ -4,20 +4,20 @@
 
   <resultMap id="flowNode-resultMap" type="flowNode" >
   
-    <id 	column="id" 				property="id" 			jdbcType="INTEGER" />
-    <result column="jobs_id" 			property="jobsId" 		jdbcType="INTEGER" />
-    <result column="model_id" 			property="modelId" 		jdbcType="INTEGER" />
-    <result column="node_type" 			property="nodeType" 	jdbcType="INTEGER" />
-    <result column="flow_test" 			property="flowTest" 	jdbcType="VARCHAR" />
+    <id 	column="ID" 				property="id" 			jdbcType="INTEGER" />
+    <result column="JOBS_ID" 			property="jobsId" 		jdbcType="INTEGER" />
+    <result column="MODEL_ID" 			property="modelId" 		jdbcType="INTEGER" />
+    <result column="NODE_TYPE" 			property="nodeType" 	jdbcType="INTEGER" />
+    <result column="FLOW_TEST" 			property="flowTest" 	jdbcType="VARCHAR" />
 	
-	<result column="sort" 				property="sort" 		jdbcType="INTEGER" />
-    <result column="next_sort" 			property="nextSort" 	jdbcType="INTEGER" />
-    <result column="name" 				property="name" 		jdbcType="VARCHAR" />
-    <result column="description" 		property="description" 	jdbcType="VARCHAR" />
-    <result column="create_time" 		property="createTime" 	jdbcType="TIMESTAMP" />
+	<result column="SORT" 				property="sort" 		jdbcType="INTEGER" />
+    <result column="NEXT_SORT" 			property="nextSort" 	jdbcType="INTEGER" />
+    <result column="NAME" 				property="name" 		jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" 		property="description" 	jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" 		property="createTime" 	jdbcType="TIMESTAMP" />
     
-    <result column="update_time" 		property="updateTime" 	jdbcType="TIMESTAMP" />
-    <result column="status" 			property="status" 		jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" 		property="updateTime" 	jdbcType="TIMESTAMP" />
+    <result column="STATUS" 			property="status" 		jdbcType="INTEGER" />
     <!--  -->
   </resultMap>
   
@@ -27,120 +27,120 @@
   
   
   <select id="findFlowNodeVO" parameterType="flowNodeQuery" resultMap="flowNodeVO-resultMap">
-  	select
-  			id,jobs_id,model_id,node_type,flow_test ,status,
-  			next_sort,sort,name,description,create_time,
-  			update_time
-    from			
+  	SELECT
+  			ID,JOBS_ID,MODEL_ID,NODE_TYPE,FLOW_TEST ,STATUS,
+  			NEXT_SORT,SORT,NAME,DESCRIPTION,CREATE_TIME,
+  			UPDATE_TIME
+    FROM			
   			flow_node
-  	where
-  			model_id = #{modelId}
-  	order by 
+  	WHERE
+  			MODEL_ID = #{modelId}
+  	ORDER BY 
   			sort ASC
 	<if test="limit != null and offset != null">
-		  	limit   #{offset} ,#{limit} 		
+		  	LIMIT   #{offset} ,#{limit} 		
 	</if>	
   </select>
   
    <select id="findFlowNodeVOCount" parameterType="flowNodeQuery" resultType="int">
-  	select
-  			count(id)
-    from			
+  	SELECT
+  			COUNT(ID)
+    FROM			
   			flow_node
-  	where
-  			model_id = #{modelId} 			
+  	WHERE
+  			MODEL_ID = #{modelId} 			
   </select>
   
    <select id="findFirstFlowNodeById" parameterType="java.lang.Integer" resultMap="flowNode-resultMap">
-  	select
-  			id,jobs_id,model_id,node_type,flow_test ,
-  			next_sort,sort,name,description,status
-    from			
+  	SELECT
+  			ID,JOBS_ID,MODEL_ID,NODE_TYPE,FLOW_TEST ,
+  			NEXT_SORT,SORT,NAME,DESCRIPTION,STATUS
+    FROM			
   			flow_node
-  	where
-  			model_id = #{modelId}
-  	order by 
-  			sort ASC
-  	limit 0 ,1
+  	WHERE
+  			MODEL_ID = #{modelId}
+  	ORDER BY 
+  			SORT ASC
+  	LIMIT 0 ,1
   </select>
   
    <select id="findFlowNodeById" parameterType="java.lang.Integer" resultMap="flowNode-resultMap">
-  	select
-  			id,jobs_id,model_id,node_type,flow_test,
-  			next_sort,sort,name,description,status
-  	from			
+  	SELECT
+  			ID,JOBS_ID,MODEL_ID,NODE_TYPE,FLOW_TEST,
+  			NEXT_SORT,SORT,NAME,DESCRIPTION,STATUS
+  	FROM			
   			flow_node
-  	where
-  			id = #{id}
+  	WHERE
+  			ID = #{id}
   </select>
   
   <insert id="insertFlowNode" parameterType="flowNode">
-  	insert into  flow_node(
-  			jobs_id,model_id,node_type,flow_test,
-  			next_sort,sort,name,description,status,
-  			create_time)
-  	select		
+  	INSERT INTO  FLOW_NODE(
+  			JOBS_ID,MODEL_ID,NODE_TYPE,FLOW_TEST,
+  			NEXT_SORT,SORT,NAME,DESCRIPTION,STATUS,
+  			CREATE_TIME)
+  	SELECT		
   			#{jobsId},#{modelId},#{nodeType},#{flowTest},
   			#{nextSort},#{sort},#{name},#{description},#{status},now()
-  	from
+  	FROM
   			dual
 	  	
 	  	WHERE NOT EXISTS
 	  			(SELECT 
 	  				id 
-	  			from 
+	  			FROM 
 	  				flow_node 
-	  			where 
-	  				model_id = #{modelId} 
-	  			and 
-	  				sort = #{sort} 
-	  			and 
-	  				status = 0 )		
+	  			WHERE 
+	  				MODEL_ID = #{modelId} 
+	  			AND 
+	  				SORT = #{sort} 
+	  			AND 
+	  				STATUS = 0 )		
   </insert>
 
   <update id="updateFlowNode" parameterType="flowNode">
-  	update 
-  			flow_node
+  	UPDATE 
+  			FLOW_NODE
   	<set>
   		<if test="jobsId != null">
-			jobs_id	= #{jobsId}  ,				
+			JOBS_ID	= #{jobsId}  ,				
   		</if>
   		<if test="nodeType != null">
-  			node_type = #{nodeType},
+  			NODE_TYPE = #{nodeType},
   		</if>
   		<if test="flowTest != null">
-  			flow_test = #{flowTest},
+  			FLOW_TEST = #{flowTest},
   		</if>
   		<if test="sort != null">
-  			sort = #{sort},
+  			SORT = #{sort},
   		</if>
 		<if test="nextSort != null">
-  			next_sort = #{nextSort},
+  			NEXT_SORT = #{nextSort},
   		</if>  	
  		<if test="name != null">
-  			name = #{name},
+  			NAME = #{name},
   		</if> 
  		<if test="description != null">
-  			description = #{description} ,
+  			DESCRIPTION = #{description} ,
   		</if>  	 		
-  			update_time = now()
+  			UPDATE_TIME = now()
   	</set>	
-  	where
-  			id = #{id}
+  	WHERE
+  			ID = #{id}
   </update>
   
   <select id="findNextSortCountBySort" parameterType="flowNode" resultType="int">
   
- 	 select 
-  	  			count(*)
-  	 from
+ 	 SELECT 
+  	  			COUNT(*)
+  	 FROM
   	  		  flow_node
- 	  where
-  	  		  next_sort = (select sort from flow_node where id = #{id})
-  	 and
-  	 		  model_id = (select model_id from flow_node where id = #{id} )
-  	 for 
-  	 		update
+ 	  WHERE
+  	  		  NEXT_SORT = (SELECT SORT FROM flow_node WHERE ID = #{id})
+  	 AND
+  	 		  MODEL_ID = (SELECT MODEL_ID FROM flow_node WHERE ID = #{id} )
+  	 FOR 
+  	 		UPDATE
   	 		
   </select>
   

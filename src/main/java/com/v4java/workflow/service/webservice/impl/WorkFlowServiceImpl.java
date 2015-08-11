@@ -67,10 +67,12 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 		}
 		if (userVO.getJobsIds()==null||userVO.getJobsIds().size()<=0) {
 			FlowNode firstNode = flowNodeDao.findFirstFlowNodeById(workFlowModel.getId());
+			if (firstNode==null) {
+				return WorkFlowErrorConst.MODEL_FALSE;
+			}
 			workFlow.setJobsId(firstNode.getJobsId());
 			workFlow.setWorkflowNode(firstNode.getId());
 			workFlow.setStatus(FlowConst.START);
-			workFlow.setSystemId(userVO.getSystemId());
 			
 		}else {
 			List<FlowNode> flowNodes = flowNodeDao.findFlowNodeByModelId(workFlowModel.getId());
@@ -83,6 +85,9 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 			}
 			//得到当前节点
 			FlowNode nextFlowNode = findWorkFlowBySort(flowNodes, nowFlowNode.getNextSort());
+			if (nextFlowNode==null) {
+				return WorkFlowErrorConst.NEXT_FLOW_FALSE;
+			}
 			checkNextFlowNode(nextFlowNode, workFlow, flowNodes);
 			
 		}
@@ -142,8 +147,11 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 		}else if (agree == FlowConst.AGREE_TRUE) {
 			//寻找下一个节点
 			FlowNode nextFlowNode = findWorkFlowBySort(flowNodes, nowFlowNode.getNextSort());
+			if (nextFlowNode==null) {
+				flowParam.setCount(WorkFlowErrorConst.NEXT_FLOW_FALSE);
+				return flowParam ;
+			}
 			checkNextFlowNode(nextFlowNode, workFlow, flowNodes);
-
 		}
 
 		//现在的状态
@@ -253,8 +261,8 @@ public class WorkFlowServiceImpl implements IWorkFlowService{
 	 */
 	private void checkNextFlowNode(FlowNode nextFlowNode ,WorkFlow workFlow ,List<FlowNode> flowNodes) throws Exception{
 		if (nextFlowNode==null||nextFlowNode.getStatus()==FlowConst.STATUS_FALSE) {
-			setFirstWorkFlow(workFlow, flowNodes);
-			 return;
+			//setFirstWorkFlow(workFlow, flowNodes);
+			return;
 		}
 		//获得下一个节点类型
 		if(nextFlowNode.getNodeType()!=null){

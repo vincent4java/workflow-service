@@ -4,16 +4,16 @@
 
   <resultMap id="workFlowModel-resultMap" type="workFlowModel" >
 	<!--  -->
-    <id 	column="id" 				property="id" 			jdbcType="INTEGER" />
-    <result column="busy_type_id" 		property="busyTypeId" 	jdbcType="INTEGER" />
-    <result column="model_text" 		property="modelText" 	jdbcType="VARCHAR" />
-    <result column="name" 				property="name" 		jdbcType="VARCHAR" />
-    <result column="description" 		property="description" 	jdbcType="VARCHAR" />
+    <id 	column="ID" 				property="id" 			jdbcType="INTEGER" />
+    <result column="BUSY_TYPE_ID" 		property="busyTypeId" 	jdbcType="INTEGER" />
+    <result column="MODEL_TEXT" 		property="modelText" 	jdbcType="VARCHAR" />
+    <result column="NAME" 				property="name" 		jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" 		property="description" 	jdbcType="VARCHAR" />
     
-    <result column="status" 			property="status" 		jdbcType="INTEGER" />
-    <result column="create_time" 		property="createTime" 	jdbcType="TIMESTAMP" />
-    <result column="update_time" 		property="updateTime" 	jdbcType="TIMESTAMP" />
-    <result column="system_id" 			property="systemId" 	jdbcType="INTEGER" />
+    <result column="STATUS" 			property="status" 		jdbcType="INTEGER" />
+    <result column="CREATE_TIME" 		property="createTime" 	jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" 		property="updateTime" 	jdbcType="TIMESTAMP" />
+    <result column="SYSTEM_ID" 			property="systemId" 	jdbcType="INTEGER" />
     <!--  -->
   </resultMap>
   
@@ -24,52 +24,52 @@
   
   
   <insert id="insertWorkFlowModel" parameterType="workFlowModel">
-	insert into workflow_model(
-			busy_type_id ,model_text ,name,description,status ,
-			system_id,create_time)
+	INSERT INTO workflow_model(
+			BUSY_TYPE_ID ,MODEL_TEXT ,NAME,DESCRIPTION,STATUS ,
+			SYSTEM_ID,CREATE_TIME)
 			
-			values(#{busyTypeId} ,#{modelText} ,#{name},#{description},#{status},
+			VALUES(#{busyTypeId} ,#{modelText} ,#{name},#{description},#{status},
 			#{systemId},now())
    </insert>
    
    
       <update id="updateWorkFlowModelStatus" parameterType="workFlowModel">
-   		update 
+   		UPDATE 
    				workflow_model
    		<set>
 			<if test="status != null ">
-				status = #{status},
+				STATUS = #{status},
 			</if> 
-			update_time = now()     		
+			UPDATE_TIME = now()     		
    		</set>
-   		where 
-   				id = #{id}
-   		and
-   			( select count(id) from workflow where model_id = #{id} and status in (0,1))	= 0
-   		and
-   			( select count(id) from flow_node where model_id = #{id} and node_type = 3 )	= 1	
+   		WHERE 
+   				ID = #{id}
+   		AND
+   			( SELECT COUNT(ID) FROM workflow WHERE MODEL_ID = #{id} and STATUS IN (0,1))	= 0
+   		AND
+   			( SELECT COUNT(ID) FROM flow_node WHERE MODEL_ID = #{id} and NODE_TYPE = 3 )	= 1	
    </update>
    
    <update id="updateWorkFlowModel" parameterType="workFlowModel">
-   		update 
+   		UPDATE 
    				workflow_model
    		<set>
 			<if test="busyTypeId != null ">
-				busy_type_id  = #{busyTypeId},
+				BUSY_TYPE_ID  = #{busyTypeId},
 			</if>
 			<if test="modelText != null ">
-				model_text = #{modelText},
+				MODEL_TEXT = #{modelText},
 			</if>   	
 			<if test="name != null ">
-				name = #{name},
+				NAME = #{name},
 			</if>   	
 			<if test="description != null ">
-				description = #{description},
+				DESCRIPTION = #{description},
 			</if>   	   		
-			update_time = now()     		
+			UPDATE_TIME = now()     		
    		</set>
-   		where 
-   				id = #{id}
+   		WHERE 
+   				ID = #{id}
    </update>
    
    

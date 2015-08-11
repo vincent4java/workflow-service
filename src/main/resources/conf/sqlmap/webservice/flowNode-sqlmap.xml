@@ -41,12 +41,11 @@
     from			
   			flow_node
   	where
-  			model_id = #{modelId}
+  			sort = (select  next_sort from flow_node where model_id = #{modelId} and sort = 0)
   	and
-  			status = 0		
-  	order by 
-  			sort ASC
-  	limit 0 ,1
+  			status = 0	
+  	and
+  			model_id = #{modelId}			
   </select>
   
     <select id="findFlowNodeByModelId" parameterType="java.lang.Integer" resultMap="flowNode-resultMap">

@@ -74,7 +74,7 @@
 				NAME = #{name},
 			</if>
 			<if test="description != null and description !='' ">
-				description = #{description},
+				DESCRIPTION = #{description},
 			</if>	
 			UPDATE_TIME = now() ,
 		</set>		
