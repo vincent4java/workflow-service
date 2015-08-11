@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.v4java.workflow.dao.admin.FlowNodeDao;
 import com.v4java.workflow.dao.admin.WorkFlowModelDao;
-import com.v4java.workflow.pojo.WorkFlow;
 import com.v4java.workflow.pojo.WorkFlowModel;
 import com.v4java.workflow.query.admin.WorkFlowModelQuery;
 import com.v4java.workflow.service.admin.IWorkFlowModelService;
