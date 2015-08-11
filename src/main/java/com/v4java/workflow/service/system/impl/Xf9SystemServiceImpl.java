@@ -51,4 +51,9 @@ public class Xf9SystemServiceImpl implements IXf9SystemService{
 		return xf9SystemDao.updateXf9SystemPwd(xf9SystemParam);
 	}
 
+	@Override
+	public int updateXf9System(Xf9System xf9System) throws Exception {
+		return xf9SystemDao.updateXf9System(xf9System);
+	}
+
 }

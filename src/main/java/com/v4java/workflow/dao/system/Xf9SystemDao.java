@@ -25,4 +25,7 @@ public interface Xf9SystemDao {
 	 
 	 
 	 int updateXf9SystemPwd(Xf9SystemParam xf9SystemParam) throws Exception;
+	 
+	 
+	 int updateXf9System(Xf9System xf9System) throws Exception;
 }

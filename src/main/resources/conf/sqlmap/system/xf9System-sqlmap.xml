@@ -75,7 +75,7 @@
 	</update>
 	
 	
-		<update id="updateXf9SystemPwd" parameterType="xf9SystemParam" >
+	<update id="updateXf9SystemPwd" parameterType="xf9SystemParam" >
 		UPDATE  
 				xf9_system
 		SET			
@@ -87,4 +87,31 @@
 				USER_PWD = #{oldPwd}
 	</update>	  
 	
+	<update id="updateXf9System" parameterType="xf9System">
+		update
+				xf9_system
+		<set>
+			<if test="name != null and name != '' ">
+				NAME = #{name}
+			</if>
+			<if test="description != null and description != '' ">
+				DESCRIPTION = #{description}
+			</if>
+			<if test="userPwd != null and userPwd != '' ">
+				USER_PWD = #{userPwd},
+			</if>
+			<if test="userName != null and userName != '' ">
+				USER_NAME = #{userName},
+			</if>
+			<if test="userCode != null and userCode != '' ">
+				USER_CODE = #{userCode},
+			</if>
+			<if test="systemCode != null and systemCode != '' ">
+				SYSTEM_CODE = #{systemCode},
+			</if>														
+		</set>	
+				UPDATE_TIME = now()
+		WHERE
+				ID = #{id}
+	</update>
 </mapper>
