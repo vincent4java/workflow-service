@@ -97,17 +97,7 @@
 	  			and 
 	  				status = 0 )		
   </insert>
-  
-<!--   <select id="findNodeTypeCount" resultType="int" parameterType="flowNodeQuery" >
-  	select 
-  			count(*)
-  	from	
-  			flow_node
-  	where 
-  			model_id = #{modelId}
-  	and
-  			node_type = #{nodeType}						
-  </select> -->
+
   <update id="updateFlowNode" parameterType="flowNode">
   	update 
   			flow_node
