@@ -112,49 +112,6 @@
   			system_id = #{systemId}
   </select>
 
-   
-<!-- 
-  查找系统为 systemId所有模板
-  <select id="findWorkFlowModelBySystemId" parameterType="workFlowModelQuery" resultMap="workFlowModelVO-resultMap">
-  	select
-  			wm.id ,wm.busy_type_id ,wm.model_text ,wm.name,wm.description,wm.system_id ,
-  			wm.status,xf.name as system_name ,wm.create_time ,wm.update_time
-  	from 
-  			workflow_model wm
-  	left join
-  			xf9_system  xf  on xf.id = wm.system_id
-  	where  
-  			system_id = #{systemId}
-  	limit 
-  			#{limit} ,#{offset}		
-  </select>
-  
-    查找系统为 systemId所有模板
-  <select id="findWorkFlowModelCountBySystemId" parameterType="workFlowModelQuery" resultMap="workFlowModelVO-resultMap">
-  	select
-  			count(*)
-  	from 
-  			workflow_model wm
-  	left join
-  			xf9_system  xf  on xf.id = wm.system_id
-  	where  
-  			system_id = #{systemId}
-  </select>
-  
-  查找系统为 systemId且类型为busyTypeId的模板
-   <select id="findWorkFlowModelSystemIdAndType" parameterType="workFlowModelQuery" resultMap="workFlowModel-resultMap">
-  	select
-  			id ,busy_type_id ,model_text ,name,description,system_id ,
-  			status
-  	from 
-  			workflow_model
-  	where  
-  			system_id = #{systemId} 
-  		and
-  			busy_type_id = #{busyTypeId}		
-  </select>
-  
-  adasdas
-   -->
-   
+
+
 </mapper>

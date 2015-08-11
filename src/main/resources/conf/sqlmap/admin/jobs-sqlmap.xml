@@ -3,94 +3,86 @@
 <mapper namespace="com.v4java.workflow.dao.admin.JobsDao" >
 
   <resultMap id="jobs-resultMap" type="jobs" >
-    <id 	column="id" 			property="id" 			jdbcType="INTEGER" />
-    <result column="name" 			property="name" 		jdbcType="VARCHAR" />
-    <result column="description" 	property="description" 	jdbcType="VARCHAR" />
-    <result column="status" 		property="status" 		jdbcType="INTEGER" />
-    <result column="create_time" 	property="createTime" 	jdbcType="TIMESTAMP" />
+    <id 	column="ID" 			property="id" 			jdbcType="INTEGER" />
+    <result column="NAME" 			property="name" 		jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" 	property="description" 	jdbcType="VARCHAR" />
+    <result column="STATUS" 		property="status" 		jdbcType="INTEGER" />
+    <result column="CREATE_TIME" 	property="createTime" 	jdbcType="TIMESTAMP" />
     <!--  -->
-    <result column="update_time" 	property="updateTime" 	jdbcType="TIMESTAMP" />
-    <result column="system_id" 		property="systemId" 	jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" 	property="updateTime" 	jdbcType="TIMESTAMP" />
+    <result column="SYSTEM_ID" 		property="systemId" 	jdbcType="INTEGER" />
   </resultMap>
   
   
    <resultMap id="jobsVO-resultMap" type="jobsVO" extends="jobs-resultMap">
-  </resultMap>
+   </resultMap>
   
 	<insert id="insertJobs" parameterType="jobs">
-		insert into jobs(
-			name,description,status,system_id,create_time
+		INSERT INTO jobs(
+			NAME,DESCRIPTION,STATUS,SYSTEM_ID,CREATE_TIME
 		)	
-		values(#{name},#{description},#{status},#{systemId},now())
+		VALUES(#{name},#{description},#{status},#{systemId},now())
 	</insert>	
 	  
 	 <update id="updateJobsStatus"  parameterType="jobs">
-	 	update 
+	 	UPDATE 
 	 			jobs
-	 	set
-	 			status = #{status} , update_time = now()		
-	 	where
-	 			id = #{id}
-	 	and
-	 			(select 
-						count(fn.jobs_id)
-					from
+	 	SET
+	 			STATUS = #{status} , UPDATE_TIME = now()		
+	 	WHERE
+	 			ID = #{id}
+	 	AND
+	 			(SELECT 
+						COUNT(fn.`jobs_id`)
+					FROM
 						workflow_model wm
-					left join	
-						flow_node fn on wm.id = fn.model_id
-					where
-						fn.jobs_id  = #{id} ) = 0			
+					LEFT JOIN	
+						flow_node fn ON wm.id = fn.`model_id`
+					WHERE
+						fn.`jobs_id`  = #{id} ) = 0			
 	 </update>
 	 
 	 
 	 <select id="findJobsVO" parameterType="jobsQuery" resultMap="jobsVO-resultMap">
-		select 
-				id,name,description,status,create_time,
-				update_time 
+		SELECT 
+				ID,NAME,DESCRIPTION,STATUS,CREATE_TIME,
+				UPDATE_TIME 
 				
-		from
+		FROM
 				jobs j
-		where
-				system_id = #{systemId}
+		WHERE
+				SYSTEM_ID = #{systemId}
 		<if test="limit != null and offset != null">
-			  	limit   #{offset} ,#{limit} 		
+			  	LIMIT   #{offset} ,#{limit} 		
 		</if>					
 				
 	</select>
 	  
 	  
 	<select id="findJobsVOCount" parameterType="jobsQuery" resultType="int">
-		select 
-				count(id)
-		from
+		SELECT 
+				COUNT(ID)
+		FROM
 				jobs j
-		where
-				system_id = #{systemId}
+		WHERE
+				SYSTEM_ID = #{systemId}
 	</select>	
 	
-<!-- 	<select id="findJobsVO" parameterType="jobsQuery" resultMap="jobsVO-resultMap">
-		select 
-				j.id,j.name,j.description,j.status,j.system_id,
-				j.create_time,j.update_time,xs.name as  system_name 
-				
-		from
-				jobs j
-		left join
-				xf9_system xs on j.system_id = xs.id
-		where
-				system_id = #{systemId}
-	</select>
-	  
-	  
-	<select id="findJobsVOCount" parameterType="jobsQuery" resultType="int">
-		select 
-				count(j.id)
-		from
-				jobs j
-		left join
-				xf9_system xs on j.system_id = xs.id	
-		where
-				system_id = #{systemId}
-	</select>	 -->  
+	<update id="updateJobs"  parameterType="jobs">
+		UPDATE
+				jobs
+		<set>
+			<if test="name != null and name !='' ">
+				NAME = #{name},
+			</if>
+			<if test="description != null and description !='' ">
+				description = #{description},
+			</if>	
+			UPDATE_TIME = now() ,
+		</set>		
+		WHERE
+			ID = #{id}
+	</update>
+
 	  
 </mapper>

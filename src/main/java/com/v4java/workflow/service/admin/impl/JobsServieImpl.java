@@ -36,4 +36,9 @@ public class JobsServieImpl implements IJobsService{
 	public int updateJobsStatus(Jobs jobs) throws Exception {
 		return jobsDao.updateJobsStatus(jobs);
 	}
+
+	@Override
+	public int updateJobs(Jobs jobs) throws Exception {
+		return jobsDao.updateJobs(jobs);
+	}
 }

@@ -15,4 +15,10 @@ public interface JobsUserDao {
 	int findJobsUserVOCount(JobsUserQuery jobsUserQuery) throws Exception;
 	
 	List<JobsUser> findJobsUser(JobsUserQuery jobsUserQuery) throws Exception;
+	
+	int updateJobsUser(JobsUser jobsUser) throws Exception;
+
+	int updateJobsUserStatus(JobsUser jobsUser) throws Exception;
+	
 }
+

@@ -42,6 +42,18 @@ public class JobsUserServiceImpl implements IJobsUserService{
 		return jobsUserDao.findJobsUser(jobsUserQuery);
 	}
 
+
+	@Override
+	public int updateJobsUser(JobsUser jobsUser) throws Exception {
+		return jobsUserDao.updateJobsUser(jobsUser);
+	}
+
+
+	@Override
+	public int updateJobsUserStatus(JobsUser jobsUser) throws Exception {
+		return jobsUserDao.updateJobsUserStatus(jobsUser);
+	}
+
 	
 	
 }

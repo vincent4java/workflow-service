@@ -91,11 +91,12 @@
 		update
 				xf9_system
 		<set>
+			UPDATE_TIME = now() ,
 			<if test="name != null and name != '' ">
-				NAME = #{name}
+				NAME = #{name} ,
 			</if>
 			<if test="description != null and description != '' ">
-				DESCRIPTION = #{description}
+				DESCRIPTION = #{description},
 			</if>
 			<if test="userPwd != null and userPwd != '' ">
 				USER_PWD = #{userPwd},
@@ -110,7 +111,7 @@
 				SYSTEM_CODE = #{systemCode},
 			</if>														
 		</set>	
-				UPDATE_TIME = now()
+				
 		WHERE
 				ID = #{id}
 	</update>
