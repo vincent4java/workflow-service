@@ -3,7 +3,7 @@
 <mapper namespace="com.v4java.workflow.dao.webservice.Xf9SystemDao" >
 
   <resultMap id="xf9System-resultMap" type="xf9System" >
-    <id 	column="id" 					property="id" 				jdbcType="INTEGER" />
+    <id 	column="ID" 					property="id" 				jdbcType="INTEGER" />
     <result column="NAME" 					property="name" 			jdbcType="VARCHAR" />
     <result column="DESCRIPTION" 			property="description" 		jdbcType="VARCHAR" />
     <result column="STATUS" 				property="status" 			jdbcType="INTEGER" />
@@ -21,7 +21,7 @@
 			SELECT
 					ID ,NAME,STATUS,USER_CODE,USER_NAME,SYSTEM_CODE
 			FROM 
-					XF9_SYSTEM
+					xf9_system
 			WHERE		
 					SYSTEM_CODE = #{systemCode}
 	</select>
