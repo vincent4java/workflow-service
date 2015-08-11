@@ -115,9 +115,6 @@
   		<if test="jobsId != null">
 			jobs_id	= #{jobsId}  ,				
   		</if>
-  		<if test="modelId != null">
-  			model_id = #{modelId},
-  		</if>
   		<if test="nodeType != null">
   			node_type = #{nodeType},
   		</if>
@@ -136,9 +133,6 @@
  		<if test="description != null">
   			description = #{description} ,
   		</if>  	 		
-   		<if test="status != null">
-  			status = #{status} ,
-  		</if>  	 		 	
   			update_time = now()
   	</set>	
   	where
