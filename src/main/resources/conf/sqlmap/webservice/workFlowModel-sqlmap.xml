@@ -4,30 +4,30 @@
 
   <resultMap id="workFlowModel-resultMap" type="workFlowModel" >
 	<!--  -->
-    <id 	column="id" 				property="id" 			jdbcType="INTEGER" />
-    <result column="busy_type_id" 		property="busyTypeId" 	jdbcType="INTEGER" />
-    <result column="model_text" 		property="modelText" 	jdbcType="VARCHAR" />
-    <result column="name" 				property="name" 		jdbcType="VARCHAR" />
-    <result column="description" 		property="description" 	jdbcType="VARCHAR" />
+    <id 	column="ID" 				property="id" 			jdbcType="INTEGER" />
+    <result column="BUSY_TYPE_ID" 		property="busyTypeId" 	jdbcType="INTEGER" />
+    <result column="MODEL_TEXT" 		property="modelText" 	jdbcType="VARCHAR" />
+    <result column="NAME" 				property="name" 		jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" 		property="description" 	jdbcType="VARCHAR" />
     
-    <result column="status" 			property="status" 		jdbcType="INTEGER" />
-    <result column="create_time" 		property="createTime" 	jdbcType="TIMESTAMP" />
-    <result column="update_time" 		property="updateTime" 	jdbcType="TIMESTAMP" />
-    <result column="system_id" 			property="systemId" 	jdbcType="INTEGER" />
+    <result column="STATUS" 			property="status" 		jdbcType="INTEGER" />
+    <result column="CREATE_TIME" 		property="createTime" 	jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" 		property="updateTime" 	jdbcType="TIMESTAMP" />
+    <result column="SYSTEM_ID" 			property="systemId" 	jdbcType="INTEGER" />
     <!--  -->
   </resultMap>
   
   <!--查找系统为 systemId且类型为busyTypeId的模板 -->
    <select id="findWorkFlowModelSystemIdAndType" parameterType="workFlowModelQuery" resultMap="workFlowModel-resultMap">
-  	select
-  			id ,busy_type_id ,model_text ,name,description,system_id ,
-  			status
-  	from 
+  	SELECT
+  			ID ,BUSY_TYPE_ID ,MODEL_TEXT ,NAME,DESCRIPTION,SYSTEM_ID ,
+  			STATUS
+  	FROM 
   			workflow_model
-  	where  
-  			system_id = #{systemId} 
-  		and
-  			busy_type_id = #{busyTypeId}		
+  	WHERE  
+  			SYSTEM_ID = #{systemId} 
+  	AND
+  			BUSY_TYPE_ID = #{busyTypeId}		
   </select>
   
    

@@ -4,27 +4,27 @@
 
   <resultMap id="jobsUser-resultMap" type="jobsUser" >
 
-    <id 	column="id" 			property="id" 			jdbcType="INTEGER" />
-    <result column="jobs_id" 		property="jobsId" 		jdbcType="INTEGER" />
-    <result column="user_code" 		property="userCode" 	jdbcType="VARCHAR" />
-    <result column="user_name" 		property="userName" 	jdbcType="VARCHAR" />
-    <result column="status" 		property="status" 		jdbcType="INTEGER" />
+    <id 	column="ID" 			property="id" 			jdbcType="INTEGER" />
+    <result column="JOBS_ID" 		property="jobsId" 		jdbcType="INTEGER" />
+    <result column="USER_CODE" 		property="userCode" 	jdbcType="VARCHAR" />
+    <result column="USER_NAME" 		property="userName" 	jdbcType="VARCHAR" />
+    <result column="STATUS" 		property="status" 		jdbcType="INTEGER" />
     
-    <result column="create_time" 	property="createTime" 	jdbcType="TIMESTAMP" />
-    <result column="update_time" 	property="updateTime" 	jdbcType="TIMESTAMP" />
-	<result column="system_id" 		property="systemId" 	jdbcType="INTEGER" />
+    <result column="CREATE_TIME" 	property="createTime" 	jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" 	property="updateTime" 	jdbcType="TIMESTAMP" />
+	<result column="SYSTEM_ID" 		property="systemId" 	jdbcType="INTEGER" />
 	
   </resultMap>
   
 	<select id="findjobsUserByUserCodeAndSystemId" resultMap="jobsUser-resultMap" parameterType="jobsUserQuery">
-		select 
-				id , jobs_id ,user_name,user_code ,status,system_id
-		from 
+		SELECT 
+				ID , JOBS_ID ,USER_NAME,USER_CODE ,STATUS,SYSTEM_ID
+		FROM 
 				jobs_user
-		where
-				user_code = #{userCode}	
-		and
-				system_id  = #{systemId}		
+		WHERE
+				USER_CODE = #{userCode}	
+		AND
+				SYSTEM_ID  = #{systemId}		
 	</select>  
 	
 

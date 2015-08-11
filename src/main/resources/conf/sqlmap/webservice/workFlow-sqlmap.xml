@@ -3,142 +3,144 @@
 <mapper namespace="com.v4java.workflow.dao.webservice.WorkFlowDao" >
 
   <resultMap id="workFlow-resultMap" type="workFlow" >
-    <id 	column="id" 			property="id" 			jdbcType="INTEGER" />
-    <result column="busy_type_id" 	property="busyTypeId" 	jdbcType="INTEGER" />
-    <result column="model_id" 		property="modelId" 		jdbcType="INTEGER" />
-    <result column="name" 			property="name" 		jdbcType="VARCHAR" />
-    <result column="description" 	property="description" 	jdbcType="VARCHAR" />
+    <id 	column="ID" 			property="id" 			jdbcType="INTEGER" />
+    <result column="BUSY_TYPE_ID" 	property="busyTypeId" 	jdbcType="INTEGER" />
+    <result column="MODEL_ID" 		property="modelId" 		jdbcType="INTEGER" />
+    <result column="NAME" 			property="name" 		jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" 	property="description" 	jdbcType="VARCHAR" />
     
-    <result column="jobs_id" 		property="jobsId" 		jdbcType="INTEGER" />
-    <result column="workflow_node" 	property="workflowNode" jdbcType="INTEGER" />
-    <result column="status" 		property="status" 		jdbcType="INTEGER" />
-    <result column="create_time" 	property="createTime" 	jdbcType="TIMESTAMP" />
-    <result column="update_time" 	property="updateTime" 	jdbcType="TIMESTAMP" />
+    <result column="JOBS_ID" 		property="jobsId" 		jdbcType="INTEGER" />
+    <result column="WORKFLOW_NODE" 	property="workflowNode" jdbcType="INTEGER" />
+    <result column="STATUS" 		property="status" 		jdbcType="INTEGER" />
+    <result column="CREATE_TIME" 	property="createTime" 	jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" 	property="updateTime" 	jdbcType="TIMESTAMP" />
     
-    <result column="busy_type_name" property="busyTypeName" jdbcType="VARCHAR" />
-    <result column="money" 			property="money" 		jdbcType="DECIMAL" />
-    <result column="json" 			property="json" 		jdbcType="VARCHAR" />
-    <result column="user_name" 		property="userName" 	jdbcType="VARCHAR" />
-  	<result column="user_code" 		property="userCode" 	jdbcType="VARCHAR" />
+    <result column="BUSY_TYPE_NAME" property="busyTypeName" jdbcType="VARCHAR" />
+    <result column="MONEY" 			property="money" 		jdbcType="DECIMAL" />
+    <result column="JSON" 			property="json" 		jdbcType="VARCHAR" />
+    <result column="USER_NAME" 		property="userName" 	jdbcType="VARCHAR" />
+  	<result column="USER_CODE" 		property="userCode" 	jdbcType="VARCHAR" />
   	
-  	<result column="system_id"      property="systemId"    	jdbcType="INTEGER"/>
-  	<result column="work_flow_code" property="workFlowCode" jdbcType="VARCHAR"/>
-  	<result column="is_delete" 		property="isDelete" 	jdbcType="INTEGER" />
+  	<result column="SYSTEM_ID"      property="systemId"    	jdbcType="INTEGER"/>
+  	<result column="WORK_FLOW_CODE" property="workFlowCode" jdbcType="VARCHAR"/>
+  	<result column="IS_DELETE" 		property="isDelete" 	jdbcType="INTEGER" />
   	
   </resultMap>
   
   
     <resultMap type="workFlowVO" id="workFlowVO-resultMap">
-  	<id 	column="id" 					property="id" 				jdbcType="INTEGER" />
-    <result column="busy_type_id" 			property="busyTypeId" 		jdbcType="INTEGER" />
-    <result column="model_id" 				property="modelId" 			jdbcType="INTEGER" />
-    <result column="name" 					property="name" 			jdbcType="VARCHAR" />
-    <result column="description" 			property="description" 		jdbcType="VARCHAR" />
+  	<id 	column="ID" 					property="id" 				jdbcType="INTEGER" />
+    <result column="BUSY_TYPE_ID" 			property="busyTypeId" 		jdbcType="INTEGER" />
+    <result column="MODEL_ID" 				property="modelId" 			jdbcType="INTEGER" />
+    <result column="NAME" 					property="name" 			jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" 			property="description" 		jdbcType="VARCHAR" />
     	
-    <result column="create_time" 			property="createTime" 		jdbcType="TIMESTAMP" />
-    <result column="update_time" 			property="updateTime" 		jdbcType="TIMESTAMP" />
-    <result column="jobs_name" 				property="jobsName" 		jdbcType="VARCHAR" />
-    <result column="jobs_description" 		property="jobsDescription" 	jdbcType="VARCHAR" />
-    <result column="busy_type_name" 		property="busyTypeName"	 	jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" 			property="createTime" 		jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" 			property="updateTime" 		jdbcType="TIMESTAMP" />
+    <result column="JOBS_NAME" 				property="jobsName" 		jdbcType="VARCHAR" />
+    <result column="JOBS_DESCRIPTION" 		property="jobsDescription" 	jdbcType="VARCHAR" />
+    <result column="BUSY_TYPE_NAME" 		property="busyTypeName"	 	jdbcType="VARCHAR" />
     
-    <result column="money" 					property="money" 			jdbcType="DECIMAL" />
-    <result column="json" 					property="json" 			jdbcType="VARCHAR" />
-    <result column="user_name" 				property="userName" 		jdbcType="VARCHAR" />
-  	<result column="user_code" 				property="userCode" 		jdbcType="VARCHAR" />
-  	<result column="system_id"      		property="systemId"    		jdbcType="INTEGER"/>
+    <result column="MONEY" 					property="money" 			jdbcType="DECIMAL" />
+    <result column="JSON" 					property="json" 			jdbcType="VARCHAR" />
+    <result column="USER_NAME" 				property="userName" 		jdbcType="VARCHAR" />
+  	<result column="USER_CODE" 				property="userCode" 		jdbcType="VARCHAR" />
+  	<result column="SYSTEM_ID"      		property="systemId"    		jdbcType="INTEGER"/>
   	
-  	<result column="workflow_node" 			property="workflowNode" 	jdbcType="INTEGER" />
-  	<result column="node_description" 		property="nodeDescription" 	jdbcType="VARCHAR" />
-  	<result column="node_name" 				property="nodeName" 		jdbcType="VARCHAR" />
-  	<result column="work_flow_code" 		property="workFlowCode" 	jdbcType="VARCHAR"/>
-  	<result column="jobs_name" 				property="jobsName" 		jdbcType="VARCHAR"/>
+  	<result column="WORKFLOW_NODE" 			property="workflowNode" 	jdbcType="INTEGER" />
+  	<result column="NODE_DESCRIPTION" 		property="nodeDescription" 	jdbcType="VARCHAR" />
+  	<result column="NODE_NAME" 				property="nodeName" 		jdbcType="VARCHAR" />
+  	<result column="WORK_FLOW_CODE" 		property="workFlowCode" 	jdbcType="VARCHAR"/>
+  	<result column="JOBS_NAME" 				property="jobsName" 		jdbcType="VARCHAR"/>
   	
-  	<result column="is_delete" 				property="isDelete" 		jdbcType="INTEGER" />
+  	<result column="IS_DELETE" 				property="isDelete" 		jdbcType="INTEGER" />
   	
   </resultMap>	
   
   	
 	<insert id="insertWorkFlow" parameterType="workFlow">
-		insert into workflow(
-				busy_type_id ,model_id ,name ,description ,jobs_id
-				,workflow_node ,status,money,busy_type_name,json,
-				user_name,user_code,system_id,work_flow_code,is_delete
+		INSERT INTO workflow(
+				BUSY_TYPE_ID ,MODEL_ID ,NAME ,DESCRIPTION ,JOBS_ID
+				,WORKFLOW_NODE ,STATUS,MONEY,BUSY_TYPE_NAME,JSON,
+				USER_NAME,USER_CODE,SYSTEM_ID,WORK_FLOW_CODE,IS_DELETE,
+				CREATE_TIME
 			)
-		values(
+		VALUES(
 			#{busyTypeId},#{modelId},#{name},#{description},#{jobsId},
 			#{workflowNode},#{status},#{money},#{busyTypeName},#{json},
-			#{userName},#{userCode},#{systemId},#{workFlowCode},0
+			#{userName},#{userCode},#{systemId},#{workFlowCode},0,
+			now()
 			)
 	
 	</insert>
 	
 	<update id="updateWorkFlowJson" parameterType="workFlow" >
-		update 
+		UPDATE 
 				workflow	 
-		set
-       			 json = #{json,jdbcType=VARCHAR},
-      			update_time  = now()		    		
-		where id = #{id}	
+		SET
+       			 JSON = #{json,jdbcType=VARCHAR},
+      			UPDATE_TIME  = now()		    		
+		WHERE ID = #{id}	
 	</update>
 	
 	<update id="updateWorkFlowStatusUseWorkFlowParam" parameterType="workFlowParam" >
-		update 
+		UPDATE 
 				workflow	 
-		set
-       			 jobs_id = #{nowJobsId,jdbcType=INTEGER},
-       			 workflow_node = #{nowWorkflowNode,jdbcType=INTEGER},
-       			 status = #{nowStatus,jdbcType=INTEGER},
-      			update_time  = now()		    		
-		where 
-			id = #{id}
-		and 
-			status = #{oldStatus}
-		and 
-			workflow_node = #{oldWorkflowNode}
-		and 
-			jobs_id = #{oldJobsId}				
+		SET
+       			 JOBS_ID = #{nowJobsId,jdbcType=INTEGER},
+       			 WORKFLOW_NODE = #{nowWorkflowNode,jdbcType=INTEGER},
+       			 STATUS = #{nowStatus,jdbcType=INTEGER},
+      			UPDATE_TIME  = now()		    		
+		WHERE 
+			ID = #{id}
+		AND 
+			STATUS = #{oldStatus}
+		AND 
+			WORKFLOW_NODE = #{oldWorkflowNode}
+		AND 
+			JOBS_ID = #{oldJobsId}				
 	</update>
 	
 	
 	<select id="findWorkFlowById" parameterType="java.lang.Integer" resultMap="workFlow-resultMap">
-		select 
-				id ,busy_type_id ,model_id ,name ,description ,
-				jobs_id ,workflow_node ,status,money,busy_type_name,
-				json,is_delete
-		from 
+		SELECT 
+				ID ,BUSY_TYPE_ID ,MODEL_ID ,NAME ,DESCRIPTION ,
+				JOBS_ID ,WORKFLOW_NODE ,STATUS,MONEY,BUSY_TYPE_NAME,
+				JSON,IS_DELETE
+		FROM 
 				workflow 
-		where
-				id = #{id}
+		WHERE
+				ID = #{id}
 	</select>
   
     	<select id="findUserWorkFlowVOByUserCodeAndSystemId" parameterType="workFlowQuery" resultMap="workFlowVO-resultMap">
-  		select 
-  				wf.id,wf.busy_type_id,wf.name,wf.model_id,wf.description ,
-  				wf.create_time ,wf.update_time,wf.busy_type_name,wf.json ,wf.system_id,
-  				wf.workflow_node ,fn.name as node_name ,fn.description as node_description,
-  				wf.work_flow_code ,j.name as jobs_name,wf.update_time,wf.status
-  		from 
-  				workflow  wf 
+  		SELECT 
+  				WF.`ID`,WF.`BUSY_TYPE_ID`,WF.`NAME`,WF.`MODEL_ID`,WF.`DESCRIPTION` ,
+  				WF.`CREATE_TIME` ,WF.`UPDATE_TIME`,WF.`BUSY_TYPE_NAME`,WF.`JSON` ,WF.`SYSTEM_ID`,
+  				WF.`WORKFLOW_NODE` ,FN.`NAME` AS NODE_NAME ,FN.`DESCRIPTION` AS NODE_DESCRIPTION,
+  				WF.`WORK_FLOW_CODE` ,J.`NAME` AS JOBS_NAME,WF.`UPDATE_TIME`,WF.`STATUS`
+  		FROM 
+  				workflow  WF 
+  		left JOIN 
+  				 jobs_user JU  ON WF.`JOBS_ID` = JU.`JOBS_ID`
   		left join 
-  				 jobs_user ju  on wf.jobs_id = ju.jobs_id
-  		left join 
-  				jobs j on j.id = ju.jobs_id
+  				jobs J ON J.`ID` = JU.JOBS_ID
   		left join
-  				flow_node fn on fn.id = wf.workflow_node		
-  		where 
-  				ju.user_code = #{userCode}
-  		and
-  				wf.system_id = #{systemId}
-   		and			
-  				wf.status != 2
-  		and
-  				wf.is_delete = 0		
+  				flow_node FN ON FN.`ID` = WF.`WORKFLOW_NODE`		
+  		WHERE 
+  				JU.`USER_CODE` = #{userCode}
+  		AND
+  				WF.`SYSTEM_ID` = #{systemId}
+   		AND			
+  				WF.`STATUS` != 2
+  		AND
+  				WF.`IS_DELETE` = 0		
   		<if test="busyTypeId != null ">
-  		and		busy_type_id = #{busyTypeId}
+  		AND		WF.`BUSY_TYPE_ID` = #{busyTypeId}
   		</if>			
   						 				
   		<if test="limit != null and offset != null">
-  				limit #{offset},#{limit}
+  				LIMIT #{offset},#{limit}
   		</if>					
   	</select>
   	

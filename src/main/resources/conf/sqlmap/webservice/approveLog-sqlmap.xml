@@ -3,50 +3,50 @@
 <mapper namespace="com.v4java.workflow.dao.webservice.ApproveLogDao" >
 
   <resultMap id="approveLog-resultMap" type="approveLog" >
-    <id 	column="id" 			property="id" 			jdbcType="INTEGER" />
-    <result column="workflow_id" 	property="workFlowId" 	jdbcType="INTEGER" />
-    <result column="status" 		property="status" 		jdbcType="INTEGER" />
-    <result column="description" 	property="description" 	jdbcType="VARCHAR" />
-    <result column="user_code" 		property="userCode" 	jdbcType="VARCHAR" />
+    <id 	column="ID" 			property="id" 			jdbcType="INTEGER" />
+    <result column="WORKFLOW_ID" 	property="workFlowId" 	jdbcType="INTEGER" />
+    <result column="STATUS" 		property="status" 		jdbcType="INTEGER" />
+    <result column="DESCRIPTION" 	property="description" 	jdbcType="VARCHAR" />
+    <result column="USER_CODE" 		property="userCode" 	jdbcType="VARCHAR" />
     
-    <result column="user_name" 		property="userName" 	jdbcType="VARCHAR" />
-    <result column="flow_node" 		property="flowNode" 	jdbcType="INTEGER" />
-    <result column="create_time" 	property="createTime" 	jdbcType="TIMESTAMP"/>
-    <result column="busy_type_name" property="busyTypeName" jdbcType="VARCHAR" />
-    <result column="busy_type_id" 	property="busyTypeId" 	jdbcType="INTEGER" />
+    <result column="USER_NAME" 		property="userName" 	jdbcType="VARCHAR" />
+    <result column="FLOW_NODE" 		property="flowNode" 	jdbcType="INTEGER" />
+    <result column="CREATE_TIME" 	property="createTime" 	jdbcType="TIMESTAMP"/>
+    <result column="BUSY_TYPE_NAME" property="busyTypeName" jdbcType="VARCHAR" />
+    <result column="BUSY_TYPE_ID" 	property="busyTypeId" 	jdbcType="INTEGER" />
     
-    <result column="jobs_id" 		property="jobsId" 		jdbcType="INTEGER" />
-    <result column="jobs_name" 		property="jobsName" 	jdbcType="VARCHAR" />
-    <result column="node_name" 		property="nodeName" 	jdbcType="VARCHAR" />
-    <result column="model_id" 		property="modelId" 		jdbcType="INTEGER" />
-    <result column="model_name" 	property="modelName" 	jdbcType="VARCHAR" />
+    <result column="JOBS_ID" 		property="jobsId" 		jdbcType="INTEGER" />
+    <result column="JOBS_NAME" 		property="jobsName" 	jdbcType="VARCHAR" />
+    <result column="NODE_NAME" 		property="nodeName" 	jdbcType="VARCHAR" />
+    <result column="MODEL_ID" 		property="modelId" 		jdbcType="INTEGER" />
+    <result column="MODEL_NAME" 	property="modelName" 	jdbcType="VARCHAR" />
 
-    <result column="name" 			property="name" 		jdbcType="VARCHAR" />
-    <result column="system_id" 		property="systemId" 	jdbcType="INTEGER" />
+    <result column="NAME" 			property="name" 		jdbcType="VARCHAR" />
+    <result column="SYSTEM_ID" 		property="systemId" 	jdbcType="INTEGER" />
     <!--  -->
   </resultMap>
   
 	<insert id="insertApproveLog" parameterType="approveLog">
-		insert into approve_log(
-			workflow_id,status,description,user_code,user_name,
-			flow_node,create_time,busy_type_name,busy_type_id,jobs_id,
-			jobs_name,node_name,model_id,model_name,name,
-			system_id
+		INSERT INTO approve_log(
+			WORKFLOW_ID,STATUS,DESCRIPTION,USER_CODE,USER_NAME,
+			FLOW_NODE,CREATE_TIME,BUSY_TYPE_NAME,BUSY_TYPE_ID,JOBS_ID,
+			JOBS_NAME,NODE_NAME,MODEL_ID,MODEL_NAME,NAME,
+			SYSTEM_ID,CREATE_TIME
 		)	
-		values(#{workFlowId},#{status},#{description},#{userCode},#{userName},
+		VALUES(#{workFlowId},#{status},#{description},#{userCode},#{userName},
 				#{flowNode},now(),#{busyTypeName},#{busyTypeId}	,#{jobsId}	,	
 				(select name from jobs where id= #{jobsId}),#{nodeName},#{modelId},(select name from workflow_model where id= #{modelId}),#{name},
-				#{systemId}
+				#{systemId},now()
 		)
 	</insert>	
 	  
 	  <select id="findApproveLogsByWorkfLowId" resultMap="approveLog-resultMap" parameterType="int">
-	  		select
+	  		SELECT
 	  				*
-	  		from
+	  		FROM
 	  				approve_log
-	  		where
-	  				workflow_id = #{workFlowId}		
+	  		WHERE
+	  				WORKFLOW_ID = #{workFlowId}		
 	  </select>
 	  
 </mapper>

@@ -4,60 +4,60 @@
 
   <resultMap id="flowNode-resultMap" type="flowNode" >
   
-    <id 	column="id" 				property="id" 			jdbcType="INTEGER" />
-    <result column="jobs_id" 			property="jobsId" 		jdbcType="INTEGER" />
-    <result column="model_id" 			property="modelId" 		jdbcType="INTEGER" />
-    <result column="node_type" 			property="nodeType" 	jdbcType="INTEGER" />
-    <result column="flow_test" 			property="flowTest" 	jdbcType="VARCHAR" />
+    <id 	column="ID" 				property="id" 			jdbcType="INTEGER" />
+    <result column="JOBS_ID" 			property="jobsId" 		jdbcType="INTEGER" />
+    <result column="MODEL_ID" 			property="modelId" 		jdbcType="INTEGER" />
+    <result column="NODE_TYPE" 			property="nodeType" 	jdbcType="INTEGER" />
+    <result column="FLOW_TEST" 			property="flowTest" 	jdbcType="VARCHAR" />
 	
-	<result column="sort" 				property="sort" 		jdbcType="INTEGER" />
-    <result column="next_sort" 			property="nextSort" 	jdbcType="INTEGER" />
-    <result column="name" 				property="name" 		jdbcType="VARCHAR" />
-    <result column="description" 		property="description" 	jdbcType="VARCHAR" />
-    <result column="create_time" 		property="createTime" 	jdbcType="TIMESTAMP" />
+	<result column="SORT" 				property="sort" 		jdbcType="INTEGER" />
+    <result column="NEXT_SORT" 			property="nextSort" 	jdbcType="INTEGER" />
+    <result column="NAME" 				property="name" 		jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" 		property="description" 	jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" 		property="createTime" 	jdbcType="TIMESTAMP" />
     
-    <result column="update_time" 		property="updateTime" 	jdbcType="TIMESTAMP" />
-    <result column="status" 			property="status" 		jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" 		property="updateTime" 	jdbcType="TIMESTAMP" />
+    <result column="STATUS" 			property="status" 		jdbcType="INTEGER" />
     
     <!--  -->
   </resultMap>
   
   
    <select id="findFlowNodeById" parameterType="java.lang.Integer" resultMap="flowNode-resultMap">
-  	select
-  			id,jobs_id,model_id,node_type,flow_test
-  			next_sort,sort,name,description,status
-  	from			
+  	SELECT
+  			ID,JOBS_ID,MODEL_ID,NODE_TYPE,FLOW_TEST
+  			NEXT_SORT,SORT,NAME,DESCRIPTION,STATUS
+  	FROM			
   			flow_node
-  	where
-  			id = #{id}
+  	WHERE
+  			ID = #{id}
   </select>
   
   <!-- 通过排序和得到第一个节点且该节点状态可用 -->
    <select id="findFirstFlowNodeById" parameterType="java.lang.Integer" resultMap="flowNode-resultMap">
-  	select
-  			id,jobs_id,model_id,node_type,flow_test ,
-  			next_sort,sort,name,description,status
-    from			
+  	SELECT
+  			ID,JOBS_ID,MODEL_ID,NODE_TYPE,FLOW_TEST ,
+  			NEXT_SORT,SORT,NAME,DESCRIPTION,STATUS
+    FROM			
   			flow_node
-  	where
-  			sort = (select  next_sort from flow_node where model_id = #{modelId} and sort = 0)
-  	and
-  			status = 0	
-  	and
-  			model_id = #{modelId}			
+  	WHERE
+  			SORT = (SELECT  NEXT_SORT FROM flow_node WHERE MODEL_ID = #{modelId} AND SORT = 0)
+  	AND
+  			STATUS = 0	
+  	AND
+  			MODEL_ID = #{modelId}			
   </select>
   
     <select id="findFlowNodeByModelId" parameterType="java.lang.Integer" resultMap="flowNode-resultMap">
-  	select
-  			id,jobs_id,model_id,node_type,flow_test ,status ,
-  			next_sort,sort,name,description
-    from			
+  	SELECT
+  			ID,JOBS_ID,MODEL_ID,NODE_TYPE,FLOW_TEST ,STATUS ,
+  			NEXT_SORT,SORT,NAME,DESCRIPTION
+    FROM			
   			flow_node
-  	where
-  			model_id = #{modelId}
-  	order by 
-  			sort ASC
+  	WHERE
+  			MODEL_ID = #{modelId}
+  	ORDER BY 
+  			SORT ASC
   </select>
   
 </mapper>
