@@ -100,7 +100,7 @@
 
   <update id="updateFlowNode" parameterType="flowNode">
   	UPDATE 
-  			FLOW_NODE
+  			flow_node
   	<set>
   		<if test="jobsId != null">
 			JOBS_ID	= #{jobsId}  ,				
@@ -127,6 +127,8 @@
   	</set>	
   	WHERE
   			ID = #{id}
+  	AND
+  			STATUS = 1		
   </update>
   
   <select id="findNextSortCountBySort" parameterType="flowNode" resultType="int">
