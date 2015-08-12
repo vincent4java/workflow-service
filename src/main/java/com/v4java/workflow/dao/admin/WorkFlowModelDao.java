@@ -35,4 +35,5 @@ public interface WorkFlowModelDao {
 	int findWorkFlowModelCount(WorkFlowModelQuery workFlowModelQuery) throws Exception;
 	
 	
+	WorkFlowModel findWorkFlowModelByFlowNodeId(Integer id) throws Exception;
 }

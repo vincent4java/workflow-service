@@ -131,7 +131,7 @@
   			STATUS = 1		
   </update>
   
-  <select id="findNextSortCountBySort" parameterType="flowNode" resultType="int">
+<!--   <select id="findNextSortCountBySort" parameterType="flowNode" resultType="int">
   
  	 SELECT 
   	  			COUNT(*)
@@ -144,7 +144,7 @@
   	 FOR 
   	 		UPDATE
   	 		
-  </select>
+  </select> -->
   
  	<update id="updateFlowNodeStatus" parameterType="flowNode">
  	  UPDATE 
@@ -155,7 +155,8 @@
   	  WHERE
   	  		NODE_TYPE != 0
   	  AND 
-  	  		ID = #{id}		  								
+  	  		ID = #{id}
+			  								
  	</update> 
   
 </mapper>

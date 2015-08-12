@@ -5,8 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.v4java.workflow.constant.AdminConst;
 import com.v4java.workflow.dao.admin.FlowNodeDao;
+import com.v4java.workflow.dao.admin.WorkFlowModelDao;
 import com.v4java.workflow.pojo.FlowNode;
+import com.v4java.workflow.pojo.WorkFlowModel;
 import com.v4java.workflow.query.admin.FlowNodeQuery;
 import com.v4java.workflow.service.admin.IFlowNodeService;
 import com.v4java.workflow.vo.admin.FlowNodeVO;
@@ -16,7 +19,8 @@ public class FlowNodeServiceImpl implements IFlowNodeService{
 
 	@Autowired
 	private FlowNodeDao flowNodeDao;
-
+	@Autowired
+	private WorkFlowModelDao workFlowModelDao;
 	@Override
 	public FlowNode findFlowNodeById(Integer Id) throws Exception {
 		return flowNodeDao.findFlowNodeById(Id);
@@ -44,8 +48,8 @@ public class FlowNodeServiceImpl implements IFlowNodeService{
 
 	@Override
 	public int updateFlowNodeStatus(FlowNode flowNode) throws Exception {
-		int n = flowNodeDao.findNextSortCountBySort(flowNode);
-		if (n==0) {
+		WorkFlowModel workFlowModel = workFlowModelDao.findWorkFlowModelByFlowNodeId(flowNode.getId());
+		if (workFlowModel!=null&&workFlowModel.getStatus()==AdminConst.STATUS_FLASE) {
 			return  flowNodeDao.updateFlowNodeStatus(flowNode);
 		}
 		return -1;

@@ -88,15 +88,15 @@
   
   <!-- 查找系统为 systemId所有模板 -->
   <select id="findWorkFlowModel" parameterType="workFlowModelQuery" resultMap="workFlowModelVO-resultMap">
-  	select
-  			id ,busy_type_id ,model_text ,name,description,system_id ,
-  			status,create_time ,update_time
-  	from 
+  	SELECT
+  			ID ,BUSY_TYPE_ID ,MODEL_TEXT ,NAME,DESCRIPTION,SYSTEM_ID ,
+  			STATUS,CREATE_TIME ,UPDATE_TIME
+  	FROM 
   			workflow_model
-  	where  
-  			system_id = #{systemId}
+  	WHERE  
+  			SYSTEM_ID = #{systemId}
 	<if test="limit != null and offset != null">
-		  	limit   #{offset} ,#{limit} 		
+		  	LIMIT   #{offset} ,#{limit} 		
 	</if>	
 
   </select>
@@ -104,14 +104,23 @@
     
     <!--查找系统为 systemId所有模板  -->
   <select id="findWorkFlowModelCount" parameterType="workFlowModelQuery" resultType="int">
-  	select
-  			count(id)
-  	from 
+  	SELECT
+  			COUNT(ID)
+  	FROM 
   			workflow_model 
-  	where  
-  			system_id = #{systemId}
+  	WHERE  
+  			SYSTEM_ID = #{systemId}
   </select>
 
+  <select id="findWorkFlowModelByFlowNodeId"  parameterType="int" resultMap="workFlowModel-resultMap">
+	 SELECT 	
+	 		WM.`STATUS`
+	 FROM
+	 		flow_node FN
+	 INNER JOIN 		
+	 		workflow_model WM  ON WM.`ID`  = FN.`MODEL_ID` AND  FN.`ID` = #{id}
+	 FOR UPDATE		
+  </select>
 
 
 </mapper>
