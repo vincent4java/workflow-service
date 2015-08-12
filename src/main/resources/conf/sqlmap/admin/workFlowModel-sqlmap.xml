@@ -45,7 +45,7 @@
    		WHERE 
    				ID = #{id}
    		AND
-   			( SELECT COUNT(ID) FROM workflow WHERE MODEL_ID = #{id} and STATUS IN (0,1))	= 0
+   			( SELECT COUNT(ID) FROM workflow WHERE MODEL_ID = #{id} and STATUS IN (0,1) AND IS_DELETE = 0)	= 0
    		AND
    			( SELECT COUNT(ID) FROM flow_node WHERE MODEL_ID = #{id} and NODE_TYPE = 3 )	= 1	
    </update>

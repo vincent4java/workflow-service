@@ -31,12 +31,12 @@
 			WORKFLOW_ID,STATUS,DESCRIPTION,USER_CODE,USER_NAME,
 			FLOW_NODE,CREATE_TIME,BUSY_TYPE_NAME,BUSY_TYPE_ID,JOBS_ID,
 			JOBS_NAME,NODE_NAME,MODEL_ID,MODEL_NAME,NAME,
-			SYSTEM_ID,CREATE_TIME
+			SYSTEM_ID
 		)	
 		VALUES(#{workFlowId},#{status},#{description},#{userCode},#{userName},
 				#{flowNode},now(),#{busyTypeName},#{busyTypeId}	,#{jobsId}	,	
 				(select name from jobs where id= #{jobsId}),#{nodeName},#{modelId},(select name from workflow_model where id= #{modelId}),#{name},
-				#{systemId},now()
+				#{systemId}
 		)
 	</insert>	
 	  

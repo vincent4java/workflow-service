@@ -37,7 +37,7 @@
 					FROM
 						flow_node  
 					WHERE
-						jobs_id  = #{id} ) = 0			
+						jobs_id  = #{id} AND STATUS = 0  ) = 0			
 	 </update>
 	 
 	 

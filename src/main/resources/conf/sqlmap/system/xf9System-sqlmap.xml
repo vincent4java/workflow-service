@@ -79,7 +79,7 @@
 		UPDATE  
 				xf9_system
 		SET			
-				user_pwd = #{nowPwd},
+				USER_PWD = #{nowPwd},
 				UPDATE_TIME = now()
 		WHERE  
 				ID = #{id}
@@ -103,9 +103,6 @@
 			</if>
 			<if test="userName != null and userName != '' ">
 				USER_NAME = #{userName},
-			</if>
-			<if test="userCode != null and userCode != '' ">
-				USER_CODE = #{userCode},
 			</if>
 			<if test="systemCode != null and systemCode != '' ">
 				SYSTEM_CODE = #{systemCode},

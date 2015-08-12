@@ -75,7 +75,7 @@
   </select>
   
   <insert id="insertFlowNode" parameterType="flowNode">
-  	INSERT INTO  FLOW_NODE(
+  	INSERT INTO  flow_node(
   			JOBS_ID,MODEL_ID,NODE_TYPE,FLOW_TEST,
   			NEXT_SORT,SORT,NAME,DESCRIPTION,STATUS,
   			CREATE_TIME)
